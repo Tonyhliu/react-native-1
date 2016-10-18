@@ -83,17 +83,21 @@ class SampleTextInput extends Component {
         <View style={styles.toolbar}>
           <Text style={styles.toolbarTitle}>WaterBuddy</Text>
         </View>
+        <View style={styles.secondContainer}>
+          <View>
+            <Text style={styles.bwd}>Enter body weight!</Text>
+            <TextInput style={styles.txtInput}
+              onChangeText={(text) => this.setState({text})}
+              value={this.state.text}
+              placeholder="Ex: 120 pounds..."/>
+            <Button style={styles.btn}
+              styleDisabled={{color: 'red'}}
+              onPress={this.buttonClicked.bind(this)}>
+              Press me!
+            </Button>
+          </View>
+        </View>
         <View>
-          <Text style={styles.bwd}>Enter body weight!</Text>
-          <TextInput style={styles.txtInput}
-            onChangeText={(text) => this.setState({text})}
-            value={this.state.text}
-            placeholder="Ex: 120 pounds..."/>
-          <Button style={styles.btn}
-            styleDisabled={{color: 'red'}}
-            onPress={this.buttonClicked.bind(this)}>
-            Press me!
-          </Button>
           <Text style={styles.green}>
           {this.state.amount === null ? '' : this.state.amount + " " + "ounces of water a day"}
           {"\n"}
@@ -112,8 +116,13 @@ const styles = StyleSheet.create({
     color: 'black',
     fontWeight: 'bold',
     fontSize: 30,
-    textAlign: 'center',
     paddingTop: 50
+  },
+  secondContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    textAlign: 'center'
   },
   green: {
     color: '#81c04d',
