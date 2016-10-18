@@ -62,6 +62,7 @@ import React, { Component } from 'react';
 import { AppRegistry,
         View,
         Text,
+        Image,
         TextInput,
         StyleSheet
        } from 'react-native';
@@ -75,12 +76,11 @@ class SampleTextInput extends Component {
   }
 
   buttonClicked() {
-    // console.log("Button Clicked!");
+    // have check to see if number or not
     let amount = Math.round(parseInt(this.state.text) * (2/3));
     this.setState({amount})
     // console.log(amount);
     // 1 fl ounce = 29.5735 ml
-
   }
 
   render() {
@@ -93,6 +93,7 @@ class SampleTextInput extends Component {
           <View style={{flex: 1}}>
             <Text style={styles.bwd}>Enter body weight!</Text>
             <TextInput style={styles.txtInput}
+              keyboardType='numeric'
               onChangeText={(text) => this.setState({text})}
               value={this.state.text}
               placeholder="Ex: 120 pounds..."/>
@@ -111,6 +112,10 @@ class SampleTextInput extends Component {
           {"\n"}
           {this.state.amount === null ? '' : Math.round(this.state.amount * 28.35) + " " + "ml of water a day"}
           </Text>
+        </View>
+        <View>
+          <Image source={{uri: 'https://facebook.github.io/react/img/logo_og.png'}}
+          style={{width: 400, height: 200}} />
         </View>
       </View>
     );
@@ -135,7 +140,7 @@ const styles = StyleSheet.create({
   },
   result: {
     flexDirection: 'row',
-    flex: .25,
+    // flex: .25,
     justifyContent: 'center',
     backgroundColor: 'lightgray'
   },
@@ -146,10 +151,9 @@ const styles = StyleSheet.create({
     paddingTop: 50
   },
   secondContainer: {
-    flex: .1,
+    // flex: .1,
     justifyContent: 'center',
     alignItems: 'center',
-    textAlign: 'center',
     backgroundColor: 'gray'
   },
   green: {
