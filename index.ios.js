@@ -64,7 +64,7 @@ import Button from 'react-native-button';
 class SampleTextInput extends Component {
   constructor(props) {
     super(props);
-    this.state = { text: 'Placeholder',
+    this.state = { text: '',
                     amount: null};
   }
 
@@ -83,10 +83,11 @@ class SampleTextInput extends Component {
           <Text style={styles.toolbarTitle}>WaterBuddy</Text>
         </View>
         <View>
-          <Text style={styles.bwd}>Enter body weight in pounds!</Text>
+          <Text style={styles.bwd}>Enter body weight!</Text>
           <TextInput style={styles.txtInput}
             onChangeText={(text) => this.setState({text})}
-            value={this.state.text}/>
+            value={this.state.text}
+            placeholder="Ex: 120 pounds..."/>
           <Button style={styles.btn}
             styleDisabled={{color: 'red'}}
             onPress={this.buttonClicked.bind(this)}>
