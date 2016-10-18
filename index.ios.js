@@ -70,9 +70,10 @@ class SampleTextInput extends Component {
 
   buttonClicked() {
     // console.log("Button Clicked!");
-    let amount = parseInt(this.state.text) / 2;
+    let amount = Math.round(parseInt(this.state.text) * (2/3));
     this.setState({amount})
     // console.log(amount);
+    // 1 fl ounce = 29.5735 ml
 
   }
 
@@ -95,6 +96,10 @@ class SampleTextInput extends Component {
           </Button>
           <Text style={styles.green}>
           {this.state.amount === null ? '' : this.state.amount + " " + "ounces of water a day"}
+          {"\n"}
+          {this.state.amount === null ? '' : "or"}
+          {"\n"}
+          {this.state.amount === null ? '' : Math.round(this.state.amount * 28.35) + " " + "ml of water a day"}
           </Text>
         </View>
       </View>
