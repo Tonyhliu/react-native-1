@@ -53,7 +53,12 @@
 // AppRegistry.registerComponent('HelloWorld', () => HelloWorld);
 
 import React, { Component } from 'react';
-import { AppRegistry, View, Text, TextInput } from 'react-native';
+import { AppRegistry,
+        View,
+        Text,
+        TextInput,
+        StyleSheet
+       } from 'react-native';
 import Button from 'react-native-button';
 
 class SampleTextInput extends Component {
@@ -73,60 +78,67 @@ class SampleTextInput extends Component {
 
   render() {
     return (
-      <View>
-        <Text>Enter body weight!</Text>
-        <TextInput
-          style={{height: 40, borderColor: 'green', borderWidth: 1}}
-          onChangeText={(text) => this.setState({text})}
-          value={this.state.text}/>
-        <Button style={{fontSize: 20, color: 'green'}}
-          styleDisabled={{color: 'red'}}
-          onPress={this.buttonClicked.bind(this)}>
-          Press me!
-        </Button>
-        <Text>
-        {this.state.amount === null ? '' : this.state.amount + "ounces of water a day"}
-        </Text>
+      <View style={styles.mainContainer}>
+        <View style={styles.toolbar}>
+          <Text style={styles.toolbarTitle}>WaterBuddy</Text>
+        </View>
+        <View>
+          <Text style={styles.bwd}>Enter body weight in pounds!</Text>
+          <TextInput style={styles.txtInput}
+            onChangeText={(text) => this.setState({text})}
+            value={this.state.text}/>
+          <Button style={styles.btn}
+            styleDisabled={{color: 'red'}}
+            onPress={this.buttonClicked.bind(this)}>
+            Press me!
+          </Button>
+          <Text style={styles.green}>
+          {this.state.amount === null ? '' : this.state.amount + " " + "ounces of water a day"}
+          </Text>
+        </View>
       </View>
     );
   }
 }
 
-AppRegistry.registerComponent('HelloWorld', () => SampleTextInput);
+const styles = StyleSheet.create({
+  bwd: {
+    color: 'black',
+    fontWeight: 'bold',
+    fontSize: 30,
+    textAlign: 'center',
+    paddingTop: 50
+  },
+  green: {
+    color: '#81c04d',
+  },
+  blue: {
+    color: '#a7d5f6',
+  },
+  txtInput: {
+    height: 40,
+    borderColor: '#a7d5f6',
+    borderWidth: 1
+  },
+  btn: {
+    fontSize: 20,
+    color: '#a7d5f6'
+  },
+  toolbar: {
+    backgroundColor: '#a7d5f6',
+    paddingTop: 30,
+    paddingBottom: 10,
+    flexDirection: 'row'
+  },
+  toolbarTitle: {
+    color: '#fff',
+    textAlign: 'center',
+    fontWeight: 'bold',
+    flex: 1
+  },
+  mainContainer: {
 
-// import React, { Component } from 'react';
-// import { AppRegistry, Text, View } from 'react-native';
-//
-// class Blink extends Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {showText: true};
-//
-//     // Toggle the state every second
-//     setInterval(() => {
-//       this.setState({ showText: !this.state.showText });
-//     }, 1000);
-//   }
-//
-//   render() {
-//     let display = this.state.showText ? this.props.text : ' ';
-//     return (
-//       <Text>{display}</Text>
-//     );
-//   }
-// }
-//
-// class BlinkApp extends Component {
-//   render() {
-//     return (
-//       <View>
-//         <Blink text='I love to blink' />
-//         <Blink text='Yes blinking is so great' />
-//         <Blink text='Why did they ever take this out of HTML' />
-//         <Blink text='Look at me look at me look at me' />
-//       </View>
-//     );
-//   }
-// }
-//
-// AppRegistry.registerComponent('HelloWorld', () => BlinkApp);
+  }
+});
+
+AppRegistry.registerComponent('HelloWorld', () => SampleTextInput);
