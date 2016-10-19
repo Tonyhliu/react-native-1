@@ -13,38 +13,82 @@ import {
   View
 } from 'react-native';
 
+import HomePage from './HomePage';
 import WaterIntake from './WaterIntake';
 
 class WaterBuddy extends Component {
+  _renderScene(route, nav) {
+    switch (route.index) {
+      case 0:
+        // console.log("MADE Izzz");
+        // console.log(route.passProps);
+        return <HomePage navigator={nav}
+                          title={route.title}
+                          {...route.passProps} />
+        break;
+      case 1:
+        return <WaterIntake navigator={nav}
+                            title={route.title}
+                            {...route.passProps} />
+        break;
+      default:
+    }
+  }
+
+  _configureScene(route, routeStack) {
+    if (route.type === "back") {
+      return Navigator.SceneConfigs.FloatFromLeft
+      // return Navigator.SceneConfigs.PushFromRight
+      // return Navigator.SceneConfigs.FloatFromBottom
+    }
+    return Navigator.SceneConfigs.HorizontalSwipeJump
+  }
+
   render() {
+    const routes = [
+      {title: 'Home Page', index: 0},
+      {title: 'WaterIntake', index: 1},
+    ];
+
     return(
       <Navigator
-        initialRoute={{ title: 'Initial Scene', index: 0}}
-        renderScene={(route, navigator) => {
-          return (<WaterIntake
-            title={route.title}
+        initialRoute={routes[0]}
+        initialRouteStack={routes}
+        configureScene={this._configureScene}
 
-            // function to call when new scene should be displayed
-            onForward={() => {
-              const nextIndex = route.index + 1;
-              navigator.push({
-                title: 'Scene ' + nextIndex,
-                index: nextIndex,
-              });
-            }}
-
-            // function to call to go back to previous scene
-            onBack={() => {
-              if (route.index > 0) {
-                navigator.pop();
-              }
-            }}
-          />)
-        }}
-      />
+        renderScene={this._renderScene} />
     )
   }
 }
+
+
+// return(
+//   <Navigator
+//     initialRoute={routes[0]}
+//     initialRouteStack={routes}
+//
+//     renderScene={(route, navigator) => {
+//       return (<HomePage
+//         title={route.title}
+//         // function to call when new scene should be displayed
+//         onForward={() => {
+//           if (route.index === 0) {
+//             navigator.push(routes[1]);
+//           } else {
+//             navigator.pop();
+//           }
+//         }}
+//
+//         // function to call to go back to previous scene
+//         onBack={() => {
+//           if (route.index > 0) {
+//             navigator.pop();
+//           }
+//         }}
+//       />)
+    // }}
+  // />
+// )
 
 AppRegistry.registerComponent('HelloWorld', () => WaterBuddy);
 
