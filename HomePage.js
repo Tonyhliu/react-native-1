@@ -1,5 +1,11 @@
 import React, { Component, PropTypes } from 'react';
-import { View, Text, TouchableHighlight, StyleSheet } from 'react-native';
+import { View,
+        Text,
+        TouchableHighlight,
+        StyleSheet,
+        ScrollView,
+        Image
+       } from 'react-native';
 
 import WaterIntake from './WaterIntake';
 
@@ -22,17 +28,36 @@ export default class HomePage extends Component {
 
   render() {
     return (
-      <View>
-        <View style={styles.toolbar}>
-          <Text style={styles.toolbarBtn}>Back</Text>
-          <Text style={styles.toolbarTitle}>WaterBuddy</Text>
-          <TouchableHighlight>
-            <Text style={styles.toolbarBtn}
-                  onPress={this._navigate.bind(this, 'Hello World')}>Next</Text>
-          </TouchableHighlight>
+      <ScrollView>
+        <View>
+          <View style={styles.toolbar}>
+            <Text style={styles.toolbarBtn}>Back</Text>
+            <Text style={styles.toolbarTitle}>WaterBuddy</Text>
+            <TouchableHighlight>
+              <Text style={styles.toolbarBtn}
+                    onPress={this._navigate.bind(this, 'Hello World')}>Next</Text>
+            </TouchableHighlight>
+          </View>
+          <Text>{this.props.title}</Text>
+          <Text>Did you know that water can...</Text>
+            <Text style={{fontSize:50}}>Scroll me plz</Text>
+             <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
+             <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
+             <Text style={{fontSize:50}}>If you like</Text>
+             <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
+             <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
+             <Text style={{fontSize:50}}>Scrolling down</Text>
+             <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
+             <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
+             <Text style={{fontSize:50}}>Whats the best</Text>
+             <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
+             <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
+             <Text style={{fontSize:50}}>Framework around?</Text>
+             <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
+             <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
+             <Text style={{fontSize:80}}>React Native</Text>
         </View>
-        <Text>{this.props.title}</Text>
-      </View>
+      </ScrollView>
     )
   }
 }
