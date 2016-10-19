@@ -64,7 +64,7 @@ export default class HomePage extends Component {
              <Text style={{fontSize:20}}>8) Prevents Cramps & Sprains</Text>
              <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
              <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
-             <Text style={{fontSize:20}}>9) Puts You In A Good Mood</Text>
+             <Text style={{fontSize:20}}>9) Elevate Mood</Text>
              <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
              <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
              <Text style={{fontSize:20}}>10) Save Money!</Text>

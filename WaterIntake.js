@@ -31,7 +31,7 @@ export default class WaterIntake extends Component {
       amount = Math.round(parseInt(this.state.text) * (2/3));
       this.setState({amount})
     } else {
-      Alert.alert('Invalid number', alertMsg)
+      Alert.alert('Invalid weight', alertMsg)
     }
     // console.log(amount);
     // 1 fl ounce = 29.5735 ml
