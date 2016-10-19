@@ -5,6 +5,7 @@ import { View,
         TouchableHighlight,
         TextInput,
         Navigator,
+        Alert,
         StyleSheet
        } from 'react-native';
 import Button from 'react-native-button';
@@ -24,8 +25,14 @@ export default class WaterIntake extends Component {
 
   buttonClicked() {
     // have check to see if number or not
-    let amount = Math.round(parseInt(this.state.text) * (2/3));
-    this.setState({amount})
+    let amount;
+    let alertMsg = "Please enter a valid number!"
+    if (Number.isInteger(parseInt(this.state.text)) && parseInt(this.state.text) > 0) {
+      amount = Math.round(parseInt(this.state.text) * (2/3));
+      this.setState({amount})
+    } else {
+      Alert.alert('Invalid number', alertMsg)
+    }
     // console.log(amount);
     // 1 fl ounce = 29.5735 ml
   }
@@ -42,7 +49,7 @@ export default class WaterIntake extends Component {
   }
 
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     return (
       <View style={styles.mainContainer}>
         <View style={styles.toolbar}>
