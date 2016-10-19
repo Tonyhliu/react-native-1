@@ -124,8 +124,9 @@ const styles = StyleSheet.create({
   result: {
     flexDirection: 'row',
     // flex: .25,
-    justifyContent: 'center',
-    backgroundColor: 'lightgray'
+    height: 200,
+    justifyContent: 'center'
+    // backgroundColor: 'lightgray'
   },
   bwd: {
     color: 'black',
@@ -137,7 +138,7 @@ const styles = StyleSheet.create({
     // flex: .1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'gray'
+    // backgroundColor: 'gray'
   },
   green: {
     color: '#81c04d'

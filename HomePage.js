@@ -40,22 +40,34 @@ export default class HomePage extends Component {
           </View>
           <Text>{this.props.title}</Text>
           <Text>Did you know that water can...</Text>
-            <Text style={{fontSize:50}}>Scroll me plz</Text>
+            <Text style={{fontSize:20}}>1) Increase Energy & Relives Fatigue</Text>
              <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
              <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
-             <Text style={{fontSize:50}}>If you like</Text>
+             <Text style={{fontSize:20}}>2) Promotes Weight Loss</Text>
              <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
              <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
-             <Text style={{fontSize:50}}>Scrolling down</Text>
+             <Text style={{fontSize:20}}>3) Flushes out Toxins</Text>
              <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
              <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
-             <Text style={{fontSize:50}}>Whats the best</Text>
+             <Text style={{fontSize:20}}>4) Improves Skin Complexion</Text>
              <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
              <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
-             <Text style={{fontSize:50}}>Framework around?</Text>
+             <Text style={{fontSize:20}}>5) Maintains Regularity</Text>
              <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
              <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
-             <Text style={{fontSize:80}}>React Native</Text>
+             <Text style={{fontSize:20}}>6) Boosts Immune System</Text>
+             <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
+             <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
+             <Text style={{fontSize:20}}>7) Natural Headache Remedy</Text>
+             <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
+             <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
+             <Text style={{fontSize:20}}>8) Prevents Cramps & Sprains</Text>
+             <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
+             <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
+             <Text style={{fontSize:20}}>9) Puts You In A Good Mood</Text>
+             <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
+             <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
+             <Text style={{fontSize:20}}>10) Save Money!</Text>
         </View>
       </ScrollView>
     )
