@@ -22,23 +22,33 @@ export default class HomePage extends Component {
       index: 1,
       passProps: {
         name: property
-      }
+      },
+      onPress: this.onPress,
+      rightText: 'ALERT!'
     })
   }
 
+  onPress() {
+    alert("YO FROM RIGHT BUTTON")
+  }
+
   render() {
+    // <View style={styles.toolbar}>
+    //   <Text style={styles.toolbarBtn}>Back</Text>
+    //   <Text style={styles.toolbarTitle}>WaterBuddy</Text>
+    //   <TouchableHighlight>
+    //     <Text style={styles.toolbarBtn}
+    //       onPress={this._navigate.bind(this, 'Hello World')}>Next</Text>
+    //   </TouchableHighlight>
+    // </View>
     return (
-      <ScrollView>
+      <ScrollView style={{marginTop: 70}}>
         <View>
-          <View style={styles.toolbar}>
-            <Text style={styles.toolbarBtn}>Back</Text>
-            <Text style={styles.toolbarTitle}>WaterBuddy</Text>
-            <TouchableHighlight>
-              <Text style={styles.toolbarBtn}
-                    onPress={this._navigate.bind(this, 'Hello World')}>Next</Text>
-            </TouchableHighlight>
-          </View>
           <Text>{this.props.title}</Text>
+            <TouchableHighlight style={ styles.button } onPress={this._navigate.bind(this, 'Hello from HP')}>
+              <Text style={ styles.buttonText }>Go to next page</Text>
+            </TouchableHighlight>
+
           <Text>Did you know that water can...</Text>
             <Text style={{fontSize:20}}>1) Increase Energy & Relives Fatigue</Text>
              <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
@@ -100,5 +110,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#fff',
     fontWeight: 'bold'
+  },
+  buttonText: {
+    fontSize:18
   }
 });

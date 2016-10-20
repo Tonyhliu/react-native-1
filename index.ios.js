@@ -10,6 +10,7 @@ import {
   StyleSheet,
   Navigator,
   Text,
+  TouchableHighlight,
   View
 } from 'react-native';
 
@@ -60,12 +61,76 @@ class WaterBuddy extends Component {
     return(
       <Navigator
         initialRoute={routes[0]}
+        style={{flex:1}}
         initialRouteStack={routes}
         configureScene={this._configureScene}
+        navigationBar={
+          <Navigator.NavigationBar
+            style={styles.nav}
+            routeMapper={NavigationBarRouteMapper} />
+        }
 
         renderScene={this._renderScene} />
     )
   }
 }
+
+var NavigationBarRouteMapper = {
+  LeftButton(route, navigator, index, navState) {
+    if(index > 0) {
+      return (
+        <TouchableHighlight
+        	 underlayColor="#a7d5f6"
+           onPress={() => { if (index > 0) { navigator.pop() } }}>
+          <Text style={ styles.leftNavButtonText }>Back</Text>
+        </TouchableHighlight>
+  	)}
+    else { return null }
+  },
+  RightButton(route, navigator, index, navState) {
+    if (route.onPress) return ( <TouchableHighlight
+    														onPress={ () => route.onPress() }>
+                                <Text style={ styles.rightNavButtonText }>
+                                  	{ route.rightText || 'Right Button' }
+                                </Text>
+                              </TouchableHighlight> )
+  },
+  Title(route, navigator, index, navState) {
+    return <Text style={ styles.title }>WaterBuddy</Text>
+  }
+};
+
+var styles = StyleSheet.create({
+  // mainContainer: {
+  // 	flex: 4,
+  //   flexDirection: 'column',
+  //   marginTop: 100,
+  // },
+  leftNavButtonText: {
+  	fontSize: 18,
+    marginLeft:13,
+    marginTop:2
+  },
+  rightNavButtonText: {
+  	fontSize: 18,
+    marginRight:13,
+    marginTop:2
+  },
+  nav: {
+  	height: 60,
+    backgroundColor: '#a7d5f6'
+  },
+  title: {
+  	marginTop:4,
+    fontSize:16
+  },
+  button: {
+  	height:60,
+    marginBottom:10,
+    backgroundColor: '#efefef',
+    justifyContent: 'center',
+    alignItems: 'center'
+  }
+});
 
 AppRegistry.registerComponent('HelloWorld', () => WaterBuddy);
