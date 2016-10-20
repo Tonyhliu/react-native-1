@@ -6,16 +6,46 @@ import { View,
         TextInput,
         Navigator,
         Alert,
+        PickerIOS,
         StyleSheet
        } from 'react-native';
+
 import Button from 'react-native-button';
+
+// import DropDown, {
+//   Select,
+//   Option,
+//   OptionList,
+// } from 'react-native-selectme';
+
+var PickerItemIOS = PickerIOS.Item;
+
+var ACTIVITY_LEVELS = {
+  none: {
+    name: 'NONE'
+  },
+  low: {
+    name: 'LOW (0-30 minutes)'
+  },
+  medium: {
+    name: 'MEDIUM (30-60 minutes)'
+  },
+  high: {
+    name: 'HIGH (60+ mins)'
+  }
+};
 
 export default class WaterIntake extends Component {
   constructor(props) {
     super(props);
-    this.state = { text: '',
-                    amount: null};
+
+    this.state = {
+      text: '',
+      amount: null,
+      activity: 'none'
+    };
   }
+
 
   // static propTypes = {
   //   title: PropTypes.string.isRequired,
@@ -24,7 +54,6 @@ export default class WaterIntake extends Component {
   // }
 
   buttonClicked() {
-    // have check to see if number or not
     let amount;
     let alertMsg = "Please enter a valid number!"
     if (Number.isInteger(parseInt(this.state.text)) && parseInt(this.state.text) > 0) {
@@ -49,7 +78,9 @@ export default class WaterIntake extends Component {
   }
 
   render() {
-    // console.log(this.props);
+    let activity = ACTIVITY_LEVELS[this.state.activity];
+    let selectionString = activity.name
+
     return (
       <View style={styles.mainContainer}>
         <View style={styles.toolbar}>
@@ -60,6 +91,7 @@ export default class WaterIntake extends Component {
           <Text style={styles.toolbarTitle}>WaterBuddy</Text>
           <Text style={styles.toolbarBtn}>Like</Text>
         </View>
+
         <View style={styles.secondContainer}>
           <View>
             <Text style={styles.bwd}>Enter body weight!</Text>
@@ -75,36 +107,35 @@ export default class WaterIntake extends Component {
             </Button>
           </View>
         </View>
-        <View style={styles.result}>
-          <Text style={styles.green}>
-          {this.state.amount === null ? '' : this.state.amount + " " + "ounces of water a day"}
-          {"\n"}
-          {this.state.amount === null ? '' : "OR"}
-          {"\n"}
-          {this.state.amount === null ? '' : Math.round(this.state.amount * 28.35) + " " + "ml of water a day"}
-          </Text>
-        </View>
+
         <View>
-          <Image source={{uri: 'https://facebook.github.io/react/img/logo_og.png'}}
-          style={{width: 400, height: 200}} />
+          <Text>Activity level for the day:</Text>
+           <PickerIOS
+             selectedValue={this.state.activity}
+             onValueChange={(activity) => this.setState({activity})}>
+             {Object.keys(ACTIVITY_LEVELS).map((activity) => (
+               <PickerItemIOS
+                 key={activity}
+                 value={activity}
+                 label={ACTIVITY_LEVELS[activity].name}
+                   />
+                 ))}
+           </PickerIOS>
+           <Text>You selected: {selectionString}</Text>
+        </View>
+
+        <View>
+          <Text style={styles.green}>
+            {this.state.amount === null ? '' : this.state.amount + " " + "ounces of water a day"}
+            {"\n"}
+            {this.state.amount === null ? '' : "OR"}
+            {"\n"}
+            {this.state.amount === null ? '' : Math.round(this.state.amount * 28.35) + " " + "ml of water a day"}
+          </Text>
         </View>
       </View>
     );
   }
-
-  // render() {
-  //   return (
-  //     <View>
-  //       <Text>Current Scene: { this.props.title }</Text>
-  //       <TouchableHighlight onPress={this.props.onForward}>
-  //         <Text>Tap me to load the next scene</Text>
-  //       </TouchableHighlight>
-  //       <TouchableHighlight onPress={this.props.onBack}>
-  //         <Text>Tap me to go back</Text>
-  //       </TouchableHighlight>
-  //     </View>
-  //   )
-  // }
 }
 
 const styles = StyleSheet.create({
@@ -129,10 +160,11 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   result: {
-    flexDirection: 'row',
-    // flex: .25,
+    // flexDirection: 'row',
+    // flex: 1,
     height: 200,
-    justifyContent: 'center'
+    justifyContent: 'center',
+    alignItems: 'center'
     // backgroundColor: 'lightgray'
   },
   bwd: {
@@ -142,10 +174,15 @@ const styles = StyleSheet.create({
     paddingTop: 50
   },
   secondContainer: {
-    // flex: .1,
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     // backgroundColor: 'gray'
+  },
+  thirdContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   green: {
     color: '#81c04d'
