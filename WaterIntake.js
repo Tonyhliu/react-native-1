@@ -91,17 +91,17 @@ export default class WaterIntake extends Component {
     let activity = ACTIVITY_LEVELS[this.state.activity];
     let selectionString = activity.name
 
+    // <View style={styles.toolbar}>
+    //   <TouchableHighlight>
+    //     <Text style={styles.toolbarBtn}
+    //       onPress={this._navigate.bind(this, "HELLO FROM WI PAGE")}>Back</Text>
+    //   </TouchableHighlight>
+    //   <Text style={styles.toolbarTitle}>WaterBuddy</Text>
+    //   <Text style={styles.toolbarBtn}
+    //     onPress={this._navigateForward.bind(this, "HELLO FROM WI PAGE")}>Next</Text>
+    // </View>
     return (
       <View style={styles.mainContainer}>
-        <View style={styles.toolbar}>
-          <TouchableHighlight>
-            <Text style={styles.toolbarBtn}
-                  onPress={this._navigate.bind(this, "HELLO FROM WI PAGE")}>Back</Text>
-          </TouchableHighlight>
-          <Text style={styles.toolbarTitle}>WaterBuddy</Text>
-          <Text style={styles.toolbarBtn}
-                  onPress={this._navigateForward.bind(this, "HELLO FROM WI PAGE")}>Next</Text>
-        </View>
 
         <View style={styles.secondContainer}>
           <View>

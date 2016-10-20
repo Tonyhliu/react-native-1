@@ -4,8 +4,11 @@ import { View,
         TouchableHighlight,
         StyleSheet,
         ScrollView,
-        Image
+        Image,
+        WebView
        } from 'react-native';
+import Markdown from 'react-native-simple-markdown';
+// import Video from 'react-native-video';
 
 import WaterIntake from './WaterIntake';
 
@@ -23,14 +26,10 @@ export default class HomePage extends Component {
       passProps: {
         name: property
       },
-      onPress: this.onPress,
-      rightText: 'ALERT!'
+      rightText: 'Next',
     })
   }
 
-  onPress() {
-    alert("YO FROM RIGHT BUTTON")
-  }
 
   render() {
     // <View style={styles.toolbar}>
@@ -45,8 +44,9 @@ export default class HomePage extends Component {
       <ScrollView style={{marginTop: 70}}>
         <View>
           <Text>{this.props.title}</Text>
-            <TouchableHighlight style={ styles.button } onPress={this._navigate.bind(this, 'Hello from HP')}>
-              <Text style={ styles.buttonText }>Go to next page</Text>
+            <TouchableHighlight style={styles.button}
+                                onPress={this._navigate.bind(this, 'Hello from HP')}>
+              <Text style={styles.buttonText}>Go to next page</Text>
             </TouchableHighlight>
 
           <Text>Did you know that water can...</Text>
@@ -78,11 +78,33 @@ export default class HomePage extends Component {
              <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
              <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
              <Text style={{fontSize:20}}>10) Save Money!</Text>
-        </View>
+
+          </View>
       </ScrollView>
     )
   }
 }
+
+//https://www.youtube.com/watch?v=9iMGFqMmUFs
+
+// <Video source={{uri: "https://www.youtube.com/watch?v=9iMGFqMmUFs"}}
+//   rate={1.0}
+//   volume={1.0}
+//   muted={false}
+//   paused={false}
+//   resizeMode="cover"
+//   repeat={true}
+//   playInBackground={false}
+//   playWhenInactive={false}
+//   progressUpdateInterval={250.0}
+//   onLoadStart={this.loadStart}
+//   onLoad={this.setDuration}
+//   onProgress={this.setTime}
+//   onEnd={this.onEnd}
+//   onError={this.videoError}
+//   style={styles.backgroundVideo} />
+
+
 // <Text>Hello</Text>
 // <Text>Current Scene: { this.props.title }</Text>
 // <TouchableHighlight onPress={this.props.onForward}>
@@ -94,22 +116,29 @@ export default class HomePage extends Component {
 // </View>
 
 const styles = StyleSheet.create({
-  toolbar: {
-    backgroundColor: '#a7d5f6',
-    paddingTop: 30,
-    paddingBottom: 10,
-    flexDirection: 'row'
-  },
-  toolbarBtn: {
-    width: 50,
-    color: '#fff',
-    textAlign: 'center'
-  },
-  toolbarTitle: {
-    flex: 1,
-    textAlign: 'center',
-    color: '#fff',
-    fontWeight: 'bold'
+  // toolbar: {
+  //   backgroundColor: '#a7d5f6',
+  //   paddingTop: 30,
+  //   paddingBottom: 10,
+  //   flexDirection: 'row'
+  // },
+  // toolbarBtn: {
+  //   width: 50,
+  //   color: '#fff',
+  //   textAlign: 'center'
+  // },
+  // toolbarTitle: {
+  //   flex: 1,
+  //   textAlign: 'center',
+  //   color: '#fff',
+  //   fontWeight: 'bold'
+  // },
+  backgroundVideo: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
   },
   buttonText: {
     fontSize:18

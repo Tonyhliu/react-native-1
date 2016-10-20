@@ -82,16 +82,19 @@ var NavigationBarRouteMapper = {
         <TouchableHighlight
         	 underlayColor="#a7d5f6"
            onPress={() => { if (index > 0) { navigator.pop() } }}>
-          <Text style={ styles.leftNavButtonText }>Back</Text>
+          <Text style={styles.leftNavButtonText}>Back</Text>
         </TouchableHighlight>
   	)}
     else { return null }
   },
   RightButton(route, navigator, index, navState) {
-    if (route.onPress) return ( <TouchableHighlight
-    														onPress={ () => route.onPress() }>
-                                <Text style={ styles.rightNavButtonText }>
-                                  	{ route.rightText || 'Right Button' }
+    if (index === 1) return ( <TouchableHighlight
+    														onPress={() => navigator.push({
+                                  title: 'PlaceHolder',
+                                  index: 2
+                                }) }>
+                                <Text style={styles.rightNavButtonText}>
+                                  	{route.rightText || 'Next Btn'}
                                 </Text>
                               </TouchableHighlight> )
   },
