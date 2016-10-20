@@ -16,7 +16,7 @@ export default class HomePage extends Component {
   //   onBack: PropTypes.func.isRequired,
   // }
 
-  _navigate(property){
+  _navigate(property) {
     this.props.navigator.push({
       title: 'WaterIntake', // Matches route.name
       index: 1,

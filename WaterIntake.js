@@ -77,6 +77,16 @@ export default class WaterIntake extends Component {
     })
   }
 
+  _navigateForward(property){
+    this.props.navigator.push({
+      title: 'PlaceHolder', // Matches route.name
+      index: 2,
+      passProps: {
+        name: property
+      }
+    })
+  }
+
   render() {
     let activity = ACTIVITY_LEVELS[this.state.activity];
     let selectionString = activity.name
@@ -89,7 +99,8 @@ export default class WaterIntake extends Component {
                   onPress={this._navigate.bind(this, "HELLO FROM WI PAGE")}>Back</Text>
           </TouchableHighlight>
           <Text style={styles.toolbarTitle}>WaterBuddy</Text>
-          <Text style={styles.toolbarBtn}>Like</Text>
+          <Text style={styles.toolbarBtn}
+                  onPress={this._navigateForward.bind(this, "HELLO FROM WI PAGE")}>Next</Text>
         </View>
 
         <View style={styles.secondContainer}>
@@ -201,4 +212,8 @@ const styles = StyleSheet.create({
   }
 });
 
-// AppRegistry.registerComponent('HelloWorld', () => WaterIntake);
+// Activity Level: Finally you will want to adjust that number
+// based on how often you work out, since you are expelling water
+// when you sweat. You should add 12 ounces of water to your daily
+// total for every 30 minutes that you work out. So if you work out
+// for 45 minutes daily, you would add 18 ounces of water to your daily intake.
