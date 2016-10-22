@@ -136,4 +136,4 @@ var styles = StyleSheet.create({
   }
 });
 
-AppRegistry.registerComponent('HelloWorld', () => WaterBuddy);
+AppRegistry.registerComponent('WaterBuddy', () => WaterBuddy);

@@ -8,7 +8,7 @@ import { View,
         WebView
        } from 'react-native';
 import Markdown from 'react-native-simple-markdown';
-// import Video from 'react-native-video';
+import Video from 'react-native-video';
 
 import WaterIntake from './WaterIntake';
 
@@ -84,9 +84,6 @@ export default class HomePage extends Component {
     )
   }
 }
-
-//https://www.youtube.com/watch?v=9iMGFqMmUFs
-
 // <Video source={{uri: "https://www.youtube.com/watch?v=9iMGFqMmUFs"}}
 //   rate={1.0}
 //   volume={1.0}
@@ -103,6 +100,9 @@ export default class HomePage extends Component {
 //   onEnd={this.onEnd}
 //   onError={this.videoError}
 //   style={styles.backgroundVideo} />
+
+//https://www.youtube.com/watch?v=9iMGFqMmUFs
+
 
 
 const styles = StyleSheet.create({

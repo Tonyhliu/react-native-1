@@ -1,7 +1,6 @@
-package com.helloworld;
+package com.waterbuddy;
 
 import com.facebook.react.ReactActivity;
-import com.brentvatne.react.ReactVideoPackage;
 
 public class MainActivity extends ReactActivity {
 
@@ -11,6 +10,6 @@ public class MainActivity extends ReactActivity {
      */
     @Override
     protected String getMainComponentName() {
-        return "HelloWorld";
+        return "WaterBuddy";
     }
 }

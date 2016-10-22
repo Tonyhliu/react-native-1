@@ -1,4 +1,4 @@
-package com.helloworld;
+package com.waterbuddy;
 
 import android.app.Application;
 import android.util.Log;
