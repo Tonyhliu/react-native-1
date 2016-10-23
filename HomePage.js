@@ -31,14 +31,7 @@ export default class HomePage extends Component {
 
 
   render() {
-    // <View style={styles.toolbar}>
-    //   <Text style={styles.toolbarBtn}>Back</Text>
-    //   <Text style={styles.toolbarTitle}>WaterBuddy</Text>
-    //   <TouchableHighlight>
-    //     <Text style={styles.toolbarBtn}
-    //       onPress={this._navigate.bind(this, 'Hello World')}>Next</Text>
-    //   </TouchableHighlight>
-    // </View>
+    // <Text>{this.props.title}</Text>
     return (
       <ScrollView style={{marginTop: 70}}>
         <View>
@@ -47,7 +40,6 @@ export default class HomePage extends Component {
             source={{uri: 'https://media.giphy.com/media/MooLLNeDnBxp6/giphy.gif'}}
             />
 
-          <Text>{this.props.title}</Text>
           <TouchableHighlight style={styles.button}
             onPress={this._navigate.bind(this, 'Hello from HP')}>
             <Text style={styles.buttonText}>NEXT</Text>
