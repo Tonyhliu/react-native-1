@@ -7,10 +7,9 @@ import { View,
         Image,
         WebView
        } from 'react-native';
-import Markdown from 'react-native-simple-markdown';
+// import Markdown from 'react-native-simple-markdown';
 // import Video from 'react-native-video';
-
-import WaterIntake from './WaterIntake';
+// import WaterIntake from './WaterIntake';
 
 export default class HomePage extends Component {
   // static propTypes = {
@@ -43,15 +42,16 @@ export default class HomePage extends Component {
     return (
       <ScrollView style={{marginTop: 70}}>
         <View>
-          <Text>{this.props.title}</Text>
-            <TouchableHighlight style={styles.button}
-                                onPress={this._navigate.bind(this, 'Hello from HP')}>
-              <Text style={styles.buttonText}>NEXT</Text>
-            </TouchableHighlight>
+          <Image style={{flex: 1, height: 250}}
+            resizeMode="contain"
+            source={{uri: 'https://media.giphy.com/media/MooLLNeDnBxp6/giphy.gif'}}
+            />
 
-          <Markdown style={styles.image}>
-            ![Some GIF](https://media.giphy.com/media/l3vR3EssQ5ALagr7y/source.gif)
-          </Markdown>
+          <Text>{this.props.title}</Text>
+          <TouchableHighlight style={styles.button}
+            onPress={this._navigate.bind(this, 'Hello from HP')}>
+            <Text style={styles.buttonText}>NEXT</Text>
+          </TouchableHighlight>
 
           <Text>Did you know that water can...</Text>
             <Text style={{fontSize:20}}>1) Increase Energy & Relives Fatigue</Text>
