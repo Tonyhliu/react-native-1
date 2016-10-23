@@ -42,10 +42,10 @@ export default class HomePage extends Component {
 
           <TouchableHighlight style={styles.button}
             onPress={this._navigate.bind(this, 'Hello from HP')}>
-            <Text style={styles.buttonText}>NEXT</Text>
+            <Text style={styles.buttonText}>Next</Text>
           </TouchableHighlight>
 
-          <Text>Did you know that water can...</Text>
+          <Text style={{fontSize: 30, fontWeight: 'bold', color: '#ffc423', textAlign: 'center'}}>{'Why is drinking water important?'.toUpperCase()}</Text>
             <Text style={{fontSize:20}}>1) Increase Energy & Relives Fatigue</Text>
              <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
              <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
@@ -80,7 +80,7 @@ export default class HomePage extends Component {
 
              <TouchableHighlight style={styles.button}
                                  onPress={this._navigate.bind(this, 'Hello from HP')}>
-               <Text style={styles.buttonText}>CALCULATOR</Text>
+               <Text style={styles.buttonText}>Calculator</Text>
              </TouchableHighlight>
           </View>
       </ScrollView>

@@ -96,8 +96,11 @@ export default class WaterIntake extends Component {
     // </View>
     return (
       <View style={styles.mainContainer}>
+        <View style={styles.threeQuarters}>
+          <Text style={{fontSize: 26, fontWeight: 'bold', color: '#ffc423', textAlign: 'center'}}>
+            {'How much water should you be drinking?'.toUpperCase()}
+          </Text>
 
-        <View style={styles.secondContainer}>
           <View>
             <Text style={styles.bwd}>Enter body weight!</Text>
             <TextInput style={styles.txtInput}
@@ -111,26 +114,26 @@ export default class WaterIntake extends Component {
               Press me!
             </Button>
           </View>
+
+          <View>
+            <Text style={{textAlign: 'center'}}>Activity level for the day:</Text>
+            <Text>You selected: {selectionString}</Text>
+            <PickerIOS
+              selectedValue={this.state.activity}
+              onValueChange={(activity) => this.setState({activity})}>
+              {Object.keys(ACTIVITY_LEVELS).map((activity) => (
+                <PickerItemIOS
+                  key={activity}
+                  value={activity}
+                  label={ACTIVITY_LEVELS[activity].name}
+                  />
+              ))}
+            </PickerIOS>
+          </View>
         </View>
 
-        <View>
-          <Text>Activity level for the day:</Text>
-           <PickerIOS
-             selectedValue={this.state.activity}
-             onValueChange={(activity) => this.setState({activity})}>
-             {Object.keys(ACTIVITY_LEVELS).map((activity) => (
-               <PickerItemIOS
-                 key={activity}
-                 value={activity}
-                 label={ACTIVITY_LEVELS[activity].name}
-                   />
-                 ))}
-           </PickerIOS>
-           <Text>You selected: {selectionString}</Text>
-        </View>
-
-        <View>
-          <Text>*NOTE* 80% of estimated amount is met by consuming water & beverages, while the other 20% is derived from foods consumed.</Text>
+        <View style={styles.quarterHeight}>
+          <Text>*NOTE: 80% of estimated amount is met by consuming water & beverages, while the other 20% is derived from foods consumed.</Text>
           <Text>DISCLAIMER: Results provides an estimate of quantity of water intake needed per day based on weight & activity level and is not intended to give precise amounts.</Text>
           <Text style={styles.green}>
             {this.state.amount === null ? '' : this.state.amount + " " + "ounces of water a day"}
@@ -147,46 +150,21 @@ export default class WaterIntake extends Component {
 
 const styles = StyleSheet.create({
   mainContainer: {
-    flex: 1
-  },
-  toolbar: {
-    backgroundColor: '#a7d5f6',
-    paddingTop: 30,
-    paddingBottom: 10,
-    flexDirection: 'row'
-  },
-  toolbarBtn: {
-    width: 50,
-    color: '#fff',
-    textAlign: 'center'
-  },
-  toolbarTitle: {
     flex: 1,
-    textAlign: 'center',
-    color: '#fff',
-    fontWeight: 'bold'
-  },
-  result: {
-    // flexDirection: 'row',
-    // flex: 1,
-    height: 200,
-    justifyContent: 'center',
-    alignItems: 'center'
-    // backgroundColor: 'lightgray'
+    flexDirection: 'column'
   },
   bwd: {
     color: 'black',
     fontWeight: 'bold',
-    fontSize: 30,
-    paddingTop: 50
+    fontSize: 24
   },
-  secondContainer: {
-    flex: 1,
+  threeQuarters: {
+    flex: 3,
     justifyContent: 'center',
     alignItems: 'center',
-    // backgroundColor: 'gray'
+    paddingTop: 60
   },
-  thirdContainer: {
+  quarterHeight: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
