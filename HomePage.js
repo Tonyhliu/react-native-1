@@ -8,7 +8,7 @@ import { View,
         WebView
        } from 'react-native';
 import Markdown from 'react-native-simple-markdown';
-import Video from 'react-native-video';
+// import Video from 'react-native-video';
 
 import WaterIntake from './WaterIntake';
 
@@ -46,8 +46,12 @@ export default class HomePage extends Component {
           <Text>{this.props.title}</Text>
             <TouchableHighlight style={styles.button}
                                 onPress={this._navigate.bind(this, 'Hello from HP')}>
-              <Text style={styles.buttonText}>Go to next page</Text>
+              <Text style={styles.buttonText}>NEXT</Text>
             </TouchableHighlight>
+
+          <Markdown style={styles.image}>
+            ![Some GIF](https://media.giphy.com/media/l3vR3EssQ5ALagr7y/source.gif)
+          </Markdown>
 
           <Text>Did you know that water can...</Text>
             <Text style={{fontSize:20}}>1) Increase Energy & Relives Fatigue</Text>
@@ -79,6 +83,13 @@ export default class HomePage extends Component {
              <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
              <Text style={{fontSize:20}}>10) Save Money!</Text>
 
+
+
+
+             <TouchableHighlight style={styles.button}
+                                 onPress={this._navigate.bind(this, 'Hello from HP')}>
+               <Text style={styles.buttonText}>CALCULATOR</Text>
+             </TouchableHighlight>
           </View>
       </ScrollView>
     )
@@ -123,6 +134,14 @@ const styles = StyleSheet.create({
   //   color: '#fff',
   //   fontWeight: 'bold'
   // },
+  image: {
+    width: 200,
+    height: 200,
+  },
+  video: {
+    width: 300,
+    height: 100,
+  },
   backgroundVideo: {
     position: 'absolute',
     top: 0,

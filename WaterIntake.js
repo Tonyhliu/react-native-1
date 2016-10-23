@@ -12,12 +12,6 @@ import { View,
 
 import Button from 'react-native-button';
 
-// import DropDown, {
-//   Select,
-//   Option,
-//   OptionList,
-// } from 'react-native-selectme';
-
 var PickerItemIOS = PickerIOS.Item;
 
 var ACTIVITY_LEVELS = {
@@ -136,6 +130,8 @@ export default class WaterIntake extends Component {
         </View>
 
         <View>
+          <Text>*NOTE* 80% of estimated amount is met by consuming water & beverages, while the other 20% is derived from foods consumed.</Text>
+          <Text>DISCLAIMER: Results provides an estimate of quantity of water intake needed per day based on weight & activity level and is not intended to give precise amounts.</Text>
           <Text style={styles.green}>
             {this.state.amount === null ? '' : this.state.amount + " " + "ounces of water a day"}
             {"\n"}
