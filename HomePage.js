@@ -31,14 +31,13 @@ export default class HomePage extends Component {
 
 
   render() {
-    // <Text>{this.props.title}</Text>
+    // <Image style={{flex: 1, height: 250}}
+    //   resizeMode="contain"
+    //   source={{uri: 'https://media.giphy.com/media/MooLLNeDnBxp6/giphy.gif'}}
+    //   />
     return (
-      <ScrollView style={{marginTop: 70}}>
+      <ScrollView style={{marginTop: 70, flex: 1}}>
         <View>
-          <Image style={{flex: 1, height: 250}}
-            resizeMode="contain"
-            source={{uri: 'https://media.giphy.com/media/MooLLNeDnBxp6/giphy.gif'}}
-            />
 
           <TouchableHighlight style={styles.button}
             onPress={this._navigate.bind(this, 'Hello from HP')}>
@@ -87,59 +86,13 @@ export default class HomePage extends Component {
     )
   }
 }
-// <Video source={{uri: "https://www.youtube.com/watch?v=9iMGFqMmUFs"}}
-//   rate={1.0}
-//   volume={1.0}
-//   muted={false}
-//   paused={false}
-//   resizeMode="cover"
-//   repeat={true}
-//   playInBackground={false}
-//   playWhenInactive={false}
-//   progressUpdateInterval={250.0}
-//   onLoadStart={this.loadStart}
-//   onLoad={this.setDuration}
-//   onProgress={this.setTime}
-//   onEnd={this.onEnd}
-//   onError={this.videoError}
-//   style={styles.backgroundVideo} />
 
 //https://www.youtube.com/watch?v=9iMGFqMmUFs
 
-
-
 const styles = StyleSheet.create({
-  // toolbar: {
-  //   backgroundColor: '#a7d5f6',
-  //   paddingTop: 30,
-  //   paddingBottom: 10,
-  //   flexDirection: 'row'
-  // },
-  // toolbarBtn: {
-  //   width: 50,
-  //   color: '#fff',
-  //   textAlign: 'center'
-  // },
-  // toolbarTitle: {
-  //   flex: 1,
-  //   textAlign: 'center',
-  //   color: '#fff',
-  //   fontWeight: 'bold'
-  // },
   image: {
     width: 200,
     height: 200,
-  },
-  video: {
-    width: 300,
-    height: 100,
-  },
-  backgroundVideo: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    bottom: 0,
-    right: 0,
   },
   buttonText: {
     fontSize:18

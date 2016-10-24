@@ -61,7 +61,7 @@ class WaterBuddy extends Component {
     return(
       <Navigator
         initialRoute={routes[0]}
-        style={{flex:.25}}
+        style={{flex:1}}
         initialRouteStack={routes}
         configureScene={this._configureScene}
         navigationBar={
