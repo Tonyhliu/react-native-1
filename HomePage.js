@@ -5,11 +5,9 @@ import { View,
         StyleSheet,
         ScrollView,
         Image,
-        WebView
+        Linking
        } from 'react-native';
 // import Markdown from 'react-native-simple-markdown';
-// import Video from 'react-native-video';
-// import WaterIntake from './WaterIntake';
 
 export default class HomePage extends Component {
   // static propTypes = {
@@ -35,28 +33,34 @@ export default class HomePage extends Component {
     //   resizeMode="contain"
     //   source={{uri: 'https://media.giphy.com/media/MooLLNeDnBxp6/giphy.gif'}}
     //   />
+    const text = ' study '
     return (
       <ScrollView style={{marginTop: 65, flex: 1}}>
-        <View style={{height: 200}}>
+        <View style={{height: 350, alignItems: 'center', justifyContent: 'center'}}>
           <View style={styles.messageBox}>
             <View>
               <Text style={styles.messageBoxTitleText}>{'Why is drinking water important?'.toUpperCase()}</Text>
             </View>
 
             <View>
-              <Text style={styles.messageBoxBodyText}>Dummy Text</Text>
+              <Text style={styles.messageBoxBodyText}>Did you know that humans are 70% water and that our blood is 90% water? Not only does drinking water flush out waste and bacteria, but according to a
+                <Text style={{color: 'blue', marginLeft: 15, marginRight: 15}}
+                      onPress={() => Linking.openURL('http://www.dailymail.co.uk/health/article-2366353/How-drinking-glass-water-make-brain-14-faster.html')}>
+                  {text}
+                </Text>
+                 by the University of East London, drinking water can actually make you smarter. Below are 10 reasons why you should stay hydrated every day.</Text>
             </View>
 
-            <View>
-              <TouchableHighlight style={styles.button}
-                onPress={this._navigate.bind(this, 'Hello from HP')}>
-                <Text style={styles.buttonText}>Next</Text>
-              </TouchableHighlight>
-            </View>
           </View>
         </View>
 
         <View style={{flex: 1}}>
+          <View>
+            <TouchableHighlight style={styles.button}
+              onPress={this._navigate.bind(this, 'Hello from HP')}>
+              <Text style={styles.buttonText}>Next</Text>
+            </TouchableHighlight>
+          </View>
             <Text style={{fontSize:20}}>1) Increase Energy & Relives Fatigue</Text>
              <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
              <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
