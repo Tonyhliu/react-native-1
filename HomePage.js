@@ -8,6 +8,7 @@ import { View,
         Linking
        } from 'react-native';
 import MyAppText from './MyAppText';
+import { Button } from 'react-native-elements';
 
 export default class HomePage extends Component {
   // static propTypes = {
@@ -57,12 +58,11 @@ export default class HomePage extends Component {
         </View>
 
         <View style={{flex: 1}}>
-          <View>
-            <TouchableHighlight style={styles.button}
-              onPress={this._navigate.bind(this, 'Hello from HP')}>
-              <Text style={styles.buttonText}>Next</Text>
-            </TouchableHighlight>
-          </View>
+          <Button title='NEXT'
+                  onPress={this._navigate.bind(this, 'Hello from HP')}
+                  small
+                  icon={{name: 'envira', type: 'font-awesome'}} />
+
             <Text style={{fontSize:20}}>1) Increase Energy & Relives Fatigue</Text>
              <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
              <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />

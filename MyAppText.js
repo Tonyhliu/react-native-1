@@ -8,7 +8,7 @@ import { View,
 export default class MyAppText extends Component {
   render() {
     return(
-      <Text style={{fontFamily: 'Menlo', fontSize: 12}}>
+      <Text style={{fontFamily: 'Optima', fontSize: 12}}>
         {this.props.children}
       </Text>
     )
