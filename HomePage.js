@@ -9,7 +9,6 @@ import { View,
        } from 'react-native';
 import MyAppText from './MyAppText';
 import { Button } from 'react-native-elements';
-// import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Icon from 'react-native-vector-icons/FontAwesome';
 // import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -38,8 +37,8 @@ export default class HomePage extends Component {
     //   source={{uri: 'https://media.giphy.com/media/MooLLNeDnBxp6/giphy.gif'}}
     //   />
     return (
-      <ScrollView style={{marginTop: 65, flex: 1}}>
-        <View style={{height: 350, alignItems: 'center', justifyContent: 'center'}}>
+      <ScrollView style={styles.scrollV}>
+        <View style={styles.firstContainer}>
           <View style={styles.messageBox}>
             <View>
               <Text style={styles.messageBoxTitleText}>{'Why is drinking water important?'.toUpperCase()}</Text>
@@ -59,10 +58,11 @@ export default class HomePage extends Component {
           </View>
         </View>
 
-        <View style={{flex: 1}}>
-          <View style={{width: 150, alignSelf: 'center', alignItems: 'center'}}>
+        <View style={styles.secondContainer}>
+
+          <View style={styles.secondConBtnContainer}>
             <Icon.Button size={24}
-                        backgroundColor="#3b5998"
+                        backgroundColor="#07619b"
                         onPress={this._navigate.bind(this, 'Hello from HP')}
                         name='calculator'>
               <Text style={{fontSize: 14, fontWeight: 'bold', fontFamily: 'Arial', color: '#fff'}}>CALCULATE</Text>
@@ -98,10 +98,13 @@ export default class HomePage extends Component {
              <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
              <Text style={{fontSize:20}}>10) Save Money!</Text>
 
-             <TouchableHighlight style={styles.button}
-                                 onPress={this._navigate.bind(this, 'Hello from HP')}>
-               <Text style={styles.buttonText}>Calculator</Text>
-             </TouchableHighlight>
+             <View>
+               <Button onPress={this._navigate.bind(this, 'Hello from HP')}
+                       title='NEXT'
+                       small
+                       buttonStyle={styles.btnStyle}
+                       icon={{name: 'arrow-forward'}} />
+             </View>
           </View>
       </ScrollView>
     )
@@ -118,8 +121,26 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize:18
   },
+  scrollV: {
+    backgroundColor: '#ffffff',
+    flex: 1
+  },
+  firstContainer: {
+    marginTop: 65,
+    height: 350,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  secondContainer: {
+    flex: 1
+  },
+  secondConBtnContainer: {
+    width: 150,
+    alignSelf: 'center',
+    alignItems: 'center'
+  },
   messageBox:{
-    backgroundColor:'#32a5d4',
+    backgroundColor:'#007fb2',
     paddingTop:10,
     paddingBottom:20,
     paddingLeft:20,
@@ -135,8 +156,15 @@ const styles = StyleSheet.create({
       marginBottom:10,
       fontFamily: 'Menlo'
   },
-  messageBoxBodyText:{
-      color:'#fff',
-      fontSize:16,
+  // messageBoxBodyText:{
+  //     color:'#fff',
+  //     fontSize:12,
+  //     fontFamily: 'Arial'
+  // },
+  btnStyle: {
+    alignSelf: 'center',
+    width: 150,
+    backgroundColor: '#07619b',
+    borderRadius: 5
   }
 });
