@@ -36,15 +36,27 @@ export default class HomePage extends Component {
     //   source={{uri: 'https://media.giphy.com/media/MooLLNeDnBxp6/giphy.gif'}}
     //   />
     return (
-      <ScrollView style={{marginTop: 70, flex: 1}}>
-        <View>
+      <ScrollView style={{marginTop: 65, flex: 1}}>
+        <View style={{height: 200}}>
+          <View style={styles.messageBox}>
+            <View>
+              <Text style={styles.messageBoxTitleText}>{'Why is drinking water important?'.toUpperCase()}</Text>
+            </View>
 
-          <TouchableHighlight style={styles.button}
-            onPress={this._navigate.bind(this, 'Hello from HP')}>
-            <Text style={styles.buttonText}>Next</Text>
-          </TouchableHighlight>
+            <View>
+              <Text style={styles.messageBoxBodyText}>Dummy Text</Text>
+            </View>
 
-          <Text style={{fontSize: 30, fontWeight: 'bold', color: '#ffc423', textAlign: 'center'}}>{'Why is drinking water important?'.toUpperCase()}</Text>
+            <View>
+              <TouchableHighlight style={styles.button}
+                onPress={this._navigate.bind(this, 'Hello from HP')}>
+                <Text style={styles.buttonText}>Next</Text>
+              </TouchableHighlight>
+            </View>
+          </View>
+        </View>
+
+        <View style={{flex: 1}}>
             <Text style={{fontSize:20}}>1) Increase Energy & Relives Fatigue</Text>
              <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
              <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
@@ -74,9 +86,6 @@ export default class HomePage extends Component {
              <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
              <Text style={{fontSize:20}}>10) Save Money!</Text>
 
-
-
-
              <TouchableHighlight style={styles.button}
                                  onPress={this._navigate.bind(this, 'Hello from HP')}>
                <Text style={styles.buttonText}>Calculator</Text>
@@ -96,5 +105,25 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize:18
+  },
+  messageBox:{
+    backgroundColor:'#32a5d4',
+    paddingTop:10,
+    paddingBottom:20,
+    paddingLeft:20,
+    paddingRight:20,
+    borderRadius:10,
+    width: 300
+  },
+  messageBoxTitleText:{
+      fontWeight:'bold',
+      color:'#ffc423',
+      textAlign:'center',
+      fontSize:26,
+      marginBottom:10
+  },
+  messageBoxBodyText:{
+      color:'#fff',
+      fontSize:16
   }
 });
