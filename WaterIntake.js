@@ -97,9 +97,11 @@ export default class WaterIntake extends Component {
     return (
       <View style={styles.mainContainer}>
         <View style={styles.threeQuarters}>
-          <Text style={{fontSize: 26, fontWeight: 'bold', color: '#ffc423', textAlign: 'center'}}>
-            {'How much water should you be drinking?'.toUpperCase()}
-          </Text>
+          <View style={styles.messageBox}>
+            <Text style={{fontSize: 26, fontWeight: 'bold', color: '#ffc423', textAlign: 'center'}}>
+              {'How much water should you be drinking?'.toUpperCase()}
+            </Text>
+          </View>
 
           <View>
             <Text style={styles.bwd}>Enter body weight!</Text>
@@ -183,6 +185,29 @@ const styles = StyleSheet.create({
   btn: {
     fontSize: 20,
     color: '#a7d5f6'
+  },
+  messageBox:{
+    backgroundColor:'#007fb2',
+    paddingTop:10,
+    paddingBottom:20,
+    paddingLeft:20,
+    paddingRight:20,
+    borderRadius:10,
+    width: 300,
+    marginTop: 50
+  },
+  messageBoxTitleText:{
+      fontWeight:'bold',
+      color:'#ffc423',
+      textAlign:'center',
+      fontSize:26,
+      marginBottom:10,
+      fontFamily: 'Menlo'
+  },
+  messageBoxBodyText:{
+      color:'#fff',
+      fontSize:12,
+      fontFamily: 'Arial'
   }
 });
 

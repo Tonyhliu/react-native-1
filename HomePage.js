@@ -57,17 +57,17 @@ export default class HomePage extends Component {
 
           </View>
         </View>
+        <View style={styles.secondConBtnContainer}>
+          <Icon.Button size={24}
+            backgroundColor="#07619b"
+            onPress={this._navigate.bind(this, 'Hello from HP')}
+            name='calculator'>
+            <Text style={{fontSize: 14, fontWeight: 'bold', fontFamily: 'Arial', color: '#fff'}}>CALCULATE</Text>
+          </Icon.Button>
+        </View>
 
         <View style={styles.secondContainer}>
 
-          <View style={styles.secondConBtnContainer}>
-            <Icon.Button size={24}
-                        backgroundColor="#07619b"
-                        onPress={this._navigate.bind(this, 'Hello from HP')}
-                        name='calculator'>
-              <Text style={{fontSize: 14, fontWeight: 'bold', fontFamily: 'Arial', color: '#fff'}}>CALCULATE</Text>
-            </Icon.Button>
-          </View>
 
             <Text style={{fontSize:20}}>1) Increase Energy & Relives Fatigue</Text>
              <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
