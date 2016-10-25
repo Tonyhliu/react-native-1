@@ -22,7 +22,6 @@ class WaterBuddy extends Component {
   _renderScene(route, nav) {
     switch (route.index) {
       case 0:
-        // console.log("MADE Izzz");
         // console.log(route.passProps);
         return <HomePage navigator={nav}
                           title={route.title}
@@ -104,11 +103,6 @@ var NavigationBarRouteMapper = {
 };
 
 var styles = StyleSheet.create({
-  // mainContainer: {
-  // 	flex: 4,
-  //   flexDirection: 'column',
-  //   marginTop: 100,
-  // },
   leftNavButtonText: {
   	fontSize: 18,
     marginLeft:13,
@@ -125,7 +119,9 @@ var styles = StyleSheet.create({
   },
   title: {
   	marginTop:4,
-    fontSize:16
+    fontSize:16,
+    fontFamily: 'Arial',
+    fontWeight: 'bold'
   },
   button: {
   	height:60,

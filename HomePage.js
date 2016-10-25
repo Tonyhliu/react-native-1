@@ -9,6 +9,9 @@ import { View,
        } from 'react-native';
 import MyAppText from './MyAppText';
 import { Button } from 'react-native-elements';
+// import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/FontAwesome';
+// import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export default class HomePage extends Component {
   // static propTypes = {
@@ -34,7 +37,6 @@ export default class HomePage extends Component {
     //   resizeMode="contain"
     //   source={{uri: 'https://media.giphy.com/media/MooLLNeDnBxp6/giphy.gif'}}
     //   />
-    // const text = ' study '
     return (
       <ScrollView style={{marginTop: 65, flex: 1}}>
         <View style={{height: 350, alignItems: 'center', justifyContent: 'center'}}>
@@ -58,10 +60,14 @@ export default class HomePage extends Component {
         </View>
 
         <View style={{flex: 1}}>
-          <Button title='NEXT'
-                  onPress={this._navigate.bind(this, 'Hello from HP')}
-                  small
-                  icon={{name: 'envira', type: 'font-awesome'}} />
+          <View style={{width: 150, alignSelf: 'center', alignItems: 'center'}}>
+            <Icon.Button size={24}
+                        backgroundColor="#3b5998"
+                        onPress={this._navigate.bind(this, 'Hello from HP')}
+                        name='calculator'>
+              <Text style={{fontSize: 14, fontWeight: 'bold', fontFamily: 'Arial', color: '#fff'}}>CALCULATE</Text>
+            </Icon.Button>
+          </View>
 
             <Text style={{fontSize:20}}>1) Increase Energy & Relives Fatigue</Text>
              <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
