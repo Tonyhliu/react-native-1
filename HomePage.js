@@ -33,7 +33,7 @@ export default class HomePage extends Component {
     //   resizeMode="contain"
     //   source={{uri: 'https://media.giphy.com/media/MooLLNeDnBxp6/giphy.gif'}}
     //   />
-    const text = ' study '
+    // const text = ' study '
     return (
       <ScrollView style={{marginTop: 65, flex: 1}}>
         <View style={{height: 350, alignItems: 'center', justifyContent: 'center'}}>
@@ -43,12 +43,13 @@ export default class HomePage extends Component {
             </View>
 
             <View>
-              <Text style={styles.messageBoxBodyText}>Did you know that humans are 70% water and that our blood is 90% water? Not only does drinking water flush out waste and bacteria, but according to a
+              <Text style={styles.messageBoxBodyText}>Did you know that humans are 70% water and that our blood is 90% water?
+              {"\n"}
+              {"\n"}
+                Not only does drinking water flush out waste and bacteria, but according to a
                 <Text style={{color: 'blue', marginLeft: 15, marginRight: 15}}
-                      onPress={() => Linking.openURL('http://www.dailymail.co.uk/health/article-2366353/How-drinking-glass-water-make-brain-14-faster.html')}>
-                  {text}
-                </Text>
-                 by the University of East London, drinking water can actually make you smarter. Below are 10 reasons why you should stay hydrated every day.</Text>
+                      onPress={() => Linking.openURL('http://www.dailymail.co.uk/health/article-2366353/How-drinking-glass-water-make-brain-14-faster.html')}> study </Text>
+                 by the University of East London, drinking water can actually make you smarter. Below are 10 reasons why you should stay hydrated every day!</Text>
             </View>
 
           </View>
@@ -128,6 +129,6 @@ const styles = StyleSheet.create({
   },
   messageBoxBodyText:{
       color:'#fff',
-      fontSize:16
+      fontSize:16,
   }
 });
