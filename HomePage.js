@@ -7,7 +7,7 @@ import { View,
         Image,
         Linking
        } from 'react-native';
-// import Markdown from 'react-native-simple-markdown';
+import MyAppText from './MyAppText';
 
 export default class HomePage extends Component {
   // static propTypes = {
@@ -43,13 +43,14 @@ export default class HomePage extends Component {
             </View>
 
             <View>
-              <Text style={styles.messageBoxBodyText}>Did you know that humans are 70% water and that our blood is 90% water?
+              <MyAppText style={styles.messageBoxBodyText}>Did you know that humans are 70% water and that our blood is 90% water?
               {"\n"}
               {"\n"}
                 Not only does drinking water flush out waste and bacteria, but according to a
-                <Text style={{color: 'blue', marginLeft: 15, marginRight: 15}}
-                      onPress={() => Linking.openURL('http://www.dailymail.co.uk/health/article-2366353/How-drinking-glass-water-make-brain-14-faster.html')}> study </Text>
-                 by the University of East London, drinking water can actually make you smarter. Below are 10 reasons why you should stay hydrated every day!</Text>
+                <MyAppText style={{color: 'blue', marginLeft: 15, marginRight: 15}}
+                          onPress={() => Linking.openURL('http://www.dailymail.co.uk/health/article-2366353/How-drinking-glass-water-make-brain-14-faster.html')}> study </MyAppText>
+                by the University of East London, drinking water can actually make you smarter. Below are 10 reasons why you should stay hydrated every day!
+              </MyAppText>
             </View>
 
           </View>
@@ -125,7 +126,8 @@ const styles = StyleSheet.create({
       color:'#ffc423',
       textAlign:'center',
       fontSize:26,
-      marginBottom:10
+      marginBottom:10,
+      fontFamily: 'Menlo'
   },
   messageBoxBodyText:{
       color:'#fff',
