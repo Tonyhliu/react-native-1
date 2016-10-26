@@ -13,6 +13,7 @@ import {
   TouchableHighlight,
   View
 } from 'react-native';
+import Exponent from 'exponent';
 
 import HomePage from './HomePage';
 import WaterIntake from './WaterIntake';
@@ -132,5 +133,7 @@ var styles = StyleSheet.create({
   }
 });
 
-AppRegistry.registerComponent('WaterBuddy', () => WaterBuddy);
-AppRegistry.registerComponent('main', () => WaterBuddy);
+// When you want to convert it, you'll just need to do something like this: "import Icon from 'react-native-vector-icons/Ionicons'" becomes "import { Ionicons as Icon } from '@exponent/vector-icons'" 
+// AppRegistry.registerComponent('WaterBuddy', () => WaterBuddy);
+// AppRegistry.registerComponent('main', () => WaterBuddy);
+Exponent.registerRootComponent(WaterBuddy)

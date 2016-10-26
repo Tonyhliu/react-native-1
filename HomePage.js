@@ -48,7 +48,7 @@ export default class HomePage extends Component {
     //   source={{uri: 'https://media.giphy.com/media/MooLLNeDnBxp6/giphy.gif'}}
     //   />
 
-    const { selectedTab } = this.state
+    // const { selectedTab } = this.state
 
     return (
       <ScrollView style={styles.scrollV}>
