@@ -1,8 +1,8 @@
 {
-  "exponentServerPort": 19002,
-  "packagerPort": 19003,
-  "packagerPid": 14921,
+  "exponentServerPort": 19000,
+  "packagerPort": 19001,
+  "packagerPid": 2728,
   "exponentServerNgrokUrl": "https://95-6wc.tbunzz.helloworld.exp.direct",
   "packagerNgrokUrl": "https://packager.95-6wc.tbunzz.helloworld.exp.direct",
-  "ngrokPid": 14942
+  "ngrokPid": 2760
 }

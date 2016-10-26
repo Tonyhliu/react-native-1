@@ -3,6 +3,7 @@
  * https://github.com/facebook/react-native
  * @flow
  */
+// When you want to convert it, you'll just need to do something like this: "import Icon from 'react-native-vector-icons/Ionicons'" becomes "import { Ionicons as Icon } from '@exponent/vector-icons'"
 
 import React, { Component } from 'react';
 import {
@@ -46,7 +47,6 @@ class WaterBuddy extends Component {
     if (route.type === "back") {
       return Navigator.SceneConfigs.FloatFromLeft
       // return Navigator.SceneConfigs.PushFromRight
-      // return Navigator.SceneConfigs.FloatFromBottom
     }
     return Navigator.SceneConfigs.HorizontalSwipeJump
   }
@@ -133,7 +133,6 @@ var styles = StyleSheet.create({
   }
 });
 
-// When you want to convert it, you'll just need to do something like this: "import Icon from 'react-native-vector-icons/Ionicons'" becomes "import { Ionicons as Icon } from '@exponent/vector-icons'" 
 // AppRegistry.registerComponent('WaterBuddy', () => WaterBuddy);
 // AppRegistry.registerComponent('main', () => WaterBuddy);
 Exponent.registerRootComponent(WaterBuddy)
