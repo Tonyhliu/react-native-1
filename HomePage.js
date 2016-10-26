@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { View,
         Text,
         TouchableHighlight,
+        TouchableOpacity,
         StyleSheet,
         ScrollView,
         Image,
@@ -12,6 +13,7 @@ import { Button,
 
         } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import Exponent from 'exponent';
 // import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export default class HomePage extends Component {
@@ -23,7 +25,7 @@ export default class HomePage extends Component {
   constructor() {
     super();
     this.state = {
-      selectedTab: ''
+      paused: true
     }
   }
 
@@ -50,6 +52,7 @@ export default class HomePage extends Component {
 
     // const { selectedTab } = this.state
 
+    // https://www.youtube.com/watch?v=9iMGFqMmUFs
     return (
       <ScrollView style={styles.scrollV}>
         <View style={styles.firstContainer}>
@@ -63,8 +66,8 @@ export default class HomePage extends Component {
               {"\n"}
               {"\n"}
                 Not only does drinking water flush out waste and bacteria, but according to a
-                <MyAppText style={{color: 'blue', marginLeft: 15, marginRight: 15}}
-                          onPress={() => Linking.openURL('http://www.dailymail.co.uk/health/article-2366353/How-drinking-glass-water-make-brain-14-faster.html')}> study </MyAppText>
+                <Text style={{color: 'blue', marginLeft: 15, marginRight: 15}}
+                          onPress={() => Linking.openURL('http://www.dailymail.co.uk/health/article-2366353/How-drinking-glass-water-make-brain-14-faster.html')}> study </Text>
                 by the University of East London, drinking water can actually make you smarter. Below are 10 reasons why you should stay hydrated every day!
               </MyAppText>
             </View>
@@ -72,6 +75,15 @@ export default class HomePage extends Component {
           </View>
         </View>
         <View style={styles.secondConBtnContainer}>
+
+          <TouchableOpacity style={{height: 400, width: 400}}
+                            onPress={() => {this.setState({paused: !this.state.paused})}}>
+            <Exponent.Components.Video source={require('./test.mp4')}
+                                      style={{height: 400, width: 400}}
+                                      paused={this.state.paused}
+                                      resizeMode="Exponent.Components.Video.RESIZE_MODE_STRETCH"/>
+          </TouchableOpacity>
+
           <Icon.Button size={24}
             backgroundColor="#07619b"
             onPress={this._navigate.bind(this, 'Hello from HP')}
@@ -87,26 +99,12 @@ export default class HomePage extends Component {
              <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
              <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
              <Text style={{fontSize:20}}>2) Promotes Weight Loss</Text>
-             <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
-             <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
              <Text style={{fontSize:20}}>3) Flushes out Toxins</Text>
-             <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
-             <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
              <Text style={{fontSize:20}}>4) Improves Skin Complexion</Text>
-             <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
-             <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
              <Text style={{fontSize:20}}>5) Maintains Regularity</Text>
-             <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
-             <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
              <Text style={{fontSize:20}}>6) Boosts Immune System</Text>
-             <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
-             <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
              <Text style={{fontSize:20}}>7) Natural Headache Remedy</Text>
-             <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
-             <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
              <Text style={{fontSize:20}}>8) Prevents Cramps & Sprains</Text>
-             <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
-             <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
              <Text style={{fontSize:20}}>9) Elevate Mood</Text>
              <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
              <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
@@ -120,13 +118,11 @@ export default class HomePage extends Component {
                        icon={{name: 'arrow-forward'}} />
              </View>
           </View>
-
       </ScrollView>
     )
   }
 }
 
-//https://www.youtube.com/watch?v=9iMGFqMmUFs
 
 const styles = StyleSheet.create({
   image: {
@@ -176,6 +172,13 @@ const styles = StyleSheet.create({
   //     fontSize:12,
   //     fontFamily: 'Arial'
   // },
+  fullScreen: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+  },
   btnStyle: {
     alignSelf: 'center',
     width: 150,
