@@ -93,30 +93,58 @@ export default class HomePage extends Component {
         </View>
 
         <View style={styles.secondContainer}>
+            <View style={{height: 200}}>
+              <Text style={{fontSize:20}}>1) Increase Energy & Relives Fatigue</Text>
+              <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
+            </View>
 
+            <View style={{height: 200}}>
+              <Text style={{fontSize:20}}>2) Promotes Weight Loss</Text>
+              <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
+            </View>
 
-            <Text style={{fontSize:20}}>1) Increase Energy & Relives Fatigue</Text>
-             <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
-             <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
-             <Text style={{fontSize:20}}>2) Promotes Weight Loss</Text>
-             <Text style={{fontSize:20}}>3) Flushes out Toxins</Text>
-             <Text style={{fontSize:20}}>4) Improves Skin Complexion</Text>
-             <Text style={{fontSize:20}}>5) Maintains Regularity</Text>
-             <Text style={{fontSize:20}}>6) Boosts Immune System</Text>
-             <Text style={{fontSize:20}}>7) Natural Headache Remedy</Text>
-             <Text style={{fontSize:20}}>8) Prevents Cramps & Sprains</Text>
-             <Text style={{fontSize:20}}>9) Elevate Mood</Text>
-             <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
-             <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
-             <Text style={{fontSize:20}}>10) Save Money!</Text>
+            <View style={{height: 200}}>
+              <Text style={{fontSize:20}}>3) Flushes out Toxins</Text>
+            </View>
 
-             <View>
-               <Button onPress={this._navigate.bind(this, 'Hello from HP')}
-                       title='NEXT'
-                       small
-                       buttonStyle={styles.btnStyle}
-                       icon={{name: 'arrow-forward'}} />
-             </View>
+            <View style={{height: 200}}>
+              <Text style={{fontSize:20}}>4) Improves Skin Complexion</Text>
+            </View>
+
+            <View style={{height: 200}}>
+              <Text style={{fontSize:20}}>5) Maintains Regularity</Text>
+            </View>
+
+            <View style={{height: 200}}>
+              <Text style={{fontSize:20}}>6) Boosts Immune System</Text>
+            </View>
+
+            <View style={{height: 200}}>
+              <Text style={{fontSize:20}}>7) Natural Headache Remedy</Text>
+            </View>
+
+            <View style={{height: 200}}>
+              <Text style={{fontSize:20}}>8) Prevents Cramps & Sprains</Text>
+            </View>
+
+            <View style={{height: 200}}>
+              <Text style={{fontSize:20}}>9) Elevate Mood</Text>
+              <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
+            </View>
+
+            <View style={{height: 200}}>
+              <Text style={{fontSize:20}}>10) Save Money!</Text>
+              <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
+
+              <View>
+                <Button onPress={this._navigate.bind(this, 'Hello from HP')}
+                  title='NEXT'
+                  small
+                  buttonStyle={styles.btnStyle}
+                  icon={{name: 'arrow-forward'}} />
+              </View>
+            </View>
+
           </View>
       </ScrollView>
     )
