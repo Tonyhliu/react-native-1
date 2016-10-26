@@ -133,3 +133,4 @@ var styles = StyleSheet.create({
 });
 
 AppRegistry.registerComponent('WaterBuddy', () => WaterBuddy);
+AppRegistry.registerComponent('main', () => WaterBuddy);

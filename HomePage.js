@@ -8,7 +8,9 @@ import { View,
         Linking
        } from 'react-native';
 import MyAppText from './MyAppText';
-import { Button } from 'react-native-elements';
+import { Button,
+
+        } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 // import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -18,6 +20,12 @@ export default class HomePage extends Component {
   //   onForward: PropTypes.func.isRequired,
   //   onBack: PropTypes.func.isRequired,
   // }
+  constructor() {
+    super();
+    this.state = {
+      selectedTab: ''
+    }
+  }
 
   _navigate(property) {
     this.props.navigator.push({
@@ -30,12 +38,18 @@ export default class HomePage extends Component {
     })
   }
 
+  changeTab(selectedTab) {
+    this.setState({selectedTab})
+  }
 
   render() {
     // <Image style={{flex: 1, height: 250}}
     //   resizeMode="contain"
     //   source={{uri: 'https://media.giphy.com/media/MooLLNeDnBxp6/giphy.gif'}}
     //   />
+
+    const { selectedTab } = this.state
+
     return (
       <ScrollView style={styles.scrollV}>
         <View style={styles.firstContainer}>
@@ -106,6 +120,7 @@ export default class HomePage extends Component {
                        icon={{name: 'arrow-forward'}} />
              </View>
           </View>
+
       </ScrollView>
     )
   }
