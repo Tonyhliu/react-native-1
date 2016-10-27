@@ -27,6 +27,7 @@ export default class HomePage extends Component {
     this.resetVid = this.resetVid.bind(this);
 
     this.state = {
+      currentY: 0,
       isReady: false,
       rate: 1,
       volume: 1,
@@ -114,20 +115,28 @@ export default class HomePage extends Component {
     this.setState({selectedTab})
   }
 
+  handleScroll(e) {
+    if (e.nativeEvent.contentOffset.y > this.state.currentY) {
+      this.props.downScroll();
+      this.setState({currentY: e.nativeEvent.contentOffset.y})
+    } else {
+      this.props.upScroll();
+      this.setState({currentY: e.nativeEvent.contentOffset.y})
+    }
+  }
+
   render() {
-    // <Image style={{flex: 1, height: 250}}
-    //   resizeMode="contain"
-    //   source={{uri: 'https://media.giphy.com/media/MooLLNeDnBxp6/giphy.gif'}}
-    //   />
     if (!this.state.isReady) {
       return <Components.AppLoading />;
     }
 
     return (
-      <ScrollView style={styles.scrollV}>
+      <ScrollView style={styles.scrollV}
+                onScroll={this.handleScroll.bind(this)}
+                scrollEventThrottle={10}>
         <View style={styles.firstContainer}>
           <View style={{height: 50}}>
-            <Text>WATERBUDDY</Text>
+            <Text style={{fontFamily: 'Verdana', fontSize: 20, fontWeight: 'bold'}}>WATERBUDDY</Text>
           </View>
           <View style={styles.messageBox}>
             <View>
@@ -222,18 +231,15 @@ export default class HomePage extends Component {
               <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
             </View>
 
-            <View style={{height: 400}}>
-              <Text style={{fontSize:20}}>10) Save Money!</Text>
-              <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
+            <View style={{height: 200}}>
+              <Text style={{fontSize:20}}>10) Save money</Text>
+            </View>
 
-              <View>
-                <Button onPress={this._navigate.bind(this, 'Hello from HP')}
-                  title='NEXT'
-                  small
-                  buttonStyle={styles.btnStyle}
-                  icon={{name: 'arrow-forward'}} />
-
-              </View>
+            <View style={{height: 250}}>
+              <Image style={{flex: 1}}
+                resizeMode="contain"
+                source={{uri: 'https://media.giphy.com/media/MooLLNeDnBxp6/giphy.gif'}}
+                />
             </View>
           </View>
 

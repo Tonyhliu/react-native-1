@@ -28,7 +28,8 @@ class WaterBuddy extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      selectedTab: 'home'
+      selectedTab: 'home',
+      hideNavBar: false
     }
   }
 
@@ -62,6 +63,14 @@ class WaterBuddy extends Component {
     return Navigator.SceneConfigs.HorizontalSwipeJump
   }
 
+  downScroll() {
+    this.setState({hideNavBar: true})
+  }
+
+  upScroll() {
+    this.setState({hideNavBar: false})
+  }
+
   render() {
     // const routes = [
     //   {title: 'Home Page', index: 0},
@@ -86,16 +95,16 @@ class WaterBuddy extends Component {
     // <TabNavigator
     // tabBarStyle={{height: tabBarHeight, overflow: 'hidden'}}
     // sceneStyle={{ paddingBottom: tabBarHeight }}>
-    // let tbStyle = hideNavBar ? { height: 0 } : {};
+    let tbStyle = this.state.hideNavBar ? { height: 0, overflow: 'hidden' } : {};
     return(
-      <TabNavigator>
+      <TabNavigator tabBarStyle={tbStyle}>
         <TabNavigator.Item
           selected={this.state.selectedTab === 'home'}
           title="Home"
           renderIcon={() => <Image source={require('./img/homeIcon.png')} />}
           renderSelectedIcon={() => <Image source={require('./img/homeIcon.png')} />}
           onPress={() => this.setState({ selectedTab: 'home' })}>
-          <HomePage />
+          <HomePage downScroll={this.downScroll.bind(this)} upScroll={this.upScroll.bind(this)}/>
         </TabNavigator.Item>
         <TabNavigator.Item
           selected={this.state.selectedTab === 'calculator'}
