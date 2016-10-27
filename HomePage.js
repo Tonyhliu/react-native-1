@@ -136,7 +136,7 @@ export default class HomePage extends Component {
                 scrollEventThrottle={10}>
         <View style={styles.firstContainer}>
           <View style={{height: 50}}>
-            <Text style={{fontFamily: 'Verdana', fontSize: 20, fontWeight: 'bold'}}>WATERBUDDY</Text>
+            <Text style={{fontFamily: 'Verdana', color: '#9fc9e1', fontSize: 20, fontWeight: 'bold'}}>WATERBUDDY</Text>
           </View>
           <View style={styles.messageBox}>
             <View>
@@ -169,7 +169,7 @@ export default class HomePage extends Component {
                 onProgress={this.onProgress}
                 volume={this.state.volume}
                 muted={this.state.muted}
-                style={{height: 400, width: 400, backgroundColor: 'black'}}
+                style={{height: 400, width: 400, backgroundColor: '#9fc9e1'}}
                 paused={this.state.paused}
                 resizeMode="Exponent.Components.Video.RESIZE_MODE_STRETCH"/>
             </TouchableOpacity>

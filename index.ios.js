@@ -91,11 +91,8 @@ class WaterBuddy extends Component {
     //
     //   renderScene={this._renderScene} />
 
-    // let tabBarHeight = 0;
-    // <TabNavigator
-    // tabBarStyle={{height: tabBarHeight, overflow: 'hidden'}}
-    // sceneStyle={{ paddingBottom: tabBarHeight }}>
-    let tbStyle = this.state.hideNavBar ? { height: 0, overflow: 'hidden' } : {};
+    // let tbStyle = this.state.hideNavBar ? { height: 0, overflow: 'hidden' } : {};
+    let tbStyle = {height: 70};
     return(
       <TabNavigator tabBarStyle={tbStyle}>
         <TabNavigator.Item
