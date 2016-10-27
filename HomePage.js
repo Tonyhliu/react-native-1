@@ -126,6 +126,9 @@ export default class HomePage extends Component {
     return (
       <ScrollView style={styles.scrollV}>
         <View style={styles.firstContainer}>
+          <View style={{height: 50}}>
+            <Text>WATERBUDDY</Text>
+          </View>
           <View style={styles.messageBox}>
             <View>
               <Text style={styles.messageBoxTitleText}>{'Why is drinking water important?'.toUpperCase()}</Text>
@@ -253,7 +256,6 @@ const styles = StyleSheet.create({
     flex: 1
   },
   firstContainer: {
-    marginTop: 65,
     height: 350,
     alignItems: 'center',
     justifyContent: 'center'
