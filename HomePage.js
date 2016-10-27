@@ -6,18 +6,13 @@ import { View,
         StyleSheet,
         ScrollView,
         Image,
-        AlertIOS,
-        Alert,
         Linking
        } from 'react-native';
 import MyAppText from './MyAppText';
-import { Button,
-
-        } from 'react-native-elements';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import Exponent from 'exponent';
-import TabNavigator from 'react-native-tab-navigator';
-// import Icon from 'react-native-vector-icons/MaterialIcons';
+import { Button } from 'react-native-elements';
+// import Icon from 'react-native-vector-icons/FontAwesome';
+import Exponent, { Asset, Components } from 'exponent';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export default class HomePage extends Component {
   // static propTypes = {
@@ -29,16 +24,35 @@ export default class HomePage extends Component {
     super(props);
     this.onLoad = this.onLoad.bind(this);
     this.onProgress = this.onProgress.bind(this);
+    this.resetVid = this.resetVid.bind(this);
 
     this.state = {
+      isReady: false,
       rate: 1,
       volume: 1,
       muted: false,
       duration: 0.0,
       currentTime: 0.0,
-      controls: false,
       paused: true
     }
+  }
+
+  componentWillMount() {
+    this._cacheResourcesAsync();
+  }
+
+  async _cacheResourcesAsync() {
+    const images = [require('./img/favicon2.png')];
+    for (let image of images) {
+      await Asset.fromModule(image).downloadAsync();
+    }
+
+    const videos = [require('./test.mp4')];
+    for (let video of videos) {
+      await Asset.fromModule(video).downloadAsync();
+    }
+
+    this.setState({isReady: true});
   }
 
   onLoad(data) {
@@ -55,6 +69,10 @@ export default class HomePage extends Component {
     } else {
       return 0;
     }
+  }
+
+  resetVid() {
+    this.setState({currentTime: 0.0, paused: true})
   }
 
   renderRateControl(rate) {
@@ -101,7 +119,9 @@ export default class HomePage extends Component {
     //   resizeMode="contain"
     //   source={{uri: 'https://media.giphy.com/media/MooLLNeDnBxp6/giphy.gif'}}
     //   />
-
+    if (!this.state.isReady) {
+      return <Components.AppLoading />;
+    }
 
     return (
       <ScrollView style={styles.scrollV}>
@@ -124,6 +144,7 @@ export default class HomePage extends Component {
 
           </View>
         </View>
+
         <View style={styles.secondConBtnContainer}>
           <View style={{height: 400, width: 400}}>
             <TouchableOpacity style={{height: 400, width: 400}}
@@ -132,7 +153,7 @@ export default class HomePage extends Component {
                 rate={this.state.rate}
                 repeat={true}
                 controls={this.state.controls}
-                onEnd={() => { Alert.alert('Done!') }}
+                onEnd={this.resetVid}
                 onProgress={this.onProgress}
                 volume={this.state.volume}
                 muted={this.state.muted}
@@ -156,7 +177,6 @@ export default class HomePage extends Component {
               </View>
             </View>
           </View>
-
         </View>
 
         <View style={styles.secondContainer}>
@@ -199,7 +219,7 @@ export default class HomePage extends Component {
               <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
             </View>
 
-            <View style={{height: 200}}>
+            <View style={{height: 400}}>
               <Text style={{fontSize:20}}>10) Save Money!</Text>
               <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
 
@@ -218,8 +238,8 @@ export default class HomePage extends Component {
                 </Icon.Button>
               </View>
             </View>
-
           </View>
+
       </ScrollView>
     )
   }
@@ -268,22 +288,6 @@ const styles = StyleSheet.create({
       marginBottom:10,
       fontFamily: 'Menlo'
   },
-  // messageBoxBodyText:{
-  //     color:'#fff',
-  //     fontSize:12,
-  //     fontFamily: 'Arial'
-  // },
-  videoStyle: {
-    height: 400
-  },
-  fullScreen: {
-    // position: 'absolute',
-    // top: 0,
-    // left: 0,
-    // bottom: 0,
-    // right: 0,
-    flex: 1
-  },
   btnStyle: {
     alignSelf: 'center',
     width: 150,
@@ -292,17 +296,7 @@ const styles = StyleSheet.create({
   },
 // start
   container: {
-    // flex: 1,
-    // justifyContent: 'center',
-    // alignItems: 'center',
     backgroundColor: 'black',
-  },
-  fullScreen: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    bottom: 0,
-    right: 0,
   },
   controls: {
     backgroundColor: "transparent",
@@ -312,30 +306,11 @@ const styles = StyleSheet.create({
     left: 4,
     right: 4,
   },
-  progress: {
-    flex: 1,
-    flexDirection: 'row',
-    borderRadius: 3,
-    overflow: 'hidden',
-  },
-  innerProgressCompleted: {
-    height: 20,
-    backgroundColor: '#cccccc',
-  },
-  innerProgressRemaining: {
-    height: 20,
-    backgroundColor: '#2C2C2C',
-  },
   generalControls: {
     flex: 1,
     flexDirection: 'row',
     overflow: 'hidden',
     paddingBottom: 10,
-  },
-  skinControl: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'center',
   },
   rateControl: {
     flex: 1,
@@ -347,12 +322,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
   },
-  resizeModeControl: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
   controlOption: {
     alignSelf: 'center',
     fontSize: 11,
@@ -361,8 +330,14 @@ const styles = StyleSheet.create({
     paddingRight: 2,
     lineHeight: 12,
   },
-  nativeVideoControls: {
-    top: 184,
-    height: 300
+  // tabs
+  tabSelectedstyle: {
+    backgroundColor: 'blue'
+  },
+  titleStyle: {
+    color: 'purple'
+  },
+  titleSelected: {
+    color: 'pink'
   }
 });
