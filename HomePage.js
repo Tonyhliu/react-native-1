@@ -6,6 +6,8 @@ import { View,
         StyleSheet,
         ScrollView,
         Image,
+        AlertIOS,
+        Alert,
         Linking
        } from 'react-native';
 import MyAppText from './MyAppText';
@@ -14,6 +16,7 @@ import { Button,
         } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Exponent from 'exponent';
+import TabNavigator from 'react-native-tab-navigator';
 // import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export default class HomePage extends Component {
@@ -22,11 +25,60 @@ export default class HomePage extends Component {
   //   onForward: PropTypes.func.isRequired,
   //   onBack: PropTypes.func.isRequired,
   // }
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    this.onLoad = this.onLoad.bind(this);
+    this.onProgress = this.onProgress.bind(this);
+
     this.state = {
+      rate: 1,
+      volume: 1,
+      muted: false,
+      duration: 0.0,
+      currentTime: 0.0,
+      controls: false,
       paused: true
     }
+  }
+
+  onLoad(data) {
+    this.setState({duration: data.duration});
+  }
+
+  onProgress(data) {
+    this.setState({currentTime: data.currentTime});
+  }
+
+  getCurrentTimePercentage() {
+    if (this.state.currentTime > 0) {
+      return parseFloat(this.state.currentTime) / parseFloat(this.state.duration);
+    } else {
+      return 0;
+    }
+  }
+
+  renderRateControl(rate) {
+    const isSelected = (this.state.rate == rate);
+
+    return (
+      <TouchableOpacity onPress={() => { this.setState({rate: rate}) }}>
+        <Text style={[styles.controlOption, {fontWeight: isSelected ? "bold" : "normal"}]}>
+          {rate}x
+        </Text>
+      </TouchableOpacity>
+    )
+  }
+
+  renderVolumeControl(volume) {
+    const isSelected = (this.state.volume == volume);
+
+    return (
+      <TouchableOpacity onPress={() => { this.setState({volume: volume}) }}>
+        <Text style={[styles.controlOption, {fontWeight: isSelected ? "bold" : "normal"}]}>
+          {volume * 100}%
+        </Text>
+      </TouchableOpacity>
+    )
   }
 
   _navigate(property) {
@@ -50,9 +102,7 @@ export default class HomePage extends Component {
     //   source={{uri: 'https://media.giphy.com/media/MooLLNeDnBxp6/giphy.gif'}}
     //   />
 
-    // const { selectedTab } = this.state
 
-    // https://www.youtube.com/watch?v=9iMGFqMmUFs
     return (
       <ScrollView style={styles.scrollV}>
         <View style={styles.firstContainer}>
@@ -75,21 +125,38 @@ export default class HomePage extends Component {
           </View>
         </View>
         <View style={styles.secondConBtnContainer}>
+          <View style={{height: 400, width: 400}}>
+            <TouchableOpacity style={{height: 400, width: 400}}
+              onPress={() => {this.setState({paused: !this.state.paused})}}>
+              <Exponent.Components.Video source={require('./test.mp4')}
+                rate={this.state.rate}
+                repeat={true}
+                controls={this.state.controls}
+                onEnd={() => { Alert.alert('Done!') }}
+                onProgress={this.onProgress}
+                volume={this.state.volume}
+                muted={this.state.muted}
+                style={{height: 400, width: 400, backgroundColor: 'black'}}
+                paused={this.state.paused}
+                resizeMode="Exponent.Components.Video.RESIZE_MODE_STRETCH"/>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.controls}>
+            <View style={styles.generalControls}>
+              <View style={styles.rateControl}>
+                {this.renderRateControl(0.5)}
+                {this.renderRateControl(1.0)}
+                {this.renderRateControl(2.0)}
+              </View>
 
-          <TouchableOpacity style={{height: 400, width: 400}}
-                            onPress={() => {this.setState({paused: !this.state.paused})}}>
-            <Exponent.Components.Video source={require('./test.mp4')}
-                                      style={{height: 400, width: 400}}
-                                      paused={this.state.paused}
-                                      resizeMode="Exponent.Components.Video.RESIZE_MODE_STRETCH"/>
-          </TouchableOpacity>
+              <View style={styles.volumeControl}>
+                {this.renderVolumeControl(0.5)}
+                {this.renderVolumeControl(1)}
+                {this.renderVolumeControl(1.5)}
+              </View>
+            </View>
+          </View>
 
-          <Icon.Button size={24}
-            backgroundColor="#07619b"
-            onPress={this._navigate.bind(this, 'Hello from HP')}
-            name='calculator'>
-            <Text style={{fontSize: 14, fontWeight: 'bold', fontFamily: 'Arial', color: '#fff'}}>CALCULATE</Text>
-          </Icon.Button>
         </View>
 
         <View style={styles.secondContainer}>
@@ -142,6 +209,13 @@ export default class HomePage extends Component {
                   small
                   buttonStyle={styles.btnStyle}
                   icon={{name: 'arrow-forward'}} />
+
+                <Icon.Button size={24}
+                  backgroundColor="#07619b"
+                  onPress={this._navigate.bind(this, 'Hello from HP')}
+                  name='calculator'>
+                  <Text style={{fontSize: 14, fontWeight: 'bold', fontFamily: 'Arial', color: '#fff'}}>CALCULATE</Text>
+                </Icon.Button>
               </View>
             </View>
 
@@ -174,7 +248,6 @@ const styles = StyleSheet.create({
     flex: 1
   },
   secondConBtnContainer: {
-    width: 150,
     alignSelf: 'center',
     alignItems: 'center'
   },
@@ -200,6 +273,30 @@ const styles = StyleSheet.create({
   //     fontSize:12,
   //     fontFamily: 'Arial'
   // },
+  videoStyle: {
+    height: 400
+  },
+  fullScreen: {
+    // position: 'absolute',
+    // top: 0,
+    // left: 0,
+    // bottom: 0,
+    // right: 0,
+    flex: 1
+  },
+  btnStyle: {
+    alignSelf: 'center',
+    width: 150,
+    backgroundColor: '#07619b',
+    borderRadius: 5
+  },
+// start
+  container: {
+    // flex: 1,
+    // justifyContent: 'center',
+    // alignItems: 'center',
+    backgroundColor: 'black',
+  },
   fullScreen: {
     position: 'absolute',
     top: 0,
@@ -207,10 +304,65 @@ const styles = StyleSheet.create({
     bottom: 0,
     right: 0,
   },
-  btnStyle: {
+  controls: {
+    backgroundColor: "transparent",
+    borderRadius: 5,
+    position: 'absolute',
+    bottom: 44,
+    left: 4,
+    right: 4,
+  },
+  progress: {
+    flex: 1,
+    flexDirection: 'row',
+    borderRadius: 3,
+    overflow: 'hidden',
+  },
+  innerProgressCompleted: {
+    height: 20,
+    backgroundColor: '#cccccc',
+  },
+  innerProgressRemaining: {
+    height: 20,
+    backgroundColor: '#2C2C2C',
+  },
+  generalControls: {
+    flex: 1,
+    flexDirection: 'row',
+    overflow: 'hidden',
+    paddingBottom: 10,
+  },
+  skinControl: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  rateControl: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  volumeControl: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  resizeModeControl: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  controlOption: {
     alignSelf: 'center',
-    width: 150,
-    backgroundColor: '#07619b',
-    borderRadius: 5
+    fontSize: 11,
+    color: "white",
+    paddingLeft: 2,
+    paddingRight: 2,
+    lineHeight: 12,
+  },
+  nativeVideoControls: {
+    top: 184,
+    height: 300
   }
 });
