@@ -230,12 +230,6 @@ export default class HomePage extends Component {
                   buttonStyle={styles.btnStyle}
                   icon={{name: 'arrow-forward'}} />
 
-                <Icon.Button size={24}
-                  backgroundColor="#07619b"
-                  onPress={this._navigate.bind(this, 'Hello from HP')}
-                  name='calculator'>
-                  <Text style={{fontSize: 14, fontWeight: 'bold', fontFamily: 'Arial', color: '#fff'}}>CALCULATE</Text>
-                </Icon.Button>
               </View>
             </View>
           </View>
@@ -330,14 +324,4 @@ const styles = StyleSheet.create({
     paddingRight: 2,
     lineHeight: 12,
   },
-  // tabs
-  tabSelectedstyle: {
-    backgroundColor: 'blue'
-  },
-  titleStyle: {
-    color: 'purple'
-  },
-  titleSelected: {
-    color: 'pink'
-  }
 });

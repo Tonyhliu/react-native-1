@@ -17,7 +17,8 @@ import {
 } from 'react-native';
 import Exponent from 'exponent';
 import TabNavigator from 'react-native-tab-navigator';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+// import Icon from 'react-native-vector-icons/MaterialIcons';
+import { Button } from 'react-native-elements';
 
 import HomePage from './HomePage';
 import WaterIntake from './WaterIntake';
@@ -62,11 +63,11 @@ class WaterBuddy extends Component {
   }
 
   render() {
-    const routes = [
-      {title: 'Home Page', index: 0},
-      {title: 'WaterIntake', index: 1},
-      {title: 'PlaceHolder', index: 2},
-    ];
+    // const routes = [
+    //   {title: 'Home Page', index: 0},
+    //   {title: 'WaterIntake', index: 1},
+    //   {title: 'PlaceHolder', index: 2},
+    // ];
 
     // <Navigator
     //   initialRoute={routes[0]}
@@ -80,25 +81,45 @@ class WaterBuddy extends Component {
     //   }
     //
     //   renderScene={this._renderScene} />
+
+    // let tabBarHeight = 0;
+    // <TabNavigator
+    // tabBarStyle={{height: tabBarHeight, overflow: 'hidden'}}
+    // sceneStyle={{ paddingBottom: tabBarHeight }}>
+    // let tbStyle = hideNavBar ? { height: 0 } : {};
     return(
       <TabNavigator>
         <TabNavigator.Item
           selected={this.state.selectedTab === 'home'}
           title="Home"
-          renderIcon={() => <Image source={{uri: 'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTbU_fkOiCC3R2gM0Zr9viou2v3Cbxn6qNTVPAk4d-MshmnM3GU5SAz-pA'}} />}
-          renderSelectedIcon={() => <Image source={{uri: 'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTbU_fkOiCC3R2gM0Zr9viou2v3Cbxn6qNTVPAk4d-MshmnM3GU5SAz-pA'}} />}
-          badgeText="1"
+          renderIcon={() => <Image source={require('./img/homeIcon.png')} />}
+          renderSelectedIcon={() => <Image source={require('./img/homeIcon.png')} />}
           onPress={() => this.setState({ selectedTab: 'home' })}>
           <HomePage />
         </TabNavigator.Item>
         <TabNavigator.Item
           selected={this.state.selectedTab === 'calculator'}
           title="Calculator"
-          renderIcon={() => <Icon.Button name='calculator' />}
-          renderSelectedIcon={() => <Icon.Button name='calculator' />}
-          badgeText="2"
+          renderIcon={() => <Image source={require('./img/calculatorIcon.png')} />}
+          renderSelectedIcon={() => <Image source={require('./img/calculatorIcon.png')} />}
           onPress={() => this.setState({ selectedTab: 'calculator' })}>
           <WaterIntake />
+        </TabNavigator.Item>
+        <TabNavigator.Item
+          selected={this.state.selectedTab === 'reminder'}
+          title="Reminder"
+          renderIcon={() => <Image source={require('./img/reminderIcon.png')} />}
+          renderSelectedIcon={() => <Image source={require('./img/reminderIcon.png')} />}
+          onPress={() => this.setState({ selectedTab: 'reminder' })}>
+          <PlaceHolder />
+        </TabNavigator.Item>
+        <TabNavigator.Item
+          selected={this.state.selectedTab === 'about'}
+          title="About"
+          renderIcon={() => <Image source={require('./img/about.png')} />}
+          renderSelectedIcon={() => <Image source={require('./img/about.png')} />}
+          onPress={() => this.setState({ selectedTab: 'about' })}>
+          <PlaceHolder />
         </TabNavigator.Item>
       </TabNavigator>
     )
