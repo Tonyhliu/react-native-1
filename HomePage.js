@@ -62,7 +62,7 @@ export default class HomePage extends Component {
             </View>
 
             <View>
-              <MyAppText style={styles.messageBoxBodyText}>Did you know that humans are 70% water and that our blood is 90% water?
+              <MyAppText style={styles.messageBoxBodyText}>Did you know that humans are 50-70% water and that our blood is 90% water?
               {"\n"}
               {"\n"}
                 Not only does drinking water flush out waste and bacteria, but according to a
