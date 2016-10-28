@@ -25,12 +25,13 @@ import HomePage from './HomePage';
 import WaterIntake from './WaterIntake';
 import PlaceHolder from './PlaceHolder';
 import About from './About';
+import Login from './Login';
 
 class WaterBuddy extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      selectedTab: 'home'
+      selectedTab: 'login'
     }
   }
 
@@ -68,24 +69,34 @@ class WaterBuddy extends Component {
   //   return Navigator.SceneConfigs.HorizontalSwipeJump
   // }
 
-  async _logIn() {
-    // <Exponent.Facebook.logInWithReadPermissionsAsync(874143415951230) />
-  // console.log("made it to log in");
-  const { type, token } = await Exponent.Facebook.logInWithReadPermissionsAsync(
-    '874143415951230', {
-    permissions: ['public_profile'],
-  });
+  // async _logIn() {
+  //   // <Exponent.Facebook.logInWithReadPermissionsAsync(874143415951230) />
+  // // console.log("made it to log in");
+  // const { type, token } = await Exponent.Facebook.logInWithReadPermissionsAsync(
+  //   '874143415951230', {
+  //   permissions: ['public_profile'],
+  // });
+  //
+  // if (type === 'success') {
+  // // Get the user's name using Facebook's Graph API
+  //   const response = await fetch(
+  //   `https://graph.facebook.com/me?access_token=${token}`);
+  //     Alert.alert(
+  //       'Logged in!',
+  //       `Hi ${(await response.json()).name}!`,
+  //     );
+  //   }
+  // }
 
-  if (type === 'success') {
-  // Get the user's name using Facebook's Graph API
-  const response = await fetch(
-  `https://graph.facebook.com/me?access_token=${token}`);
-    Alert.alert(
-      'Logged in!',
-      `Hi ${(await response.json()).name}!`,
-    );
-    }
-  }
+
+  // <TabNavigator.Item
+  //   selected={this.state.selectedTab === 'login'}
+  //   title="Login"
+  //   renderIcon={() => <Image source={require('./img/homeIcon.png')} />}
+  //   renderSelectedIcon={() => <Image source={require('./img/homeIcon.png')} />}
+  //   onPress={() => this.setState({ selectedTab: 'login' })}>
+  //   <Login/>
+  // </TabNavigator.Item>
 
   render() {
     // let tbStyle = this.state.hideNavBar ? { height: 0, overflow: 'hidden' } : {};
