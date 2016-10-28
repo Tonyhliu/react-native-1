@@ -5,35 +5,37 @@ import { View,
         StyleSheet
        } from 'react-native';
 import { SocialIcon } from 'react-native-elements';
+import Exponent from 'exponent';
 
 
 export default class Login extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      name: ''
+    }
   }
 
   _logIn() {
-    // <Exponent.Facebook.logInWithReadPermissionsAsync(874143415951230) />
-  // console.log("made it to log in");
-  const { type, token } = await Exponent.Facebook.logInWithReadPermissionsAsync(
+  const { type, token } = Exponent.Facebook.logInWithReadPermissionsAsync(
     '874143415951230', {
     permissions: ['public_profile'],
   });
 
   if (type === 'success') {
   // Get the user's name using Facebook's Graph API
-    const response = await fetch(
+    const response = fetch(
     `https://graph.facebook.com/me?access_token=${token}`);
-      Alert.alert(
-        'Logged in!',
-        `Hi ${(await response.json()).name}!`,
-      );
-    }
+    this.setState({name: response.json().name})
+  }
+
   }
 
   render() {
     return (
-        <View>
+        <View style={{height: 400}}>
+          <Text>Hello {this.state.name}</Text>
           <SocialIcon
             title='Sign In With Facebook'
             button

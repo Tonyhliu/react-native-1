@@ -7,10 +7,12 @@ import { View,
         Navigator,
         Alert,
         PickerIOS,
+        TouchableWithoutFeedback,
         StyleSheet
        } from 'react-native';
 
 import Button from 'react-native-button';
+import dismissKeyboard from 'dismissKeyboard';
 
 var PickerItemIOS = PickerIOS.Item;
 
@@ -60,40 +62,31 @@ export default class WaterIntake extends Component {
     // 1 fl ounce = 29.5735 ml
   }
 
-  _navigate(property){
-    this.props.navigator.push({
-      title: 'HomePage', // Matches route.name
-      index: 0,
-      passProps: {
-        name: property
-      },
-      type: "back"
-    })
-  }
-
-  _navigateForward(property){
-    this.props.navigator.push({
-      title: 'PlaceHolder', // Matches route.name
-      index: 2,
-      passProps: {
-        name: property
-      }
-    })
-  }
+  // _navigate(property){
+  //   this.props.navigator.push({
+  //     title: 'HomePage', // Matches route.name
+  //     index: 0,
+  //     passProps: {
+  //       name: property
+  //     },
+  //     type: "back"
+  //   })
+  // }
+  //
+  // _navigateForward(property){
+  //   this.props.navigator.push({
+  //     title: 'PlaceHolder', // Matches route.name
+  //     index: 2,
+  //     passProps: {
+  //       name: property
+  //     }
+  //   })
+  // }
 
   render() {
     let activity = ACTIVITY_LEVELS[this.state.activity];
     let selectionString = activity.name
 
-    // <View style={styles.toolbar}>
-    //   <TouchableHighlight>
-    //     <Text style={styles.toolbarBtn}
-    //       onPress={this._navigate.bind(this, "HELLO FROM WI PAGE")}>Back</Text>
-    //   </TouchableHighlight>
-    //   <Text style={styles.toolbarTitle}>WaterBuddy</Text>
-    //   <Text style={styles.toolbarBtn}
-    //     onPress={this._navigateForward.bind(this, "HELLO FROM WI PAGE")}>Next</Text>
-    // </View>
     return (
       <View style={styles.mainContainer}>
         <View style={styles.threeQuarters}>
@@ -105,11 +98,17 @@ export default class WaterIntake extends Component {
 
           <View>
             <Text style={styles.bwd}>Enter body weight!</Text>
-            <TextInput style={styles.txtInput}
-              keyboardType='numeric'
-              onChangeText={(text) => this.setState({text})}
-              value={this.state.text}
-              placeholder="Ex: 120 pounds..."/>
+
+            <TouchableWithoutFeedback onPress={() => dismissKeyboard()}>
+              <View>
+                <TextInput style={styles.txtInput}
+                    keyboardType='numeric'
+                    onChangeText={(text) => this.setState({text})}
+                    value={this.state.text}
+                    placeholder="Ex: 120 pounds..."/>
+              </View>
+            </TouchableWithoutFeedback>
+
             <Button style={styles.btn}
               styleDisabled={{color: 'red'}}
               onPress={this.buttonClicked.bind(this)}>

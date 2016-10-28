@@ -71,42 +71,48 @@ class WaterBuddy extends Component {
   render() {
     // let tbStyle = this.state.hideNavBar ? { height: 0, overflow: 'hidden' } : {};
     let tbStyle = {height: 60};
-    return(
-      <TabNavigator tabBarStyle={tbStyle}>
-        <TabNavigator.Item
-          selected={this.state.selectedTab === 'home'}
-          title="Home"
-          renderIcon={() => <Image source={require('./img/homeIcon.png')} />}
-          renderSelectedIcon={() => <Image source={require('./img/homeIcon.png')} />}
-          onPress={() => this.setState({ selectedTab: 'home' })}>
-          <HomePage/>
-        </TabNavigator.Item>
-        <TabNavigator.Item
-          selected={this.state.selectedTab === 'calculator'}
-          title="Calculator"
-          renderIcon={() => <Image source={require('./img/calculatorIcon.png')} />}
-          renderSelectedIcon={() => <Image source={require('./img/calculatorIcon.png')} />}
-          onPress={() => this.setState({ selectedTab: 'calculator' })}>
-          <WaterIntake />
-        </TabNavigator.Item>
-        <TabNavigator.Item
-          selected={this.state.selectedTab === 'reminder'}
-          title="Reminder"
-          renderIcon={() => <Image source={require('./img/reminderIcon.png')} />}
-          renderSelectedIcon={() => <Image source={require('./img/reminderIcon.png')} />}
-          onPress={() => this.setState({ selectedTab: 'reminder' })}>
-          <PlaceHolder />
-        </TabNavigator.Item>
-        <TabNavigator.Item
-          selected={this.state.selectedTab === 'about'}
-          title="About"
-          renderIcon={() => <Image source={require('./img/about.png')} />}
-          renderSelectedIcon={() => <Image source={require('./img/about.png')} />}
-          onPress={() => this.setState({ selectedTab: 'about' })}>
-          <About />
-        </TabNavigator.Item>
-      </TabNavigator>
-    )
+    if (this.state.selectedTab === 'login') {
+      return (
+        <Login />
+      )
+    } else {
+      return(
+        <TabNavigator tabBarStyle={tbStyle}>
+          <TabNavigator.Item
+            selected={this.state.selectedTab === 'home'}
+            title="Home"
+            renderIcon={() => <Image source={require('./img/homeIcon.png')} />}
+            renderSelectedIcon={() => <Image source={require('./img/homeIcon.png')} />}
+            onPress={() => this.setState({ selectedTab: 'home' })}>
+            <HomePage/>
+          </TabNavigator.Item>
+          <TabNavigator.Item
+            selected={this.state.selectedTab === 'calculator'}
+            title="Calculator"
+            renderIcon={() => <Image source={require('./img/calculatorIcon.png')} />}
+            renderSelectedIcon={() => <Image source={require('./img/calculatorIcon.png')} />}
+            onPress={() => this.setState({ selectedTab: 'calculator' })}>
+            <WaterIntake />
+          </TabNavigator.Item>
+          <TabNavigator.Item
+            selected={this.state.selectedTab === 'reminder'}
+            title="Reminder"
+            renderIcon={() => <Image source={require('./img/reminderIcon.png')} />}
+            renderSelectedIcon={() => <Image source={require('./img/reminderIcon.png')} />}
+            onPress={() => this.setState({ selectedTab: 'reminder' })}>
+            <PlaceHolder />
+          </TabNavigator.Item>
+          <TabNavigator.Item
+            selected={this.state.selectedTab === 'about'}
+            title="About"
+            renderIcon={() => <Image source={require('./img/about.png')} />}
+            renderSelectedIcon={() => <Image source={require('./img/about.png')} />}
+            onPress={() => this.setState({ selectedTab: 'about' })}>
+            <About />
+          </TabNavigator.Item>
+        </TabNavigator>
+      )
+    }
   }
 }
 
