@@ -130,11 +130,32 @@ export default class HomePage extends Component {
       return <Components.AppLoading />;
     }
 
+    // <View style={styles.secondContainer}>
+    //     <View style={{height: 200, backgroundColor: '#9fc9e1'}}>
+    //       <Text style={{fontSize:20}}>1) Increase Energy & Relives Fatigue</Text>
+    //       <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
+    //     </View>
+    //
+    //     <View style={{height: 200, backgroundColor: '#007fb2'}}>
+    //       <Text style={{fontSize:20}}>2) Promotes Weight Loss</Text>
+    //       <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
+    //     </View>
+    //
+    //     <View style={{height: 250}}>
+    //       <Image style={{flex: 1}}
+    //         resizeMode="contain"
+    //         source={{uri: 'https://media.giphy.com/media/MooLLNeDnBxp6/giphy.gif'}}
+    //         />
+    //     </View>
+    // </View>
+
     return (
-      <ScrollView style={styles.scrollV}>
+      <ScrollView style={styles.mainContainer}>
         <View style={styles.firstContainer}>
-          <View style={{height: 50}}>
-            <Text style={{fontFamily: 'Verdana', color: '#9fc9e1', fontSize: 20, fontWeight: 'bold'}}>WATERBUDDY</Text>
+          <View style={{height: 100}}>
+            <Image source={require('./img/WaterBuddyLogo.png')}
+                    resizeMode="contain"
+                    style={{flex: 1}} />
           </View>
           <View style={styles.messageBox}>
             <View>
@@ -143,12 +164,12 @@ export default class HomePage extends Component {
 
             <View>
               <MyAppText style={styles.messageBoxBodyText}>Did you know that humans are 50-70% water and that our blood is 90% water?
-              {"\n"}
-              {"\n"}
+                {"\n"}
+                {"\n"}
                 Not only does drinking water flush out waste and bacteria, but according to a
                 <Text style={{color: 'blue', marginLeft: 15, marginRight: 15}}
-                          onPress={() => Linking.openURL('http://www.dailymail.co.uk/health/article-2366353/How-drinking-glass-water-make-brain-14-faster.html')}> study </Text>
-                        by the University of East London, drinking water can actually make you smarter. Watch the video below for 10 reasons on why you should stay hydrated every day!
+                  onPress={() => Linking.openURL('http://www.dailymail.co.uk/health/article-2366353/How-drinking-glass-water-make-brain-14-faster.html')}> study </Text>
+                by the University of East London, drinking water can actually make you smarter. Watch the video below for 10 reasons on why you should stay hydrated every day!
               </MyAppText>
             </View>
 
@@ -156,7 +177,7 @@ export default class HomePage extends Component {
         </View>
 
         <View style={styles.secondConBtnContainer}>
-          <View style={{height: 400, width: 400}}>
+          <View style={{height: 375, width: 400}}>
             <TouchableOpacity
               onPress={() => {this.setState({paused: !this.state.paused})}}>
               <Exponent.Components.Video source={require('./test.mp4')}
@@ -167,7 +188,7 @@ export default class HomePage extends Component {
                 onProgress={this.onProgress}
                 volume={this.state.volume}
                 muted={this.state.muted}
-                style={{height: 400, width: 400, backgroundColor: 'black'}}
+                style={{height: 375, width: 400, backgroundColor: 'white'}}
                 paused={this.state.paused}
                 resizeMode="Exponent.Components.Video.RESIZE_MODE_STRETCH"/>
             </TouchableOpacity>
@@ -188,59 +209,6 @@ export default class HomePage extends Component {
             </View>
           </View>
         </View>
-
-        <View style={styles.secondContainer}>
-            <View style={{height: 200, backgroundColor: '#9fc9e1'}}>
-              <Text style={{fontSize:20}}>1) Increase Energy & Relives Fatigue</Text>
-              <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
-            </View>
-
-            <View style={{height: 200, backgroundColor: '#007fb2'}}>
-              <Text style={{fontSize:20}}>2) Promotes Weight Loss</Text>
-              <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
-            </View>
-
-            <View style={{height: 200}}>
-              <Text style={{fontSize:20}}>3) Flushes out Toxins</Text>
-            </View>
-
-            <View style={{height: 200}}>
-              <Text style={{fontSize:20}}>4) Improves Skin Complexion</Text>
-            </View>
-
-            <View style={{height: 200}}>
-              <Text style={{fontSize:20}}>5) Maintains Regularity</Text>
-            </View>
-
-            <View style={{height: 200}}>
-              <Text style={{fontSize:20}}>6) Boosts Immune System</Text>
-            </View>
-
-            <View style={{height: 200}}>
-              <Text style={{fontSize:20}}>7) Natural Headache Remedy</Text>
-            </View>
-
-            <View style={{height: 200}}>
-              <Text style={{fontSize:20}}>8) Prevents Cramps & Sprains</Text>
-            </View>
-
-            <View style={{height: 200}}>
-              <Text style={{fontSize:20}}>9) Elevate Mood</Text>
-              <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
-            </View>
-
-            <View style={{height: 200}}>
-              <Text style={{fontSize:20}}>10) Save money</Text>
-            </View>
-
-            <View style={{height: 250}}>
-              <Image style={{flex: 1}}
-                resizeMode="contain"
-                source={{uri: 'https://media.giphy.com/media/MooLLNeDnBxp6/giphy.gif'}}
-                />
-            </View>
-          </View>
-
       </ScrollView>
     )
   }
@@ -255,7 +223,7 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize:18
   },
-  scrollV: {
+  mainContainer: {
     backgroundColor: '#ffffff',
     // backgroundColor: 'black',
     flex: 1,
@@ -270,7 +238,8 @@ const styles = StyleSheet.create({
   },
   secondConBtnContainer: {
     alignSelf: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    overflow: 'hidden'
   },
   messageBox:{
     backgroundColor:'#007fb2',
@@ -300,7 +269,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
   },
   controls: {
-    backgroundColor: "transparent",
+    // backgroundColor: "transparent",
+    backgroundColor: 'black',
     borderRadius: 5,
     position: 'absolute',
     bottom: 44,
@@ -311,7 +281,8 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     overflow: 'hidden',
-    paddingBottom: 10,
+    // paddingBottom: 10,
+    // height: 30
   },
   rateControl: {
     flex: 1,
