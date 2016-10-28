@@ -29,7 +29,6 @@ class WaterBuddy extends Component {
     super(props)
     this.state = {
       selectedTab: 'home'
-      // hideNavBar: false
     }
   }
 

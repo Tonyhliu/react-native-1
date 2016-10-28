@@ -115,16 +115,6 @@ export default class HomePage extends Component {
     this.setState({selectedTab})
   }
 
-  // handleScroll(e) {
-  //   if (e.nativeEvent.contentOffset.y > this.state.currentY) {
-  //     this.props.downScroll();
-  //     this.setState({currentY: e.nativeEvent.contentOffset.y})
-  //   } else {
-  //     this.props.upScroll();
-  //     this.setState({currentY: e.nativeEvent.contentOffset.y})
-  //   }
-  // }
-
   render() {
     if (!this.state.isReady) {
       return <Components.AppLoading />;
@@ -253,6 +243,7 @@ const styles = StyleSheet.create({
   messageBoxTitleText:{
       fontWeight:'bold',
       color:'#ffc423',
+      // color:'#fff',
       textAlign:'center',
       fontSize:26,
       marginBottom:10,
@@ -281,8 +272,6 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     overflow: 'hidden',
-    // paddingBottom: 10,
-    // height: 30
   },
   rateControl: {
     flex: 1,
