@@ -39,7 +39,6 @@ export default class HomePage extends Component {
 
   componentWillMount() {
     this._cacheResourcesAsync();
-    // this._logIn();
   }
 
   async _cacheResourcesAsync() {
@@ -56,26 +55,6 @@ export default class HomePage extends Component {
 
     this.setState({isReady: true});
   }
-
-  // async _logIn() {
-  //   // <Exponent.Facebook.logInWithReadPermissionsAsync(874143415951230) />
-  // console.log("made it to log in");
-  // const { type, token } = await Exponent.Facebook.logInWithReadPermissionsAsync(
-  //   '874143415951230', {
-  //   permissions: ['public_profile'],
-  // });
-  //
-  // if (type === 'success') {
-  // // Get the user's name using Facebook's Graph API
-  // const response = await fetch(
-  // `https://graph.facebook.com/me?access_token=${token}`);
-  //   Alert.alert(
-  //     'Logged in!',
-  //     `Hi ${(await response.json()).name}!`,
-  //   );
-  //   }
-  // }
-
 
   onLoad(data) {
     this.setState({duration: data.duration});

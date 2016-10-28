@@ -24,6 +24,7 @@ import { Button } from 'react-native-elements';
 import HomePage from './HomePage';
 import WaterIntake from './WaterIntake';
 import PlaceHolder from './PlaceHolder';
+import About from './About';
 
 class WaterBuddy extends Component {
   constructor(props) {
@@ -34,38 +35,38 @@ class WaterBuddy extends Component {
   }
 
   componentWillMount() {
-    this._logIn();
+    // this._logIn();
   }
 
-  _renderScene(route, nav) {
-    switch (route.index) {
-      case 0:
-        // console.log(route.passProps);
-        return <HomePage navigator={nav}
-                          title={route.title}
-                          {...route.passProps} />
-        break;
-      case 1:
-        return <WaterIntake navigator={nav}
-                            title={route.title}
-                            {...route.passProps} />
-        break;
-      case 2:
-        return <PlaceHolder navigator={nav}
-                            title={route.title}
-                            {...route.passProps} />
-        break;
-      default:
-    }
-  }
+  // _renderScene(route, nav) {
+  //   switch (route.index) {
+  //     case 0:
+  //       // console.log(route.passProps);
+  //       return <HomePage navigator={nav}
+  //                         title={route.title}
+  //                         {...route.passProps} />
+  //       break;
+  //     case 1:
+  //       return <WaterIntake navigator={nav}
+  //                           title={route.title}
+  //                           {...route.passProps} />
+  //       break;
+  //     case 2:
+  //       return <PlaceHolder navigator={nav}
+  //                           title={route.title}
+  //                           {...route.passProps} />
+  //       break;
+  //     default:
+  //   }
+  // }
 
-  _configureScene(route, routeStack) {
-    if (route.type === "back") {
-      return Navigator.SceneConfigs.FloatFromLeft
-      // return Navigator.SceneConfigs.PushFromRight
-    }
-    return Navigator.SceneConfigs.HorizontalSwipeJump
-  }
+  // _configureScene(route, routeStack) {
+  //   if (route.type === "back") {
+  //     return Navigator.SceneConfigs.FloatFromLeft
+  //     // return Navigator.SceneConfigs.PushFromRight
+  //   }
+  //   return Navigator.SceneConfigs.HorizontalSwipeJump
+  // }
 
   async _logIn() {
     // <Exponent.Facebook.logInWithReadPermissionsAsync(874143415951230) />
@@ -121,40 +122,40 @@ class WaterBuddy extends Component {
           renderIcon={() => <Image source={require('./img/about.png')} />}
           renderSelectedIcon={() => <Image source={require('./img/about.png')} />}
           onPress={() => this.setState({ selectedTab: 'about' })}>
-          <PlaceHolder />
+          <About />
         </TabNavigator.Item>
       </TabNavigator>
     )
   }
 }
 
-var NavigationBarRouteMapper = {
-  LeftButton(route, navigator, index, navState) {
-    if(index > 0) {
-      return (
-        <TouchableHighlight
-        	 underlayColor="#a7d5f6"
-           onPress={() => { if (index > 0) { navigator.pop() } }}>
-          <Text style={styles.leftNavButtonText}>Back</Text>
-        </TouchableHighlight>
-  	)}
-    else { return null }
-  },
-  RightButton(route, navigator, index, navState) {
-    if (index === 1) return ( <TouchableHighlight
-    														onPress={() => navigator.push({
-                                  title: 'PlaceHolder',
-                                  index: 2
-                                }) }>
-                                <Text style={styles.rightNavButtonText}>
-                                  	{route.rightText || 'Next Btn'}
-                                </Text>
-                              </TouchableHighlight> )
-  },
-  Title(route, navigator, index, navState) {
-    return <Text style={ styles.title }>WaterBuddy</Text>
-  }
-};
+// var NavigationBarRouteMapper = {
+//   LeftButton(route, navigator, index, navState) {
+//     if(index > 0) {
+//       return (
+//         <TouchableHighlight
+//         	 underlayColor="#a7d5f6"
+//            onPress={() => { if (index > 0) { navigator.pop() } }}>
+//           <Text style={styles.leftNavButtonText}>Back</Text>
+//         </TouchableHighlight>
+//   	)}
+//     else { return null }
+//   },
+//   RightButton(route, navigator, index, navState) {
+//     if (index === 1) return ( <TouchableHighlight
+//     														onPress={() => navigator.push({
+//                                   title: 'PlaceHolder',
+//                                   index: 2
+//                                 }) }>
+//                                 <Text style={styles.rightNavButtonText}>
+//                                   	{route.rightText || 'Next Btn'}
+//                                 </Text>
+//                               </TouchableHighlight> )
+//   },
+//   Title(route, navigator, index, navState) {
+//     return <Text style={ styles.title }>WaterBuddy</Text>
+//   }
+// };
 
 var styles = StyleSheet.create({
   leftNavButtonText: {

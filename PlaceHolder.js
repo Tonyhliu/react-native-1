@@ -12,17 +12,6 @@ export default class PlaceHolder extends Component {
     super(props);
   }
 
-  _navigate(property) {
-    this.props.navigator.push({
-      title: 'WaterIntake', // Matches route.name
-      index: 1,
-      passProps: {
-        name: property
-      },
-      type: "back"
-    })
-  }
-
   render() {
     return (
         <View>
