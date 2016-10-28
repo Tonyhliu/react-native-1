@@ -115,15 +115,15 @@ export default class HomePage extends Component {
     this.setState({selectedTab})
   }
 
-  handleScroll(e) {
-    if (e.nativeEvent.contentOffset.y > this.state.currentY) {
-      this.props.downScroll();
-      this.setState({currentY: e.nativeEvent.contentOffset.y})
-    } else {
-      this.props.upScroll();
-      this.setState({currentY: e.nativeEvent.contentOffset.y})
-    }
-  }
+  // handleScroll(e) {
+  //   if (e.nativeEvent.contentOffset.y > this.state.currentY) {
+  //     this.props.downScroll();
+  //     this.setState({currentY: e.nativeEvent.contentOffset.y})
+  //   } else {
+  //     this.props.upScroll();
+  //     this.setState({currentY: e.nativeEvent.contentOffset.y})
+  //   }
+  // }
 
   render() {
     if (!this.state.isReady) {
@@ -131,9 +131,7 @@ export default class HomePage extends Component {
     }
 
     return (
-      <ScrollView style={styles.scrollV}
-                onScroll={this.handleScroll.bind(this)}
-                scrollEventThrottle={10}>
+      <ScrollView style={styles.scrollV}>
         <View style={styles.firstContainer}>
           <View style={{height: 50}}>
             <Text style={{fontFamily: 'Verdana', color: '#9fc9e1', fontSize: 20, fontWeight: 'bold'}}>WATERBUDDY</Text>
@@ -150,7 +148,7 @@ export default class HomePage extends Component {
                 Not only does drinking water flush out waste and bacteria, but according to a
                 <Text style={{color: 'blue', marginLeft: 15, marginRight: 15}}
                           onPress={() => Linking.openURL('http://www.dailymail.co.uk/health/article-2366353/How-drinking-glass-water-make-brain-14-faster.html')}> study </Text>
-                by the University of East London, drinking water can actually make you smarter. Below are 10 reasons why you should stay hydrated every day!
+                        by the University of East London, drinking water can actually make you smarter. Watch the video below for 10 reasons on why you should stay hydrated every day!
               </MyAppText>
             </View>
 
@@ -159,7 +157,7 @@ export default class HomePage extends Component {
 
         <View style={styles.secondConBtnContainer}>
           <View style={{height: 400, width: 400}}>
-            <TouchableOpacity style={{height: 400, width: 400}}
+            <TouchableOpacity
               onPress={() => {this.setState({paused: !this.state.paused})}}>
               <Exponent.Components.Video source={require('./test.mp4')}
                 rate={this.state.rate}
@@ -169,7 +167,7 @@ export default class HomePage extends Component {
                 onProgress={this.onProgress}
                 volume={this.state.volume}
                 muted={this.state.muted}
-                style={{height: 400, width: 400, backgroundColor: '#9fc9e1'}}
+                style={{height: 400, width: 400, backgroundColor: 'black'}}
                 paused={this.state.paused}
                 resizeMode="Exponent.Components.Video.RESIZE_MODE_STRETCH"/>
             </TouchableOpacity>
@@ -192,12 +190,12 @@ export default class HomePage extends Component {
         </View>
 
         <View style={styles.secondContainer}>
-            <View style={{height: 200}}>
+            <View style={{height: 200, backgroundColor: '#9fc9e1'}}>
               <Text style={{fontSize:20}}>1) Increase Energy & Relives Fatigue</Text>
               <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
             </View>
 
-            <View style={{height: 200}}>
+            <View style={{height: 200, backgroundColor: '#007fb2'}}>
               <Text style={{fontSize:20}}>2) Promotes Weight Loss</Text>
               <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
             </View>
@@ -259,7 +257,8 @@ const styles = StyleSheet.create({
   },
   scrollV: {
     backgroundColor: '#ffffff',
-    flex: 1
+    // backgroundColor: 'black',
+    flex: 1,
   },
   firstContainer: {
     height: 350,

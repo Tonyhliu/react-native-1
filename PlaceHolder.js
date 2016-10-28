@@ -26,12 +26,10 @@ export default class PlaceHolder extends Component {
   render() {
     return (
         <View>
-          <View style={styles.toolbar}>
-            <TouchableHighlight>
-              <Text style={styles.toolbarBtn}
-                    onPress={this._navigate.bind(this, 'Hello from PH')}>Back</Text>
-            </TouchableHighlight>
-            <Text style={styles.toolbarTitle}>WaterBuddy</Text>
+          <View style={styles.firstContainer}>
+            <View style={{height: 50}}>
+              <Text style={{fontFamily: 'Verdana', color: '#9fc9e1', fontSize: 20, fontWeight: 'bold'}}>WATERBUDDY</Text>
+            </View>
           </View>
           <Text>Placeholder...</Text>
         </View>
@@ -40,21 +38,9 @@ export default class PlaceHolder extends Component {
 }
 
 const styles = StyleSheet.create({
-  toolbar: {
-    backgroundColor: '#a7d5f6',
-    paddingTop: 30,
-    paddingBottom: 10,
-    flexDirection: 'row'
-  },
-  toolbarBtn: {
-    width: 50,
-    color: '#fff',
-    textAlign: 'center'
-  },
-  toolbarTitle: {
-    flex: 1,
-    textAlign: 'center',
-    color: '#fff',
-    fontWeight: 'bold'
+  firstContainer: {
+    height: 350,
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 });
