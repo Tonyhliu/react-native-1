@@ -41,6 +41,6 @@ const styles = StyleSheet.create({
   firstContainer: {
     height: 350,
     alignItems: 'center',
-    justifyContent: 'center'
+    // justifyContent: 'center'
   }
 });

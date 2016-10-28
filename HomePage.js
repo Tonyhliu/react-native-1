@@ -27,7 +27,6 @@ export default class HomePage extends Component {
     this.resetVid = this.resetVid.bind(this);
 
     this.state = {
-      currentY: 0,
       isReady: false,
       rate: 1,
       volume: 1,
@@ -43,10 +42,11 @@ export default class HomePage extends Component {
   }
 
   async _cacheResourcesAsync() {
-    const images = [require('./img/favicon2.png')];
-    for (let image of images) {
-      await Asset.fromModule(image).downloadAsync();
-    }
+    // const images = [require('./img/favicon2.png')];
+    // for (let image of images) {
+    //   await Asset.fromModule(image).downloadAsync();
+    // }
+    // console.log("made it to this function in homepage");
 
     const videos = [require('./test.mp4')];
     for (let video of videos) {
