@@ -9,9 +9,10 @@ import React, { Component } from 'react';
 import {
   AppRegistry,
   StyleSheet,
-  Navigator,
   Text,
   TouchableHighlight,
+  Alert,
+  AlertIOS,
   Image,
   View
 } from 'react-native';
@@ -30,6 +31,10 @@ class WaterBuddy extends Component {
     this.state = {
       selectedTab: 'home'
     }
+  }
+
+  componentWillMount() {
+    this._logIn();
   }
 
   _renderScene(route, nav) {
@@ -82,25 +87,6 @@ class WaterBuddy extends Component {
   }
 
   render() {
-    // const routes = [
-    //   {title: 'Home Page', index: 0},
-    //   {title: 'WaterIntake', index: 1},
-    //   {title: 'PlaceHolder', index: 2},
-    // ];
-
-    // <Navigator
-    //   initialRoute={routes[0]}
-    //   style={{flex:1}}
-    //   initialRouteStack={routes}
-    //   configureScene={this._configureScene}
-    //   navigationBar={
-    //     <Navigator.NavigationBar
-    //       style={styles.nav}
-    //       routeMapper={NavigationBarRouteMapper} />
-    //   }
-    //
-    //   renderScene={this._renderScene} />
-
     // let tbStyle = this.state.hideNavBar ? { height: 0, overflow: 'hidden' } : {};
     let tbStyle = {height: 60};
     return(
