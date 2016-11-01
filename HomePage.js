@@ -55,8 +55,8 @@ export default class HomePage extends Component {
 
     this.setState({isReady: true});
   }
-
   onLoad(data) {
+
     this.setState({duration: data.duration});
   }
 
@@ -139,13 +139,15 @@ export default class HomePage extends Component {
     //     </View>
     // </View>
 
+    // fix video. cant see sides.
+
     return (
       <ScrollView style={styles.mainContainer}>
         <View style={styles.firstContainer}>
           <View style={{height: 100}}>
             <Image source={require('./img/WaterBuddyLogo.png')}
                     resizeMode="contain"
-                    style={{flex: 1}} />
+                    style={{flex: 1, width: 200}} />
           </View>
           <View style={styles.messageBox}>
             <View>
@@ -167,7 +169,7 @@ export default class HomePage extends Component {
         </View>
 
         <View style={styles.secondConBtnContainer}>
-          <View style={{height: 375, width: 400}}>
+          <View style={{height: 375, width: 370, justifyContent: 'center', alignItems: 'center'}}>
             <TouchableOpacity
               onPress={() => {this.setState({paused: !this.state.paused})}}>
               <Exponent.Components.Video source={require('./test.mp4')}
@@ -178,7 +180,7 @@ export default class HomePage extends Component {
                 onProgress={this.onProgress}
                 volume={this.state.volume}
                 muted={this.state.muted}
-                style={{height: 375, width: 400, backgroundColor: 'white'}}
+                style={{height: 375, width: 330, backgroundColor: 'white'}}
                 paused={this.state.paused}
                 resizeMode="Exponent.Components.Video.RESIZE_MODE_STRETCH"/>
             </TouchableOpacity>

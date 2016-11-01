@@ -31,8 +31,10 @@ class WaterBuddy extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      selectedTab: 'login'
+      selectedTab: 'home'
     }
+
+    this._changeSelected = this._changeSelected.bind(this);
   }
 
   componentWillMount() {
@@ -68,12 +70,16 @@ class WaterBuddy extends Component {
   //   <Login/>
   // </TabNavigator.Item>
 
+  _changeSelected() {
+    this.setState({selectedTab: 'home'})
+  }
+
   render() {
     // let tbStyle = this.state.hideNavBar ? { height: 0, overflow: 'hidden' } : {};
     let tbStyle = {height: 60};
     if (this.state.selectedTab === 'login') {
       return (
-        <Login />
+        <Login changeSelected={this._changeSelected}/>
       )
     } else {
       return(

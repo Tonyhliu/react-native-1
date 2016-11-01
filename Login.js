@@ -27,7 +27,10 @@ export default class Login extends Component {
   // Get the user's name using Facebook's Graph API
     const response = fetch(
     `https://graph.facebook.com/me?access_token=${token}`);
-    this.setState({name: response.json().name})
+    this.props._changeSelected();
+    this.setState({name: response.json().name}) // await response?
+  } else {
+    //
   }
 
   }
