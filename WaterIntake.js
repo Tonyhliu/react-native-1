@@ -62,27 +62,6 @@ export default class WaterIntake extends Component {
     // 1 fl ounce = 29.5735 ml
   }
 
-  // _navigate(property){
-  //   this.props.navigator.push({
-  //     title: 'HomePage', // Matches route.name
-  //     index: 0,
-  //     passProps: {
-  //       name: property
-  //     },
-  //     type: "back"
-  //   })
-  // }
-  //
-  // _navigateForward(property){
-  //   this.props.navigator.push({
-  //     title: 'PlaceHolder', // Matches route.name
-  //     index: 2,
-  //     passProps: {
-  //       name: property
-  //     }
-  //   })
-  // }
-
   render() {
     let activity = ACTIVITY_LEVELS[this.state.activity];
     let selectionString = activity.name

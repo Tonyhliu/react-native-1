@@ -149,7 +149,8 @@ export default class HomePage extends Component {
           </View>
           <View style={styles.messageBox}>
             <View>
-              <Text style={styles.messageBoxTitleText}>{'HELLO' + " " + this.props.username + ". " + 'Why is drinking water important?'.toUpperCase()}</Text>
+              <Text style={styles.messageBoxTitleText}>{'WELCOME, ' + this.props.username + '.'}</Text>
+              <Text style={styles.messageBoxTitleText}>{'Why is drinking water important?'.toUpperCase()}</Text>
             </View>
 
             <View>

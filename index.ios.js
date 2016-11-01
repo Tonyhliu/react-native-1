@@ -38,10 +38,6 @@ class WaterBuddy extends Component {
     this.loginUser = this.loginUser.bind(this);
   }
 
-  // componentWillMount() {
-    // this._logIn();
-  // }
-
   // async _logIn() {
   // const { type, token } = await Exponent.Facebook.logInWithReadPermissionsAsync(
   //   '874143415951230', {

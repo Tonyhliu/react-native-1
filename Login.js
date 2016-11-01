@@ -25,26 +25,28 @@ export default class Login extends Component {
 
   if (type === 'success') {
   // Get the user's name using Facebook's Graph API
-    // this.props.changeSelected();
-    console.log("hello");
     const response = await fetch(
     `https://graph.facebook.com/me?access_token=${token}`);
     const username = (await response.json()).name
-    console.log(username);
-    if (username) {
-      console.log(this.props.login);
-      this.props.login(username);
-      // this.setState({name: username}) // await response?
-      }
+    this.props.login(username);
     }
   }
+
+  // align logo to be top of page
 
   render() {
     return (
       <Image source={require('./img/backgroundImg.jpg')}
               style={styles.backgroundContainer}>
+        <View style={{height: 100}}>
+          <Image source={require('./img/WaterBuddyLogo.png')}
+            resizeMode="contain"
+            style={{flex: 1, width: 200}} />
+        </View>
+
         <View style={styles.btns}>
           <Text style={{color: 'white'}}>Hello {this.state.name}</Text>
+
           <SocialIcon
             title='Sign In With Facebook'
             button
