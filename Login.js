@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     width: null,
     height: null,
     justifyContent: 'center',
-    resizeMode: 'contain',
+    // resizeMode: 'contain',
     alignItems: 'center',
     backgroundColor: 'rgba(0, 0, 0, 0)'
   },
