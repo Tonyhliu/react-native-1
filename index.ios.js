@@ -18,8 +18,8 @@ import {
 } from 'react-native';
 import Exponent from 'exponent';
 import TabNavigator from 'react-native-tab-navigator';
-// import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Button } from 'react-native-elements';
+// import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import HomePage from './HomePage';
 import WaterIntake from './WaterIntake';
@@ -31,10 +31,11 @@ class WaterBuddy extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      selectedTab: 'login'
+      selectedTab: 'login',
+      username: ''
     }
 
-    this._changeSelected = this._changeSelected.bind(this);
+    this.loginUser = this.loginUser.bind(this);
   }
 
   // componentWillMount() {
@@ -58,36 +59,26 @@ class WaterBuddy extends Component {
   //   }
   // }
 
-  // <TabNavigator.Item
-  //   selected={this.state.selectedTab === 'login'}
-  //   title="Login"
-  //   renderIcon={() => <Image source={require('./img/homeIcon.png')} />}
-  //   renderSelectedIcon={() => <Image source={require('./img/homeIcon.png')} />}
-  //   onPress={() => this.setState({ selectedTab: 'login' })}>
-  //   <Login/>
-  // </TabNavigator.Item>
-
-  _changeSelected() {
-    this.setState({selectedTab: 'home'})
+  loginUser(name) {
+    this.setState({selectedTab: 'home',
+                  username: name});
   }
 
   render() {
-    // let tbStyle = this.state.hideNavBar ? { height: 0, overflow: 'hidden' } : {};
-    let tbStyle = {height: 60};
     if (this.state.selectedTab === 'login') {
       return (
-        <Login changeSelected={this._changeSelected}/>
-      )
+        <Login login={this.loginUser}/>
+      );
     } else {
       return(
-        <TabNavigator tabBarStyle={tbStyle}>
+        <TabNavigator tabBarStyle={{height: 60}}>
           <TabNavigator.Item
             selected={this.state.selectedTab === 'home'}
             title="Home"
             renderIcon={() => <Image source={require('./img/homeIcon.png')} />}
             renderSelectedIcon={() => <Image source={require('./img/homeIcon.png')} />}
             onPress={() => this.setState({ selectedTab: 'home' })}>
-            <HomePage/>
+            <HomePage username={this.state.username}/>
           </TabNavigator.Item>
           <TabNavigator.Item
             selected={this.state.selectedTab === 'calculator'}
@@ -114,7 +105,7 @@ class WaterBuddy extends Component {
             <About />
           </TabNavigator.Item>
         </TabNavigator>
-      )
+      );
     }
   }
 }

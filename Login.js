@@ -23,24 +23,20 @@ export default class Login extends Component {
     permissions: ['public_profile'],
   });
 
-  // console.log(this.props.changeSelected);
-  // console.log(this.state.name);
   if (type === 'success') {
   // Get the user's name using Facebook's Graph API
-  this.props.changeSelected();
-  console.log("hello");
-  // console.log(`${token}`);
-  const response = await fetch(
-  `https://graph.facebook.com/me?access_token=${token}`);
-  await response.json.name
-  if (response) {
-    console.log(response.json.name);
-    // console.log(response.json.name);
-    this.setState({name: response.json.name}) // await response?
+    // this.props.changeSelected();
+    console.log("hello");
+    const response = await fetch(
+    `https://graph.facebook.com/me?access_token=${token}`);
+    const username = (await response.json()).name
+    console.log(username);
+    if (username) {
+      console.log(this.props.login);
+      this.props.login(username);
+      // this.setState({name: username}) // await response?
+      }
     }
-  }
-  console.log("response is: " + {response});
-
   }
 
   render() {
@@ -78,7 +74,6 @@ const styles = StyleSheet.create({
     width: null,
     height: null,
     justifyContent: 'center',
-    // resizeMode: 'contain',
     alignItems: 'center',
     backgroundColor: 'rgba(0, 0, 0, 0)'
   },

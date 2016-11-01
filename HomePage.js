@@ -55,8 +55,8 @@ export default class HomePage extends Component {
 
     this.setState({isReady: true});
   }
-  onLoad(data) {
 
+  onLoad(data) {
     this.setState({duration: data.duration});
   }
 
@@ -139,8 +139,6 @@ export default class HomePage extends Component {
     //     </View>
     // </View>
 
-    // fix video. cant see sides.
-
     return (
       <ScrollView style={styles.mainContainer}>
         <View style={styles.firstContainer}>
@@ -151,7 +149,7 @@ export default class HomePage extends Component {
           </View>
           <View style={styles.messageBox}>
             <View>
-              <Text style={styles.messageBoxTitleText}>{'Why is drinking water important?'.toUpperCase()}</Text>
+              <Text style={styles.messageBoxTitleText}>{'HELLO' + " " + this.props.username + ". " + 'Why is drinking water important?'.toUpperCase()}</Text>
             </View>
 
             <View>
