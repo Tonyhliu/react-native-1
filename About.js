@@ -5,7 +5,7 @@ import { View,
         StyleSheet,
         Linking
        } from 'react-native';
-import { Button, SocialIcon } from 'react-native-elements';
+import { SocialIcon } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 // import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -23,7 +23,7 @@ export default class About extends Component {
               <Text style={{fontSize: 26,
                           fontFamily: 'Verdana',
                           textAlign: 'center',
-                          fontWeight: 'bold'}}>Follow me on one of the following platforms!</Text>
+                          fontWeight: 'bold'}}>Follow me!</Text>
             </View>
             <View style={{flex: 1}}>
               <SocialIcon type='facebook'

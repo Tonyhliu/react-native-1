@@ -31,19 +31,17 @@ class WaterBuddy extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      selectedTab: 'home'
+      selectedTab: 'login'
     }
 
     this._changeSelected = this._changeSelected.bind(this);
   }
 
-  componentWillMount() {
+  // componentWillMount() {
     // this._logIn();
-  }
+  // }
 
   // async _logIn() {
-  //   // <Exponent.Facebook.logInWithReadPermissionsAsync(874143415951230) />
-  // // console.log("made it to log in");
   // const { type, token } = await Exponent.Facebook.logInWithReadPermissionsAsync(
   //   '874143415951230', {
   //   permissions: ['public_profile'],
@@ -59,7 +57,6 @@ class WaterBuddy extends Component {
   //     );
   //   }
   // }
-
 
   // <TabNavigator.Item
   //   selected={this.state.selectedTab === 'login'}

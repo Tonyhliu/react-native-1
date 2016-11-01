@@ -9,7 +9,7 @@ import { View,
         Linking
        } from 'react-native';
 import MyAppText from './MyAppText';
-import { Button } from 'react-native-elements';
+// import { Button } from 'react-native-elements';
 // import Icon from 'react-native-vector-icons/FontAwesome';
 import Exponent, { Asset, Components } from 'exponent';
 import Icon from 'react-native-vector-icons/MaterialIcons';
