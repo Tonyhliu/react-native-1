@@ -148,7 +148,7 @@ export default class HomePage extends Component {
                     style={{flex: 1, width: 200}} />
           </View>
           <View>
-            <Text style={styles.messageBoxTitleText}>{'WELCOME, ' + this.props.username + '.'}</Text>
+            <Text style={styles.messageBoxWelcomeText}>{'WELCOME, ' + this.props.username + '.'}</Text>
           </View>
           <View style={styles.messageBox}>
             <View>
@@ -246,7 +246,14 @@ const styles = StyleSheet.create({
   messageBoxTitleText:{
     fontWeight:'bold',
     color:'#ffc423',
-    // color:'#fff',
+    textAlign:'center',
+    fontSize:26,
+    marginBottom:10,
+    fontFamily: 'Menlo'
+  },
+  messageBoxWelcomeText:{
+    fontWeight:'bold',
+    color:'#49535b',
     textAlign:'center',
     fontSize:26,
     marginBottom:10,
