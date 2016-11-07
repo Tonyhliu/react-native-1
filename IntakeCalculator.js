@@ -14,7 +14,7 @@ import { View,
        } from 'react-native';
 
 import Button from 'react-native-button';
-// import 
+import { CheckBox } from 'react-native-elements';
 // import dismissKeyboard from 'dismissKeyboard';
 
 var PickerItemIOS = PickerIOS.Item;
@@ -43,6 +43,8 @@ export default class IntakeCalculator extends Component {
       amount: null,
       activity: 'none',
       value: 90,
+      femaleChecked: false,
+      maleChecked: false
     };
   }
 
@@ -99,7 +101,24 @@ export default class IntakeCalculator extends Component {
         <View style={styles.attributesContainer}>
           <View style={styles.ageContainer}>
             <Text style={styles.bwd}>AGE</Text>
-
+            <View style={{flex: 1, flexDirection: 'row'}}>
+              <CheckBox center
+                        title='Male'
+                        checkedIcon='dot-circle-o'
+                        uncheckedIcon='circle-o'
+                        checked={this.state.maleChecked}
+                        onPress={() => this.setState({femaleChecked: false, maleChecked: true})}
+                        checkedColor="#ffc123"
+              />
+              <CheckBox center
+                        title='Female'
+                        checkedIcon='dot-circle-o'
+                        uncheckedIcon='circle-o'
+                        checked={this.state.femaleChecked}
+                        onPress={() => this.setState({femaleChecked: true, maleChecked: false})}
+                        checkedColor="#ffc123"
+              />
+            </View>
           </View>
 
           <View style={styles.weightContainer}>
@@ -169,6 +188,14 @@ const styles = StyleSheet.create({
     height: 500,
     alignItems: 'center',
     // justifyContent: 'center'
+  },
+  ageContainer: {
+    marginTop: 15,
+    marginBottom: 20,
+    alignItems: 'center'
+    // flex: 1
+    // height: 150,
+    // width: 300
   },
   weightContainer: {
     alignItems: 'center',
