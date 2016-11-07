@@ -120,33 +120,22 @@ export default class HomePage extends Component {
       return <Components.AppLoading />;
     }
 
-    // <View style={styles.secondContainer}>
-    //     <View style={{height: 200, backgroundColor: '#9fc9e1'}}>
-    //       <Text style={{fontSize:20}}>1) Increase Energy & Relives Fatigue</Text>
-    //       <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
-    //     </View>
-    //
-    //     <View style={{height: 200, backgroundColor: '#007fb2'}}>
-    //       <Text style={{fontSize:20}}>2) Promotes Weight Loss</Text>
-    //       <Image source={require('./img/favicon2.png')} style={{width: 100, height: 200}} />
-    //     </View>
-    //
-    //     <View style={{height: 250}}>
-    //       <Image style={{flex: 1}}
-    //         resizeMode="contain"
-    //         source={{uri: 'https://media.giphy.com/media/MooLLNeDnBxp6/giphy.gif'}}
-    //         />
-    //     </View>
+
+    // <View style={{height: 250}}>
+    //   <Image style={{flex: 1}}
+    //     resizeMode="contain"
+    //     source={{uri: 'https://media.giphy.com/media/MooLLNeDnBxp6/giphy.gif'}}
+    //     />
     // </View>
 
+    // <View style={{height: 100}}>
+    //   <Image source={require('./img/WaterBuddyLogo.png')}
+    //           resizeMode="contain"
+    //           style={{flex: 1, width: 200}} />
+    // </View>
     return (
       <ScrollView style={styles.mainContainer}>
         <View style={styles.firstContainer}>
-          <View style={{height: 100}}>
-            <Image source={require('./img/WaterBuddyLogo.png')}
-                    resizeMode="contain"
-                    style={{flex: 1, width: 200}} />
-          </View>
           <View>
             <Text style={styles.messageBoxWelcomeText}>{'WELCOME, ' + this.props.username + '.'}</Text>
           </View>

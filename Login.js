@@ -38,10 +38,10 @@ export default class Login extends Component {
     return (
       <Image source={require('./img/backgroundImg.jpg')}
               style={styles.backgroundContainer}>
-        <View style={{height: 100}}>
+        <View style={{height: 100, paddingLeft: 20}}>
           <Image source={require('./img/WaterBuddyLogo.png')}
             resizeMode="contain"
-            style={{flex: 1, width: 200}} />
+            style={{flex: 1, width: 250}} />
         </View>
 
         <View style={styles.btns}>

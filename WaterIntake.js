@@ -8,6 +8,8 @@ import { View,
         Alert,
         PickerIOS,
         TouchableWithoutFeedback,
+        Slider,
+        ScrollView,
         StyleSheet
        } from 'react-native';
 
@@ -38,7 +40,8 @@ export default class WaterIntake extends Component {
     this.state = {
       text: '',
       amount: null,
-      activity: 'none'
+      activity: 'none',
+      value: 90,
     };
   }
 
@@ -62,15 +65,30 @@ export default class WaterIntake extends Component {
     // 1 fl ounce = 29.5735 ml
   }
 
+  // <TouchableWithoutFeedback onPress={() => dismissKeyboard()}>
+  //   <View>
+  //     <TextInput style={styles.txtInput}
+  //         keyboardType='numeric'
+  //         onChangeText={(text) => this.setState({text})}
+  //         value={this.state.text}
+  //         placeholder="Ex: 120 pounds..."/>
+  //   </View>
+  // </TouchableWithoutFeedback>
+  // <Button style={styles.btn}
+  //   styleDisabled={{color: 'red'}}
+  //   onPress={this.buttonClicked.bind(this)}>
+  //   Press me!
+  // </Button>
   render() {
     let activity = ACTIVITY_LEVELS[this.state.activity];
     let selectionString = activity.name;
 
     return (
-      <View style={styles.mainContainer}>
-        <View style={styles.threeQuarters}>
+      <ScrollView style={styles.mainContainer}>
+        <View style={styles.firstContainer}>
+
           <View style={styles.messageBox}>
-            <Text style={{fontSize: 26, fontWeight: 'bold', color: '#ffc423', textAlign: 'center'}}>
+            <Text style={{fontSize: 26, fontWeight: 'bold', color: '#fff', textAlign: 'center'}}>
               {'How much water should you be drinking?'.toUpperCase()}
             </Text>
           </View>
@@ -78,38 +96,32 @@ export default class WaterIntake extends Component {
           <View>
             <Text style={styles.bwd}>Enter body weight!</Text>
 
-            <TouchableWithoutFeedback onPress={() => dismissKeyboard()}>
-              <View>
-                <TextInput style={styles.txtInput}
-                    keyboardType='numeric'
-                    onChangeText={(text) => this.setState({text})}
-                    value={this.state.text}
-                    placeholder="Ex: 120 pounds..."/>
-              </View>
-            </TouchableWithoutFeedback>
-
-            <Button style={styles.btn}
-              styleDisabled={{color: 'red'}}
-              onPress={this.buttonClicked.bind(this)}>
-              Press me!
-            </Button>
+            <Text style={styles.text}>
+              {this.state.value} pounds
+            </Text>
+            <Slider {...this.props}
+                    minimumValue={90}
+                    maximumValue={250}
+                    step={1}
+                    onValueChange={(value) => this.setState({value: value})} />
           </View>
+        </View>
 
-          <View>
-            <Text style={{textAlign: 'center'}}>Activity level for the day:</Text>
-            <Text>You selected: {selectionString}</Text>
-            <PickerIOS
-              selectedValue={this.state.activity}
-              onValueChange={(activity) => this.setState({activity})}>
-              {Object.keys(ACTIVITY_LEVELS).map((activity) => (
-                <PickerItemIOS
-                  key={activity}
-                  value={activity}
-                  label={ACTIVITY_LEVELS[activity].name}
-                  />
-              ))}
-            </PickerIOS>
-          </View>
+
+        <View>
+          <Text style={{textAlign: 'center'}}>Activity level for the day:</Text>
+          <Text>You selected: {selectionString}</Text>
+          <PickerIOS
+            selectedValue={this.state.activity}
+            onValueChange={(activity) => this.setState({activity})}>
+            {Object.keys(ACTIVITY_LEVELS).map((activity) => (
+              <PickerItemIOS
+                key={activity}
+                value={activity}
+                label={ACTIVITY_LEVELS[activity].name}
+                />
+            ))}
+          </PickerIOS>
         </View>
 
         <View style={styles.quarterHeight}>
@@ -123,7 +135,7 @@ export default class WaterIntake extends Component {
             {this.state.amount === null ? '' : Math.round(this.state.amount * 28.35) + " " + "ml of water a day"}
           </Text>
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }
@@ -131,18 +143,27 @@ export default class WaterIntake extends Component {
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
-    flexDirection: 'column'
+    // flexDirection: 'column'
   },
   bwd: {
     color: 'black',
     fontWeight: 'bold',
     fontSize: 24
   },
-  threeQuarters: {
-    flex: 3,
-    justifyContent: 'center',
+  firstContainer: {
+    height: 300,
     alignItems: 'center',
-    paddingTop: 60
+    justifyContent: 'center'
+  },
+  slider: {
+    height: 10,
+    margin: 10,
+  },
+  text: {
+    fontSize: 14,
+    textAlign: 'center',
+    fontWeight: '500',
+    margin: 10,
   },
   quarterHeight: {
     flex: 1,
@@ -172,11 +193,11 @@ const styles = StyleSheet.create({
     paddingRight:20,
     borderRadius:10,
     width: 300,
-    marginTop: 50
   },
   messageBoxTitleText:{
       fontWeight:'bold',
-      color:'#ffc423',
+      // color:'#ffc423',
+      color: '#fff',
       textAlign:'center',
       fontSize:26,
       marginBottom:10,
