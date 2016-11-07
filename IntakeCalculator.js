@@ -14,8 +14,8 @@ import { View,
        } from 'react-native';
 
 import Button from 'react-native-button';
+// import 
 // import dismissKeyboard from 'dismissKeyboard';
-import MyAppText from './MyAppText';
 
 var PickerItemIOS = PickerIOS.Item;
 
@@ -34,7 +34,7 @@ var ACTIVITY_LEVELS = {
   }
 };
 
-export default class WaterIntake extends Component {
+export default class IntakeCalculator extends Component {
   constructor(props) {
     super(props);
 
@@ -86,18 +86,20 @@ export default class WaterIntake extends Component {
 
     return (
       <ScrollView style={styles.mainContainer}>
-        <View style={styles.firstContainer}>
 
+        <View style={styles.firstContainer}>
           <View style={styles.messageBox}>
             <Text style={styles.messageBoxTitle}>
               {'How much water should you drink?'.toUpperCase()}
             </Text>
             <Text style={styles.messageBoxBodyText}>{'Determine how much water you need using the calculator below'.toUpperCase()}</Text>
           </View>
+        </View>
 
+        <View style={styles.attributesContainer}>
           <View style={styles.ageContainer}>
             <Text style={styles.bwd}>AGE</Text>
-            
+
           </View>
 
           <View style={styles.weightContainer}>
@@ -115,7 +117,6 @@ export default class WaterIntake extends Component {
                     onValueChange={(value) => this.setState({value: value})} />
           </View>
         </View>
-
 
         <View>
           <Text style={{textAlign: 'center'}}>Activity level for the day:</Text>
@@ -159,9 +160,15 @@ const styles = StyleSheet.create({
     fontSize: 12
   },
   firstContainer: {
-    height: 300,
+    height: 200,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    marginTop: 20
+  },
+  attributesContainer: {
+    height: 500,
+    alignItems: 'center',
+    // justifyContent: 'center'
   },
   weightContainer: {
     alignItems: 'center',
@@ -210,8 +217,8 @@ const styles = StyleSheet.create({
     paddingRight:20,
     borderRadius:10,
     width: 250,
-    marginBottom: 15,
-    marginTop: 20
+    // marginBottom: 15,
+    // marginTop: 20
   },
   messageBoxTitle: {
     fontSize: 24,

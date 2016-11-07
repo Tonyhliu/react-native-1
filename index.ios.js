@@ -22,7 +22,7 @@ import { Button } from 'react-native-elements';
 // import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import HomePage from './HomePage';
-import WaterIntake from './WaterIntake';
+import IntakeCalculator from './IntakeCalculator';
 import PlaceHolder from './PlaceHolder';
 import About from './About';
 import Login from './Login';
@@ -82,7 +82,7 @@ class WaterBuddy extends Component {
             renderIcon={() => <Image source={require('./img/calculatorIcon.png')} />}
             renderSelectedIcon={() => <Image source={require('./img/calculatorIcon.png')} />}
             onPress={() => this.setState({ selectedTab: 'calculator' })}>
-            <WaterIntake />
+            <IntakeCalculator />
           </TabNavigator.Item>
           <TabNavigator.Item
             selected={this.state.selectedTab === 'reminder'}

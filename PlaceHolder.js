@@ -5,7 +5,7 @@ import { View,
         StyleSheet
        } from 'react-native';
 
-// import WaterIntake from './WaterIntake';
+// import IntakeCalculator from './IntakeCalculator';
 
 export default class PlaceHolder extends Component {
   constructor(props) {

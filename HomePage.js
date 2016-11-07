@@ -102,7 +102,7 @@ export default class HomePage extends Component {
 
   _navigate(property) {
     this.props.navigator.push({
-      title: 'WaterIntake', // Matches route.name
+      title: 'IntakeCalculator', // Matches route.name
       index: 1,
       passProps: {
         name: property
