@@ -136,7 +136,7 @@ export default class HomePage extends Component {
     return (
       <ScrollView style={styles.mainContainer}>
         <View style={styles.firstContainer}>
-          <View>
+          <View style={{marginTop: 20}}>
             <Text style={styles.messageBoxWelcomeText}>{'WELCOME, ' + this.props.username + '.'}</Text>
           </View>
           <View style={styles.messageBox}>
@@ -170,7 +170,7 @@ export default class HomePage extends Component {
                 onProgress={this.onProgress}
                 volume={this.state.volume}
                 muted={this.state.muted}
-                style={{height: 375, width: 330, backgroundColor: 'white'}}
+                style={{height: 300, width: 330, backgroundColor: 'white'}}
                 paused={this.state.paused}
                 resizeMode="Exponent.Components.Video.RESIZE_MODE_STRETCH"/>
             </TouchableOpacity>
@@ -211,7 +211,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   firstContainer: {
-    height: 400,
+    height: 350,
     alignItems: 'center',
     justifyContent: 'center'
   },
@@ -224,7 +224,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden'
   },
   messageBox:{
-    backgroundColor:'#007fb2',
+    backgroundColor:'#62a1cc',
     paddingTop:10,
     paddingBottom:20,
     paddingLeft:20,

@@ -14,7 +14,8 @@ import { View,
        } from 'react-native';
 
 import Button from 'react-native-button';
-import dismissKeyboard from 'dismissKeyboard';
+// import dismissKeyboard from 'dismissKeyboard';
+import MyAppText from './MyAppText';
 
 var PickerItemIOS = PickerIOS.Item;
 
@@ -88,13 +89,19 @@ export default class WaterIntake extends Component {
         <View style={styles.firstContainer}>
 
           <View style={styles.messageBox}>
-            <Text style={{fontSize: 26, fontWeight: 'bold', color: '#fff', textAlign: 'center'}}>
-              {'How much water should you be drinking?'.toUpperCase()}
+            <Text style={styles.messageBoxTitle}>
+              {'How much water should you drink?'.toUpperCase()}
             </Text>
+            <Text style={styles.messageBoxBodyText}>{'Determine how much water you need using the calculator below'.toUpperCase()}</Text>
           </View>
 
-          <View>
-            <Text style={styles.bwd}>Enter body weight!</Text>
+          <View style={styles.ageContainer}>
+            <Text style={styles.bwd}>AGE</Text>
+            
+          </View>
+
+          <View style={styles.weightContainer}>
+            <Text style={styles.bwd}>WEIGHT</Text>
 
             <Text style={styles.text}>
               {this.state.value} pounds
@@ -103,6 +110,8 @@ export default class WaterIntake extends Component {
                     minimumValue={90}
                     maximumValue={250}
                     step={1}
+                    style={styles.sliderBar}
+                    minimumTrackTintColor="#ffc123"
                     onValueChange={(value) => this.setState({value: value})} />
           </View>
         </View>
@@ -143,15 +152,18 @@ export default class WaterIntake extends Component {
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
-    // flexDirection: 'column'
   },
   bwd: {
     color: 'black',
     fontWeight: 'bold',
-    fontSize: 24
+    fontSize: 12
   },
   firstContainer: {
     height: 300,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  weightContainer: {
     alignItems: 'center',
     justifyContent: 'center'
   },
@@ -159,11 +171,15 @@ const styles = StyleSheet.create({
     height: 10,
     margin: 10,
   },
+  sliderBar: {
+    width: 200
+  },
   text: {
-    fontSize: 14,
+    fontSize: 20,
     textAlign: 'center',
     fontWeight: '500',
     margin: 10,
+    color: '#62a1cc'
   },
   quarterHeight: {
     flex: 1,
@@ -186,27 +202,30 @@ const styles = StyleSheet.create({
     color: '#a7d5f6'
   },
   messageBox:{
-    backgroundColor:'#007fb2',
-    paddingTop:10,
+    backgroundColor:'#62a1cc',
+    // backgroundColor:'#fff',
+    paddingTop:15,
     paddingBottom:20,
     paddingLeft:20,
     paddingRight:20,
     borderRadius:10,
-    width: 300,
+    width: 250,
+    marginBottom: 15,
+    marginTop: 20
   },
-  messageBoxTitleText:{
-      fontWeight:'bold',
-      // color:'#ffc423',
-      color: '#fff',
-      textAlign:'center',
-      fontSize:26,
-      marginBottom:10,
-      fontFamily: 'Menlo'
+  messageBoxTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#ffc123',
+    textAlign: 'center',
+    marginBottom: 10,
+    fontFamily: 'Menlo'
   },
   messageBoxBodyText:{
-      color:'#fff',
-      fontSize:12,
-      fontFamily: 'Arial'
+      color: '#fff',
+      fontSize:14,
+      textAlign: 'center',
+      fontFamily: 'Menlo'
   }
 });
 
