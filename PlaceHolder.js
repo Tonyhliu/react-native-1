@@ -22,7 +22,7 @@ export default class PlaceHolder extends Component {
           </View>
           <Text>Placeholder...</Text>
         </View>
-    )
+    );
   }
 }
 

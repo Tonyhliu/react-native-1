@@ -51,12 +51,12 @@ export default class WaterIntake extends Component {
 
   buttonClicked() {
     let amount;
-    let alertMsg = "Please enter a valid number!"
+    let alertMsg = "Please enter a valid number!";
     if (Number.isInteger(parseInt(this.state.text)) && parseInt(this.state.text) > 0) {
       amount = Math.round(parseInt(this.state.text) * (2/3));
-      this.setState({amount})
+      this.setState({amount});
     } else {
-      Alert.alert('Invalid weight', alertMsg)
+      Alert.alert('Invalid weight', alertMsg);
     }
     // console.log(amount);
     // 1 fl ounce = 29.5735 ml
@@ -64,7 +64,7 @@ export default class WaterIntake extends Component {
 
   render() {
     let activity = ACTIVITY_LEVELS[this.state.activity];
-    let selectionString = activity.name
+    let selectionString = activity.name;
 
     return (
       <View style={styles.mainContainer}>

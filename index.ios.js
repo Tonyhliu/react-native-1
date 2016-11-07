@@ -29,11 +29,11 @@ import Login from './Login';
 
 class WaterBuddy extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       selectedTab: 'login',
       username: ''
-    }
+    };
 
     this.loginUser = this.loginUser.bind(this);
   }
@@ -136,4 +136,4 @@ var styles = StyleSheet.create({
   }
 });
 
-Exponent.registerRootComponent(WaterBuddy)
+Exponent.registerRootComponent(WaterBuddy);

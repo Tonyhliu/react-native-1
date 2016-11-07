@@ -45,8 +45,6 @@ export default class Login extends Component {
         </View>
 
         <View style={styles.btns}>
-          <Text style={{color: 'white'}}>Hello {this.state.name}</Text>
-
           <SocialIcon
             title='Sign In With Facebook'
             button
@@ -59,7 +57,7 @@ export default class Login extends Component {
             buttonStyle={styles.guestBtn}
             raised
             icon={{name: 'face'}}
-            onPress={this.props.changeSelected}
+            onPress={this.props.login.bind(this,'guest')}
             title='Continue As A Guest'
             fontWeight='bold'
             fontSize={15}

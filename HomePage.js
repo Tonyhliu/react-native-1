@@ -147,9 +147,11 @@ export default class HomePage extends Component {
                     resizeMode="contain"
                     style={{flex: 1, width: 200}} />
           </View>
+          <View>
+            <Text style={styles.messageBoxTitleText}>{'WELCOME, ' + this.props.username + '.'}</Text>
+          </View>
           <View style={styles.messageBox}>
             <View>
-              <Text style={styles.messageBoxTitleText}>{'WELCOME, ' + this.props.username + '.'}</Text>
               <Text style={styles.messageBoxTitleText}>{'Why is drinking water important?'.toUpperCase()}</Text>
             </View>
 
@@ -168,7 +170,7 @@ export default class HomePage extends Component {
         </View>
 
         <View style={styles.secondConBtnContainer}>
-          <View style={{height: 375, width: 370, justifyContent: 'center', alignItems: 'center'}}>
+          <View style={{height: 300, width: 370, justifyContent: 'center', alignItems: 'center'}}>
             <TouchableOpacity
               onPress={() => {this.setState({paused: !this.state.paused})}}>
               <Exponent.Components.Video source={require('./test.mp4')}
@@ -220,7 +222,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   firstContainer: {
-    height: 350,
+    height: 400,
     alignItems: 'center',
     justifyContent: 'center'
   },
@@ -242,13 +244,13 @@ const styles = StyleSheet.create({
     width: 300
   },
   messageBoxTitleText:{
-      fontWeight:'bold',
-      color:'#ffc423',
-      // color:'#fff',
-      textAlign:'center',
-      fontSize:26,
-      marginBottom:10,
-      fontFamily: 'Menlo'
+    fontWeight:'bold',
+    color:'#ffc423',
+    // color:'#fff',
+    textAlign:'center',
+    fontSize:26,
+    marginBottom:10,
+    fontFamily: 'Menlo'
   },
   btnStyle: {
     alignSelf: 'center',
