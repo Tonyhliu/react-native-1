@@ -9,13 +9,15 @@ import { View,
         PickerIOS,
         TouchableWithoutFeedback,
         Slider,
+        Modal,
         ScrollView,
         StyleSheet
        } from 'react-native';
 
-import Button from 'react-native-button';
-import { CheckBox } from 'react-native-elements';
-// import dismissKeyboard from 'dismissKeyboard';
+// import Button from 'react-native-button';
+import { Button, CheckBox, Icon} from 'react-native-elements';
+// import Icon from 'react-native-vector-icons/FontAwesome';
+
 
 var PickerItemIOS = PickerIOS.Item;
 
@@ -44,16 +46,20 @@ export default class IntakeCalculator extends Component {
       activity: 'none',
       value: 90,
       femaleChecked: false,
-      maleChecked: false
+      maleChecked: false,
+      genderModalVisible: false
     };
   }
-
 
   // static propTypes = {
   //   title: PropTypes.string.isRequired,
   //   onForward: PropTypes.func.isRequired,
   //   onBack: PropTypes.func.isRequired,
   // }
+
+  setGenderModal(visible) {
+    this.setState({ genderModalVisible: visible});
+  }
 
   buttonClicked() {
     let amount;
@@ -82,6 +88,7 @@ export default class IntakeCalculator extends Component {
   //   onPress={this.buttonClicked.bind(this)}>
   //   Press me!
   // </Button>
+
   render() {
     let activity = ACTIVITY_LEVELS[this.state.activity];
     let selectionString = activity.name;
@@ -100,7 +107,39 @@ export default class IntakeCalculator extends Component {
 
         <View style={styles.attributesContainer}>
           <View style={styles.genderContainer}>
-            <Text style={styles.bwd}>GENDER</Text>
+            <View style={{marginTop: 22}}>
+              <Modal
+                animationType={"slide"}
+                transparent={false}
+                visible={this.state.genderModalVisible}
+                onRequestClose={() => {alert("Modal has been closed.");}}
+                >
+               <View style={{marginTop: 22}}>
+                <View>
+                  <Text>Gender</Text>
+                  <Text>Generally, an adult male needs more water per day compared to an adult female due to higher producing sweat glands. In turn, generally an adult male needs 3 liters per day while an adult female needs about 2.2 liters per day. Some of this water will be through the foods you eat. </Text>
+                  <Text>Also, pregnant or breastfeeding women tend to require slightly more water than usual.</Text>
+
+                    <Button title='CLOSE'
+                            onPress={() => {
+                              this.setGenderModal(!this.state.genderModalVisible);
+                            }} />
+                </View>
+               </View>
+              </Modal>
+            </View>
+
+            <View style={{flexDirection: 'row'}}>
+              <Text style={styles.bwd}>
+                GENDER
+              </Text>
+              <Icon
+                name='info'
+                size={18}
+                iconStyle={{marginLeft: 5, paddingBottom: 15}}
+                onPress={() => {this.setGenderModal(true);}}
+                />
+            </View>
             <View style={{flex: 1, flexDirection: 'row'}}>
               <CheckBox center
                         title='Male'
@@ -137,7 +176,7 @@ export default class IntakeCalculator extends Component {
           </View>
 
           <View style={styles.ageContainer}>
-            
+
           </View>
         </View>
 
@@ -196,6 +235,7 @@ const styles = StyleSheet.create({
   genderContainer: {
     marginTop: 15,
     marginBottom: 20,
+    // flexDirection: 'row',
     alignItems: 'center'
     // flex: 1
     // height: 150,
@@ -220,7 +260,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 20,
     textAlign: 'center',
-    fontWeight: '500',
+    fontWeight: 'bold',
     margin: 10,
     color: '#62a1cc'
   },

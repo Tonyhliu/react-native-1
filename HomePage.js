@@ -136,7 +136,7 @@ export default class HomePage extends Component {
     return (
       <ScrollView style={styles.mainContainer}>
         <View style={styles.firstContainer}>
-          <View style={{marginTop: 20}}>
+          <View style={{marginTop: 50, marginBottom: 45}}>
             <Text style={styles.messageBoxWelcomeText}>{'WELCOME, ' + this.props.username + '.'}</Text>
           </View>
           <View style={styles.messageBox}>
@@ -211,7 +211,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   firstContainer: {
-    height: 350,
+    height: 400,
     alignItems: 'center',
     justifyContent: 'center'
   },
