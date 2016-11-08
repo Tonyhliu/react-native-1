@@ -99,8 +99,8 @@ export default class IntakeCalculator extends Component {
         </View>
 
         <View style={styles.attributesContainer}>
-          <View style={styles.ageContainer}>
-            <Text style={styles.bwd}>AGE</Text>
+          <View style={styles.genderContainer}>
+            <Text style={styles.bwd}>GENDER</Text>
             <View style={{flex: 1, flexDirection: 'row'}}>
               <CheckBox center
                         title='Male'
@@ -134,6 +134,10 @@ export default class IntakeCalculator extends Component {
                     style={styles.sliderBar}
                     minimumTrackTintColor="#ffc123"
                     onValueChange={(value) => this.setState({value: value})} />
+          </View>
+
+          <View style={styles.ageContainer}>
+            
           </View>
         </View>
 
@@ -189,7 +193,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     // justifyContent: 'center'
   },
-  ageContainer: {
+  genderContainer: {
     marginTop: 15,
     marginBottom: 20,
     alignItems: 'center'
@@ -200,6 +204,11 @@ const styles = StyleSheet.create({
   weightContainer: {
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  ageContainer: {
+    alignItems: 'center',
+    justifyContent: 'center'
+    //
   },
   slider: {
     height: 10,
