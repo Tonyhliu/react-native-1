@@ -381,7 +381,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   bwd: {
-    color: 'black',
+    color: '#4a545d',
+    fontFamily: 'Menlo',
     fontWeight: 'bold',
     fontSize: 14
   },
@@ -435,11 +436,11 @@ const styles = StyleSheet.create({
     margin: 10,
     color: '#62a1cc'
   },
-  quarterHeight: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
+  // quarterHeight: {
+  //   flex: 1,
+  //   justifyContent: 'center',
+  //   alignItems: 'center',
+  // },
   green: {
     color: '#81c04d'
   },
