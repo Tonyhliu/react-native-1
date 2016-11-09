@@ -45,11 +45,13 @@ export default class IntakeCalculator extends Component {
       amount: null,
       activity: 'none',
       weight: 90,
+      age: 13,
       femaleChecked: false,
       maleChecked: false,
       genderModalVisible: false,
       weightModalVisible: false,
       disclaimerModalVisible: false,
+      ageModalVisible: false
     };
   }
 
@@ -71,6 +73,10 @@ export default class IntakeCalculator extends Component {
     this.setState({ disclaimerModalVisible: visible});
   }
 
+  setAgeModal(visible) {
+    this.setState({ ageModalVisible: visible});
+  }
+
   buttonClicked() {
     let amount;
     let alertMsg = "Please enter a valid number!";
@@ -84,24 +90,13 @@ export default class IntakeCalculator extends Component {
     // 1 fl ounce = 29.5735 ml
   }
 
-  // <TouchableWithoutFeedback onPress={() => dismissKeyboard()}>
-  //   <View>
-  //     <TextInput style={styles.txtInput}
-  //         keyboardType='numeric'
-  //         onChangeText={(text) => this.setState({text})}
-  //         value={this.state.text}
-  //         placeholder="Ex: 120 pounds..."/>
-  //   </View>
-  // </TouchableWithoutFeedback>
-  // <Button style={styles.btn}
-  //   styleDisabled={{color: 'red'}}
-  //   onPress={this.buttonClicked.bind(this)}>
-  //   Press me!
-  // </Button>
-
   render() {
     let activity = ACTIVITY_LEVELS[this.state.activity];
     let selectionString = activity.name;
+    let years = ' yrs';
+    if (this.state.age >= 65) {
+      years = '+ yrs';
+    }
 
     return (
       <ScrollView style={styles.mainContainer}>
@@ -120,7 +115,7 @@ export default class IntakeCalculator extends Component {
                 Results provides an estimate of quantity of water intake needed per day based on weight & activity level and is not intended to give precise amounts.
                 </Text>
                 <Text style={{textAlign: 'center', marginBottom: 10}}>
-                  Also, note that 80% of estimated amount is met by consuming water & beverages, while the other 20% is derived from foods consumed.
+                  Also, note that 80% of estimated amount is met by consuming water and beverages, while the other 20% is derived from foods consumed.
                 </Text>
 
                 <Button title='CLOSE'
@@ -131,8 +126,6 @@ export default class IntakeCalculator extends Component {
              </View>
             </Modal>
           </View>
-
-
 
           <View style={styles.messageBox}>
             <Text style={styles.messageBoxTitle}>
@@ -253,10 +246,56 @@ export default class IntakeCalculator extends Component {
                     style={styles.sliderBar}
                     minimumTrackTintColor="#ffc123"
                     onValueChange={(val) => this.setState({weight: val})} />
-          </View>
+            </View>
 
           <View style={styles.ageContainer}>
+            <View style={{marginTop: 22}}>
+              <Modal
+                animationType={"fade"}
+                transparent={true}
+                visible={this.state.ageModalVisible}
+                onRequestClose={() => {alert("Modal has been closed.");}}
+                >
+               <View style={{justifyContent: 'center', alignItems: 'center', flex: 1, backgroundColor: 'rgba(34, 34, 34, 0.50)'}}>
+                <View style={{backgroundColor: 'white', height: 250}}>
+                  <Text style={{fontWeight: 'bold', textAlign: 'center', marginBottom: 10, marginTop: 10}}>AGE</Text>
+                  <Text style={{textAlign: 'center', marginBottom: 10}}>
+                    Age affects how the human body uses water! As people age, thirst becomes a less effective indicator of the body's fluid needs.
+                    Also, as people age, their kidney is not able to conserve water as well.
+                  </Text>
+                  <Text style={{textAlign: 'center', marginBottom: 10}}>
+                    Moral of the story, drink water even when you don't "feel" thirsty!
+                  </Text>
 
+                    <Button title='CLOSE'
+                            onPress={() => {
+                              this.setAgeModal(!this.state.ageModalVisible);
+                            }} />
+                </View>
+               </View>
+              </Modal>
+            </View>
+
+            <View style={{flexDirection: 'row'}}>
+              <Text style={styles.bwd}>AGE</Text>
+              <Icon
+                name='info'
+                size={18}
+                iconStyle={{marginLeft: 5, paddingBottom: 15}}
+                onPress={() => {this.setAgeModal(true);}}
+                />
+            </View>
+
+            <Text style={styles.text}>
+              {this.state.age}{years}
+            </Text>
+            <Slider {...this.props}
+                    minimumValue={13}
+                    maximumValue={65}
+                    step={1}
+                    style={styles.sliderBar}
+                    minimumTrackTintColor="#ffc123"
+                    onValueChange={(val) => this.setState({age: val})} />
           </View>
 
           <View style={styles.HeightContainer}>
@@ -375,8 +414,7 @@ const styles = StyleSheet.create({
     paddingRight:20,
     borderRadius:10,
     width: 300,
-    // marginBottom: 15,
-    marginTop: 15
+    marginTop: 5
   },
   messageBoxTitle: {
     fontSize: 24,

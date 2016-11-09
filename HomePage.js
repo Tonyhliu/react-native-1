@@ -136,7 +136,7 @@ export default class HomePage extends Component {
     return (
       <ScrollView style={styles.mainContainer}>
         <View style={styles.firstContainer}>
-          <View style={{marginTop: 45, marginBottom: 45}}>
+          <View style={{marginTop: 35, marginBottom: 35}}>
             <Text style={styles.messageBoxWelcomeText}>{'WELCOME, ' + this.props.username + '.'}</Text>
           </View>
           <View style={styles.messageBox}>
