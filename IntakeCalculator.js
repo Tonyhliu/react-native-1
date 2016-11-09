@@ -302,10 +302,6 @@ export default class IntakeCalculator extends Component {
                     onValueChange={(val) => this.setState({age: val})} />
           </View>
 
-          <View style={styles.HeightContainer}>
-
-          </View>
-
           <View style={styles.activityContainer}>
             <View style={{marginTop: 22}}>
               <Modal
@@ -316,7 +312,7 @@ export default class IntakeCalculator extends Component {
               <View style={{justifyContent: 'center', alignItems: 'center', flex: 1, backgroundColor: 'rgba(34, 34, 34, 0.50)'}}>
                <View style={{backgroundColor: 'white', height: 275}}>
                   <Text style={{fontWeight: 'bold', textAlign: 'center', marginBottom: 10, marginTop: 10}}>ACTIVITY LEVELS FOR THE DAY</Text>
-                  <Text style={{textAlign: 'center', marginBottom: 10}}>Activity Level: Finally you will want to adjust that number
+                  <Text style={{textAlign: 'center', marginBottom: 10}}>Finally you will want to adjust that number
                    based on how often you work out, since you are expelling water
                    when you sweat.</Text>
                   <Text style={{textAlign: 'center', marginBottom: 10}}>You should add 12 ounces of water to your daily
@@ -331,7 +327,6 @@ export default class IntakeCalculator extends Component {
                </View>
               </Modal>
             </View>
-
 
             <View style={{flexDirection: 'row'}}>
               <Text style={styles.bwd}>ACTIVITY LEVEL</Text>
@@ -357,6 +352,10 @@ export default class IntakeCalculator extends Component {
                 ))}
               </PickerIOS>
             </View>
+          </View>
+
+          <View style={styles.HeightContainer}>
+
           </View>
 
         </View>

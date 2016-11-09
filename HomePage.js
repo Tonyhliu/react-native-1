@@ -121,13 +121,6 @@ export default class HomePage extends Component {
     }
 
 
-    // <View style={{height: 250}}>
-    //   <Image style={{flex: 1}}
-    //     resizeMode="contain"
-    //     source={{uri: 'https://media.giphy.com/media/MooLLNeDnBxp6/giphy.gif'}}
-    //     />
-    // </View>
-
     // <View style={{height: 100}}>
     //   <Image source={require('./img/WaterBuddyLogo.png')}
     //           resizeMode="contain"

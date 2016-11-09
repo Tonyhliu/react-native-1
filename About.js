@@ -3,12 +3,11 @@ import { View,
         Text,
         TouchableHighlight,
         StyleSheet,
+        Image,
+        ScrollView,
         Linking
        } from 'react-native';
 import { SocialIcon } from 'react-native-elements';
-import Icon from 'react-native-vector-icons/FontAwesome';
-// import Icon from 'react-native-vector-icons/MaterialIcons';
-
 
 export default class About extends Component {
   constructor(props) {
@@ -17,13 +16,13 @@ export default class About extends Component {
 
   render() {
     return (
-        <View>
+        <ScrollView>
           <View style={styles.firstContainer}>
-            <View style={{height: 200, alignItems: 'center', justifyContent: 'center'}}>
+            <View style={{height: 100, alignItems: 'center', justifyContent: 'center'}}>
               <Text style={{fontSize: 26,
-                          fontFamily: 'Verdana',
+                          fontFamily: 'Menlo',
                           textAlign: 'center',
-                          fontWeight: 'bold'}}>Follow me!</Text>
+                          fontWeight: 'bold'}}>FOLLOW ME!</Text>
             </View>
             <View style={{flex: 1}}>
               <SocialIcon type='facebook'
@@ -36,8 +35,14 @@ export default class About extends Component {
                           onPress={() => Linking.openURL('https://instagram.com/tbunzdollasign')} />
             </View>
           </View>
-        </View>
-    )
+          <View style={{height: 250, marginTop: 30}}>
+            <Image style={{flex: 1}}
+              resizeMode="contain"
+              source={{uri: 'https://media.giphy.com/media/MooLLNeDnBxp6/giphy.gif'}}
+              />
+          </View>
+        </ScrollView>
+    );
   }
 }
 
