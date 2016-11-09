@@ -18,20 +18,20 @@ import { Button, CheckBox, Icon} from 'react-native-elements';
 
 var PickerItemIOS = PickerIOS.Item;
 
-var ACTIVITY_LEVELS = {
-  none: {
-    name: 'NONE'
-  },
-  low: {
-    name: 'LOW (0-30 minutes)'
-  },
-  medium: {
-    name: 'MED (30-60 minutes)'
-  },
-  high: {
-    name: 'HIGH (60+ minutes)'
-  }
-};
+// var ACTIVITY_LEVELS = {
+//   none: {
+//     name: 'NONE'
+//   },
+//   low: {
+//     name: 'LOW (0-30 minutes)'
+//   },
+//   medium: {
+//     name: 'MED (30-60 minutes)'
+//   },
+//   high: {
+//     name: 'HIGH (60+ minutes)'
+//   }
+// };
 
 export default class IntakeCalculator extends Component {
   constructor(props) {
@@ -40,7 +40,7 @@ export default class IntakeCalculator extends Component {
     this.state = {
       text: '',
       amount: null,
-      activity: 'none',
+      activityLevel: '',
       weight: 90,
       age: 13,
       femaleChecked: false,
@@ -93,8 +93,6 @@ export default class IntakeCalculator extends Component {
   }
 
   render() {
-    let activity = ACTIVITY_LEVELS[this.state.activity];
-    let selectionString = activity.name;
     let years = ' yrs';
     if (this.state.age >= 65) {
       years = '+ yrs';
@@ -339,18 +337,36 @@ export default class IntakeCalculator extends Component {
                 />
             </View>
 
-            <View style={{height: 200, width: 200}}>
-              <PickerIOS
-                selectedValue={this.state.activity}
-                onValueChange={(level) => this.setState({activity: level})}>
-                {Object.keys(ACTIVITY_LEVELS).map((lvl) => (
-                  <PickerItemIOS
-                    key={lvl}
-                    value={lvl}
-                    label={ACTIVITY_LEVELS[lvl].name}
-                    />
-                ))}
-              </PickerIOS>
+            <View style={{flex: 1}}>
+              <CheckBox center
+                        title='None'
+                        checked={this.state.activityLevel === 'none'}
+                        checkdIcon='check-square-o'
+                        uncheckedIcon='square-o'
+                        onPress={() => this.setState({activityLevel: 'none'})}
+                        checkedColor="#ffc123" />
+              <CheckBox center
+                        title='Low (0-30 mins)'
+                        checked={this.state.activityLevel === 'low'}
+                        checkdIcon='check-square-o'
+                        uncheckedIcon='square-o'
+                        onPress={() => this.setState({activityLevel: 'low'})}
+                        checkedColor="#ffc123" />
+              <CheckBox center
+                        title='Med (30-60 mins)'
+                        checked={this.state.activityLevel === 'medium'}
+                        checkdIcon='check-square-o'
+                        uncheckedIcon='square-o'
+                        onPress={() => this.setState({activityLevel: 'medium'})}
+                        checkedColor="#ffc123" />
+              <CheckBox center
+                        title='High (60+ mins)'
+                        checked={this.state.activityLevel === 'high'}
+                        checkdIcon='check-square-o'
+                        uncheckedIcon='square-o'
+                        onPress={() => this.setState({activityLevel: 'high'})}
+                        checkedColor="#ffc123" />
+
             </View>
           </View>
 
@@ -458,7 +474,6 @@ const styles = StyleSheet.create({
   },
   messageBox:{
     backgroundColor:'#62a1cc',
-    // backgroundColor:'#fff',
     paddingTop:15,
     paddingBottom:20,
     paddingLeft:20,
