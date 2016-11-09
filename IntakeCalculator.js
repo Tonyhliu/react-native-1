@@ -3,8 +3,8 @@ import { View,
         Text,
         Image,
         TouchableHighlight,
-        TextInput,
-        Navigator,
+        // TextInput,
+        // Navigator,
         Alert,
         PickerIOS,
         TouchableWithoutFeedback,
@@ -15,9 +15,6 @@ import { View,
        } from 'react-native';
 
 import { Button, CheckBox, Icon} from 'react-native-elements';
-// import Button from 'react-native-button';
-// import Icon from 'react-native-vector-icons/FontAwesome';
-
 
 var PickerItemIOS = PickerIOS.Item;
 
@@ -29,10 +26,10 @@ var ACTIVITY_LEVELS = {
     name: 'LOW (0-30 minutes)'
   },
   medium: {
-    name: 'MEDIUM (30-60 minutes)'
+    name: 'MED (30-60 minutes)'
   },
   high: {
-    name: 'HIGH (60+ mins)'
+    name: 'HIGH (60+ minutes)'
   }
 };
 
@@ -51,7 +48,8 @@ export default class IntakeCalculator extends Component {
       genderModalVisible: false,
       weightModalVisible: false,
       disclaimerModalVisible: false,
-      ageModalVisible: false
+      ageModalVisible: false,
+      activityModalVisible: false
     };
   }
 
@@ -75,6 +73,10 @@ export default class IntakeCalculator extends Component {
 
   setAgeModal(visible) {
     this.setState({ ageModalVisible: visible});
+  }
+
+  setActivityModal(visible) {
+    this.setState({ activityModalVisible: visible});
   }
 
   buttonClicked() {
@@ -134,10 +136,11 @@ export default class IntakeCalculator extends Component {
             <Text style={styles.messageBoxBodyText}>{'Determine how much water you need using the calculator below'.toUpperCase()}</Text>
 
             <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginTop: 10}}>
-              <Text style={styles.bwd}>DISCLAIMER</Text>
+              <Text style={styles.disclaimerTxt}>DISCLAIMER</Text>
               <Icon
                 name='info-outline'
-                size={18}
+                size={12}
+                color='white'
                 iconStyle={{marginLeft: 5}}
                 onPress={() => {this.setDisclaimerModal(true);}}
                 />
@@ -152,8 +155,7 @@ export default class IntakeCalculator extends Component {
                 animationType={"fade"}
                 transparent={true}
                 visible={this.state.genderModalVisible}
-                onRequestClose={() => {alert("Modal has been closed.");}}
-                >
+                onRequestClose={() => {alert("Modal has been closed.");}}>
               <View style={{justifyContent: 'center', alignItems: 'center', flex: 1, backgroundColor: 'rgba(34, 34, 34, 0.50)'}}>
                <View style={{backgroundColor: 'white', height: 275}}>
                   <Text style={{fontWeight: 'bold', textAlign: 'center', marginBottom: 10, marginTop: 10}}>GENDER</Text>
@@ -174,9 +176,10 @@ export default class IntakeCalculator extends Component {
                 GENDER
               </Text>
               <Icon
-                name='info'
-                size={18}
-                iconStyle={{marginLeft: 5, paddingBottom: 15}}
+                name='info-outline'
+                size={16}
+                color='#bebfc2'
+                iconStyle={{marginLeft: 5, paddingBottom: 10}}
                 onPress={() => {this.setGenderModal(true);}}
                 />
             </View>
@@ -229,11 +232,11 @@ export default class IntakeCalculator extends Component {
             <View style={{flexDirection: 'row'}}>
               <Text style={styles.bwd}>WEIGHT</Text>
               <Icon
-                name='info'
-                size={18}
-                iconStyle={{marginLeft: 5, paddingBottom: 15}}
-                onPress={() => {this.setWeightModal(true);}}
-                />
+                name='info-outline'
+                size={16}
+                color='#bebfc2'
+                iconStyle={{marginLeft: 5, paddingBottom: 10}}
+                onPress={() => {this.setWeightModal(true);}} />
             </View>
 
             <Text style={styles.text}>
@@ -279,9 +282,10 @@ export default class IntakeCalculator extends Component {
             <View style={{flexDirection: 'row'}}>
               <Text style={styles.bwd}>AGE</Text>
               <Icon
-                name='info'
-                size={18}
-                iconStyle={{marginLeft: 5, paddingBottom: 15}}
+                name='info-outline'
+                color='#bebfc2'
+                size={16}
+                iconStyle={{marginLeft: 5, paddingBottom: 10}}
                 onPress={() => {this.setAgeModal(true);}}
                 />
             </View>
@@ -303,39 +307,75 @@ export default class IntakeCalculator extends Component {
           </View>
 
           <View style={styles.activityContainer}>
+            <View style={{marginTop: 22}}>
+              <Modal
+                animationType={"fade"}
+                transparent={true}
+                visible={this.state.activityModalVisible}
+                onRequestClose={() => {alert("Modal has been closed.");}}>
+              <View style={{justifyContent: 'center', alignItems: 'center', flex: 1, backgroundColor: 'rgba(34, 34, 34, 0.50)'}}>
+               <View style={{backgroundColor: 'white', height: 275}}>
+                  <Text style={{fontWeight: 'bold', textAlign: 'center', marginBottom: 10, marginTop: 10}}>ACTIVITY LEVELS FOR THE DAY</Text>
+                  <Text style={{textAlign: 'center', marginBottom: 10}}>Activity Level: Finally you will want to adjust that number
+                   based on how often you work out, since you are expelling water
+                   when you sweat.</Text>
+                  <Text style={{textAlign: 'center', marginBottom: 10}}>You should add 12 ounces of water to your daily
+                  total for every 30 minutes that you work out. So if you work out
+                  for 45 minutes daily, you would add 18 ounces of water to your daily intake.</Text>
 
-          </View>
-        </View>
+                    <Button title='CLOSE'
+                            onPress={() => {
+                              this.setActivityModal(!this.state.activityModalVisible);
+                            }} />
+                </View>
+               </View>
+              </Modal>
+            </View>
 
-        <View>
-          <Text style={{textAlign: 'center'}}>Activity level for the day:</Text>
-          <Text>You selected: {selectionString}</Text>
-          <PickerIOS
-            selectedValue={this.state.activity}
-            onValueChange={(activity) => this.setState({activity})}>
-            {Object.keys(ACTIVITY_LEVELS).map((activity) => (
-              <PickerItemIOS
-                key={activity}
-                value={activity}
-                label={ACTIVITY_LEVELS[activity].name}
+
+            <View style={{flexDirection: 'row'}}>
+              <Text style={styles.bwd}>ACTIVITY LEVEL</Text>
+              <Icon
+                name='info-outline'
+                size={16}
+                color='#bebfc2'
+                iconStyle={{marginLeft: 5, paddingBottom: 10}}
+                onPress={() => {this.setActivityModal(true);}}
                 />
-            ))}
-          </PickerIOS>
+            </View>
+
+            <View style={{height: 200, width: 200}}>
+              <PickerIOS
+                selectedValue={this.state.activity}
+                onValueChange={(level) => this.setState({activity: level})}>
+                {Object.keys(ACTIVITY_LEVELS).map((lvl) => (
+                  <PickerItemIOS
+                    key={lvl}
+                    value={lvl}
+                    label={ACTIVITY_LEVELS[lvl].name}
+                    />
+                ))}
+              </PickerIOS>
+            </View>
+          </View>
+
         </View>
 
-        <View style={styles.quarterHeight}>
-          <Text style={styles.green}>
-            {this.state.amount === null ? '' : this.state.amount + " " + "ounces of water a day"}
-            {"\n"}
-            {this.state.amount === null ? '' : "OR"}
-            {"\n"}
-            {this.state.amount === null ? '' : Math.round(this.state.amount * 28.35) + " " + "ml of water a day"}
-          </Text>
-        </View>
       </ScrollView>
     );
   }
 }
+
+// <Text style={styles.text}>You selected: {selectionString}</Text>
+// <View style={styles.quarterHeight}>
+//   <Text style={styles.green}>
+//     {this.state.amount === null ? '' : this.state.amount + " " + "ounces of water a day"}
+//     {"\n"}
+//     {this.state.amount === null ? '' : "OR"}
+//     {"\n"}
+//     {this.state.amount === null ? '' : Math.round(this.state.amount * 28.35) + " " + "ml of water a day"}
+//   </Text>
+// </View>
 
 const styles = StyleSheet.create({
   mainContainer: {
@@ -344,7 +384,12 @@ const styles = StyleSheet.create({
   bwd: {
     color: 'black',
     fontWeight: 'bold',
-    fontSize: 12
+    fontSize: 14
+  },
+  disclaimerTxt: {
+    color: 'black',
+    fontWeight: 'bold',
+    fontSize: 10
   },
   firstContainer: {
     height: 200,
@@ -353,9 +398,8 @@ const styles = StyleSheet.create({
     marginTop: 20
   },
   attributesContainer: {
-    height: 500,
+    flex: 1,
     alignItems: 'center',
-    // justifyContent: 'center'
   },
   genderContainer: {
     marginTop: 15,
@@ -369,7 +413,14 @@ const styles = StyleSheet.create({
   ageContainer: {
     alignItems: 'center',
     justifyContent: 'center'
-    //
+  },
+  heightContainer: {
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  activityContainer: {
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   slider: {
     height: 10,
@@ -431,11 +482,5 @@ const styles = StyleSheet.create({
       fontFamily: 'Menlo'
   }
 });
-
-// Activity Level: Finally you will want to adjust that number
-// based on how often you work out, since you are expelling water
-// when you sweat. You should add 12 ounces of water to your daily
-// total for every 30 minutes that you work out. So if you work out
-// for 45 minutes daily, you would add 18 ounces of water to your daily intake.
 
 // https://www.youtube.com/watch?v=zCheAcpFkL8
