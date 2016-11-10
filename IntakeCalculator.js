@@ -39,6 +39,8 @@ export default class IntakeCalculator extends Component {
       heightFt: '5',
       heightIn: '5'
     };
+
+    this.buttonClicked = this.buttonClicked.bind(this);
   }
 
   // static propTypes = {
@@ -74,14 +76,16 @@ export default class IntakeCalculator extends Component {
   buttonClicked() {
     let amount;
     let alertMsg = "Please enter a valid number!";
-    if (Number.isInteger(parseInt(this.state.text)) && parseInt(this.state.text) > 0) {
-      amount = Math.round(parseInt(this.state.text) * (2/3));
-      this.setState({amount});
-    } else {
-      Alert.alert('Invalid weight', alertMsg);
-    }
-    // console.log(amount);
-    // 1 fl ounce = 29.5735 ml
+    Alert.alert(this.state.weight * (2/3));
+    // if (Number.isInteger(parseInt(this.state.text)) && parseInt(this.state.text) > 0) {
+    //   amount = Math.round(parseInt(this.state.text) * (2/3));
+    //   Alert.alert(amount);
+    //   // this.setState({amount});
+    // } else {
+    //   Alert.alert('Invalid weight', alertMsg);
+    // }
+    // // console.log(amount);
+    // // 1 fl ounce = 29.5735 ml
   }
 
   render() {
@@ -427,6 +431,13 @@ export default class IntakeCalculator extends Component {
             </View>
           </View>
 
+          <View style={{height: 200, justifyContent: 'center', alignItems: 'center'}}>
+            <Button title='CALCULATE'
+                    onPress={this.buttonClicked}
+                    icon={{type: 'font-awesome', name: 'calculator'}}
+                    />
+          </View>
+
         </View>
 
       </ScrollView>
@@ -483,10 +494,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
-  heightContainer: {
-    // alignItems: 'center',
-    // justifyContent: 'center'
-  },
   activityContainer: {
     alignItems: 'center',
     justifyContent: 'center'
@@ -510,21 +517,21 @@ const styles = StyleSheet.create({
   //   justifyContent: 'center',
   //   alignItems: 'center',
   // },
-  green: {
-    color: '#81c04d'
-  },
-  blue: {
-    color: '#a7d5f6',
-  },
-  txtInput: {
-    height: 40,
-    borderColor: '#a7d5f6',
-    borderWidth: 1
-  },
-  btn: {
-    fontSize: 20,
-    color: '#a7d5f6'
-  },
+  // green: {
+  //   color: '#81c04d'
+  // },
+  // blue: {
+  //   color: '#a7d5f6',
+  // },
+  // txtInput: {
+  //   height: 40,
+  //   borderColor: '#a7d5f6',
+  //   borderWidth: 1
+  // },
+  // btn: {
+  //   fontSize: 20,
+  //   color: '#a7d5f6'
+  // },
   messageBox:{
     backgroundColor:'#62a1cc',
     paddingTop:15,
