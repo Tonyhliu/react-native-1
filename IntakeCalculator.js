@@ -6,7 +6,7 @@ import { View,
         // TextInput,
         // Navigator,
         Alert,
-        PickerIOS,
+        Picker,
         TouchableWithoutFeedback,
         Slider,
         Modal,
@@ -16,22 +16,7 @@ import { View,
 
 import { Button, CheckBox, Icon} from 'react-native-elements';
 
-var PickerItemIOS = PickerIOS.Item;
-
-// var ACTIVITY_LEVELS = {
-//   none: {
-//     name: 'NONE'
-//   },
-//   low: {
-//     name: 'LOW (0-30 minutes)'
-//   },
-//   medium: {
-//     name: 'MED (30-60 minutes)'
-//   },
-//   high: {
-//     name: 'HIGH (60+ minutes)'
-//   }
-// };
+const Item = Picker.Item;
 
 export default class IntakeCalculator extends Component {
   constructor(props) {
@@ -49,7 +34,10 @@ export default class IntakeCalculator extends Component {
       weightModalVisible: false,
       disclaimerModalVisible: false,
       ageModalVisible: false,
-      activityModalVisible: false
+      activityModalVisible: false,
+      heightModalVisible: false,
+      heightFt: '5',
+      heightIn: '5'
     };
   }
 
@@ -77,6 +65,10 @@ export default class IntakeCalculator extends Component {
 
   setActivityModal(visible) {
     this.setState({ activityModalVisible: visible});
+  }
+
+  setHeightModal(visible) {
+    this.setState({ heightModalVisible: visible});
   }
 
   buttonClicked() {
@@ -371,7 +363,68 @@ export default class IntakeCalculator extends Component {
           </View>
 
           <View style={styles.HeightContainer}>
+            <View style={{marginTop: 22}}>
+              <Modal
+                animationType={"fade"}
+                transparent={true}
+                visible={this.state.heightModalVisible}
+                onRequestClose={() => {alert("Modal has been closed.");}}
+                >
+               <View style={{justifyContent: 'center', alignItems: 'center', flex: 1, backgroundColor: 'rgba(34, 34, 34, 0.50)'}}>
+                <View style={{backgroundColor: 'white', height: 250}}>
+                  <Text style={{fontWeight: 'bold', textAlign: 'center', marginBottom: 10, marginTop: 10}}>HEIGHT</Text>
+                  <Text style={{textAlign: 'center', marginBottom: 10}}>
+                    Weight combined with Height provides us with your Body Mass Index or BMI.
+                    BMI is used in our calculation to factor in the surface area of your skin.
+                    The more surface area you have the greater amount of sweat you produce.
+                    Formula: weight / [height]^2
+                  </Text>
+                    <Button title='CLOSE'
+                            onPress={() => {
+                              this.setHeightModal(!this.state.heightModalVisible);
+                            }} />
+                </View>
+               </View>
+              </Modal>
+            </View>
 
+            <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+              <Text style={styles.bwd}>
+                HEIGHT
+              </Text>
+              <Icon
+                name='info-outline'
+                size={16}
+                color='#bebfc2'
+                iconStyle={{marginLeft: 5, paddingBottom: 10}}
+                onPress={() => {this.setHeightModal(true);}}
+                />
+            </View>
+            <View style={{width: 150, flexDirection: 'row'}}>
+              <Picker selectedValue={this.state.heightFt}
+                      style={{width: 70}}
+                      onValueChange={(ft) => this.setState({heightFt: ft})}>
+                <Picker.Item label="4 ft" value="4" />
+                <Picker.Item label="5 ft" value="5" />
+                <Picker.Item label="6 ft" value="6" />
+              </Picker>
+              <Picker selectedValue={this.state.heightIn}
+                      style={{width: 80}}
+                      onValueChange={(inches) => this.setState({heightIn: inches})}>
+                <Picker.Item label="0 in" value="0" />
+                <Picker.Item label="1 in" value="1" />
+                <Picker.Item label="2 in" value="2" />
+                <Picker.Item label="3 in" value="3" />
+                <Picker.Item label="4 in" value="4" />
+                <Picker.Item label="5 in" value="5" />
+                <Picker.Item label="6 in" value="6" />
+                <Picker.Item label="7 in" value="7" />
+                <Picker.Item label="8 in" value="8" />
+                <Picker.Item label="9 in" value="9" />
+                <Picker.Item label="10 in" value="10" />
+                <Picker.Item label="11 in" value="11" />
+              </Picker>
+            </View>
           </View>
 
         </View>
@@ -431,8 +484,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   heightContainer: {
-    alignItems: 'center',
-    justifyContent: 'center'
+    // alignItems: 'center',
+    // justifyContent: 'center'
   },
   activityContainer: {
     alignItems: 'center',
