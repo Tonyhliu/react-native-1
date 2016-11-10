@@ -403,7 +403,7 @@ const styles = StyleSheet.create({
     fontSize: 14
   },
   disclaimerTxt: {
-    color: 'black',
+    color: '#4f5456',
     fontWeight: 'bold',
     fontSize: 10
   },
