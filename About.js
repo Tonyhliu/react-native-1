@@ -7,14 +7,36 @@ import { View,
         ScrollView,
         Linking
        } from 'react-native';
+import { Asset, Components } from 'exponent';
 import { SocialIcon } from 'react-native-elements';
 
 export default class About extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      isReady: false
+    }
+  }
+
+  componentWillMount() {
+    this._cacheResourcesAsync();
+  }
+
+  async _cacheResourcesAsync() {
+    const images = [require('./img/dyw.gif')];
+    for (let image of images) {
+      await Asset.fromModule(image).downloadAsync();
+    }
+
+    this.setState({isReady: true});
   }
 
   render() {
+    if (!this.state.isReady) {
+      return <Components.AppLoading />;
+    }
+
     return (
         <ScrollView>
           <View style={styles.firstContainer}>
@@ -35,16 +57,17 @@ export default class About extends Component {
                           onPress={() => Linking.openURL('https://instagram.com/tbunzdollasign')} />
             </View>
           </View>
-          <View style={{height: 250, marginTop: 30}}>
-            <Image style={{flex: 1}}
+          <View style={{height: 250, marginTop: 30, alignItems: 'center'}}>
+            <Image style={{height: 250}}
               resizeMode="contain"
-              source={{uri: 'https://media.giphy.com/media/MooLLNeDnBxp6/giphy.gif'}}
+              source={require('./img/dyw.gif')}
               />
           </View>
         </ScrollView>
     );
   }
 }
+// source={{uri: 'https://media.giphy.com/media/MooLLNeDnBxp6/giphy.gif'}}
 
 const styles = StyleSheet.create({
   firstContainer: {

@@ -47,8 +47,6 @@ export default class Login extends Component {
     }
   }
 
-  // align logo to be top of page
-
   render() {
     if (!this.state.isReady) {
       return <Components.AppLoading />;
