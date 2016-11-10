@@ -306,7 +306,7 @@ export default class IntakeCalculator extends Component {
                 onRequestClose={() => {alert("Modal has been closed.");}}>
               <View style={{justifyContent: 'center', alignItems: 'center', flex: 1, backgroundColor: 'rgba(34, 34, 34, 0.50)'}}>
                <View style={{backgroundColor: 'white', height: 275}}>
-                  <Text style={{fontWeight: 'bold', textAlign: 'center', marginBottom: 10, marginTop: 10}}>ACTIVITY LEVELS FOR THE DAY</Text>
+                  <Text style={{fontWeight: 'bold', textAlign: 'center', marginBottom: 10, marginTop: 10}}>DAILY ACTIVITY LEVEL</Text>
                   <Text style={{textAlign: 'center', marginBottom: 10}}>Finally you will want to adjust that number
                    based on how often you work out, since you are expelling water
                    when you sweat.</Text>
@@ -432,7 +432,7 @@ export default class IntakeCalculator extends Component {
             </View>
           </View>
 
-          <View style={{height: 200, justifyContent: 'center', alignItems: 'center'}}>
+          <View style={{height: 120, alignItems: 'center'}}>
             <Button title='CALCULATE'
                     onPress={this.buttonClicked}
                     icon={{type: 'font-awesome', name: 'calculator'}}

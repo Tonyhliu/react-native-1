@@ -6,15 +6,30 @@ import { View,
         Image
        } from 'react-native';
 import { Button, SocialIcon } from 'react-native-elements';
-import Exponent from 'exponent';
+import Exponent, { Asset, Components } from 'exponent';
 
 export default class Login extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      name: ''
+      name: '',
+      isReady: false
     }
+  }
+
+  componentWillMount() {
+    this._cacheResourcesAsync();
+  }
+
+  async _cacheResourcesAsync() {
+    const images = [require('./img/backgroundImg.jpg')];
+    for (let image of images) {
+      await Asset.fromModule(image).downloadAsync();
+    }
+
+
+    this.setState({isReady: true});
   }
 
   async _logIn() {
@@ -35,13 +50,17 @@ export default class Login extends Component {
   // align logo to be top of page
 
   render() {
+    if (!this.state.isReady) {
+      return <Components.AppLoading />;
+    }
+
     return (
       <Image source={require('./img/backgroundImg.jpg')}
               style={styles.backgroundContainer}>
         <View style={{height: 100, paddingLeft: 20}}>
           <Image source={require('./img/WaterBuddyLogo.png')}
             resizeMode="contain"
-            style={{flex: 1, width: 250}} />
+            style={{flex: 1, width: 175}} />
         </View>
 
         <View style={styles.btns}>

@@ -42,12 +42,6 @@ export default class HomePage extends Component {
   }
 
   async _cacheResourcesAsync() {
-    // const images = [require('./img/favicon2.png')];
-    // for (let image of images) {
-    //   await Asset.fromModule(image).downloadAsync();
-    // }
-    // console.log("made it to this function in homepage");
-
     const videos = [require('./test.mp4')];
     for (let video of videos) {
       await Asset.fromModule(video).downloadAsync();
@@ -120,12 +114,6 @@ export default class HomePage extends Component {
       return <Components.AppLoading />;
     }
 
-
-    // <View style={{height: 100}}>
-    //   <Image source={require('./img/WaterBuddyLogo.png')}
-    //           resizeMode="contain"
-    //           style={{flex: 1, width: 200}} />
-    // </View>
     return (
       <ScrollView style={styles.mainContainer}>
         <View style={styles.firstContainer}>
