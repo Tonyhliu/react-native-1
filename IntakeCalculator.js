@@ -74,9 +74,10 @@ export default class IntakeCalculator extends Component {
   }
 
   buttonClicked() {
-    let amount;
-    let alertMsg = "Please enter a valid number!";
-    Alert.alert(this.state.weight * (2/3));
+    // let amount;
+    // let alertMsg = "Please enter a valid number!";
+    Alert.alert('DRINK', `${this.state.weight * (2/3)} ounces per day`);
+    // console.log(this.state.weight);
     // if (Number.isInteger(parseInt(this.state.text)) && parseInt(this.state.text) > 0) {
     //   amount = Math.round(parseInt(this.state.text) * (2/3));
     //   Alert.alert(amount);
