@@ -24,7 +24,6 @@ export default class IntakeCalculator extends Component {
 
     this.state = {
       text: '',
-      amount: null,
       activityLevel: '',
       weight: 90,
       age: 13,
@@ -74,9 +73,13 @@ export default class IntakeCalculator extends Component {
   }
 
   buttonClicked() {
-    // let amount;
-    // let alertMsg = "Please enter a valid number!";
-    Alert.alert('DRINK', `${this.state.weight * (2/3)} ounces per day`);
+    if (!this.state.activityLevel) {
+      Alert.alert('Activity Level', 'Please select daily activity level!');
+    } else if (!this.state.femaleChecked && !this.state.maleChecked) {
+      Alert.alert('Gender', 'Please select a gender!');
+    } else {
+      Alert.alert('DRINK', `${this.state.weight * (2/3)} ounces per day`);
+    }
     // console.log(this.state.weight);
     // if (Number.isInteger(parseInt(this.state.text)) && parseInt(this.state.text) > 0) {
     //   amount = Math.round(parseInt(this.state.text) * (2/3));
@@ -438,7 +441,6 @@ export default class IntakeCalculator extends Component {
                     icon={{type: 'font-awesome', name: 'calculator'}}
                     />
           </View>
-
         </View>
 
       </ScrollView>

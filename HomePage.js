@@ -187,8 +187,8 @@ const styles = StyleSheet.create({
     fontSize:18
   },
   mainContainer: {
-    backgroundColor: '#ffffff',
-    // backgroundColor: 'black',
+    // backgroundColor: '#ffffff',
+    backgroundColor: 'rgba(179, 212, 231, 0.6)',
     flex: 1,
   },
   firstContainer: {
@@ -224,6 +224,7 @@ const styles = StyleSheet.create({
   messageBoxWelcomeText:{
     fontWeight:'bold',
     color:'#49535b',
+    // color: 'white',
     textAlign:'center',
     fontSize:26,
     marginBottom:10,
