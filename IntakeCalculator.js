@@ -73,10 +73,10 @@ export default class IntakeCalculator extends Component {
   }
 
   buttonClicked() {
-    if (!this.state.activityLevel) {
-      Alert.alert('Activity Level', 'Please select daily activity level!');
-    } else if (!this.state.femaleChecked && !this.state.maleChecked) {
+    if (!this.state.femaleChecked && !this.state.maleChecked) {
       Alert.alert('Gender', 'Please select a gender!');
+    } else if (!this.state.activityLevel) {
+      Alert.alert('Activity Level', 'Please select daily activity level!');
     } else {
       Alert.alert('DRINK', `${this.state.weight * (2/3)} ounces per day`);
     }
