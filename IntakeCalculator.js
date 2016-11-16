@@ -92,6 +92,9 @@ export default class IntakeCalculator extends Component {
     // // 1 fl ounce = 29.5735 ml
   }
 
+
+  // get rid of weight slider (laggy & unresponsive), replace with textinput.
+
   render() {
     let years = ' yrs';
     if (this.state.age >= 65) {
