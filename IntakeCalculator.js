@@ -24,6 +24,7 @@ export default class IntakeCalculator extends Component {
 
     this.state = {
       text: '',
+      amount: '',
       activityLevel: '',
       weight: 90,
       age: 13,
@@ -73,12 +74,16 @@ export default class IntakeCalculator extends Component {
   }
 
   buttonClicked() {
+    var _scrollView = ScrollView;
     if (!this.state.femaleChecked && !this.state.maleChecked) {
       Alert.alert('Gender', 'Please select a gender!');
     } else if (!this.state.activityLevel) {
       Alert.alert('Activity Level', 'Please select daily activity level!');
     } else {
-      Alert.alert('DRINK', `${this.state.weight * (2/3)} ounces per day`);
+      // Alert.alert('DRINK', `${this.state.weight * (2/3)} ounces per day`);
+      let amt = this.state.weight * (2/3);
+      this.setState({amount: amt});
+      this.refs.scrollView.scrollTo({y: 1000});
     }
     // console.log(this.state.weight);
     // if (Number.isInteger(parseInt(this.state.text)) && parseInt(this.state.text) > 0) {
@@ -97,12 +102,21 @@ export default class IntakeCalculator extends Component {
 
   render() {
     let years = ' yrs';
+    let results = <View></View>;
     if (this.state.age >= 65) {
       years = '+ yrs';
     }
+    if (this.state.amount) {
+      results = <View style={styles.resultContainer}>
+                  <Text style={{fontSize: 20, color: 'red'}}>
+                  `drink ${this.state.amount} ounces of water per day!`
+                  </Text>
+                </View>;
+    }
 
     return (
-      <ScrollView style={styles.mainContainer}>
+      <ScrollView style={styles.mainContainer}
+                  ref="scrollView">
 
         <View style={styles.firstContainer}>
           <View style={{marginTop: 22}}>
@@ -444,6 +458,8 @@ export default class IntakeCalculator extends Component {
                     icon={{type: 'font-awesome', name: 'calculator'}}
                     />
           </View>
+
+          {results}
         </View>
 
       </ScrollView>
@@ -504,6 +520,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
+  resultContainer: {
+    height: 200,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
   slider: {
     height: 10,
     margin: 10,
@@ -518,26 +539,6 @@ const styles = StyleSheet.create({
     margin: 10,
     color: '#62a1cc'
   },
-  // quarterHeight: {
-  //   flex: 1,
-  //   justifyContent: 'center',
-  //   alignItems: 'center',
-  // },
-  // green: {
-  //   color: '#81c04d'
-  // },
-  // blue: {
-  //   color: '#a7d5f6',
-  // },
-  // txtInput: {
-  //   height: 40,
-  //   borderColor: '#a7d5f6',
-  //   borderWidth: 1
-  // },
-  // btn: {
-  //   fontSize: 20,
-  //   color: '#a7d5f6'
-  // },
   messageBox:{
     backgroundColor:'#62a1cc',
     paddingTop:15,
