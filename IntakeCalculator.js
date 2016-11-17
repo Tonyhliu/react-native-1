@@ -104,6 +104,12 @@ export default class IntakeCalculator extends Component {
       years = '+ yrs';
     }
     if (this.state.amount) {
+      // let amt = Math.round(this.state.amount / 8),
+      //     url = `./img/${amt}_glass.png`,
+      //     src = require(url);
+      //     <Image source={src}
+      //       style={{height: 125, width: 175}}
+      //       resizeMode="contain"/>
       results = <View style={styles.resultContainer}>
                   <Text style={{fontSize: 20, color: 'red'}}>
                   Drink {this.state.amount} ounces of water per day!
