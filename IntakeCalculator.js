@@ -221,7 +221,7 @@ export default class IntakeCalculator extends Component {
             </View>
           </View>
 
-          <View style={styles.weightContainer}>
+          <View style={styles.centerContainer}>
             <View style={{marginTop: 22}}>
               <Modal
                 animationType={"fade"}
@@ -269,7 +269,7 @@ export default class IntakeCalculator extends Component {
                     onValueChange={(val) => this.setState({weight: val})} />
             </View>
 
-          <View style={styles.ageContainer}>
+          <View style={styles.centerContainer}>
             <View style={{marginTop: 22}}>
               <Modal
                 animationType={"fade"}
@@ -320,7 +320,7 @@ export default class IntakeCalculator extends Component {
                     onValueChange={(val) => this.setState({age: val})} />
           </View>
 
-          <View style={styles.activityContainer}>
+          <View style={styles.centerContainer}>
             <View style={{marginTop: 22}}>
               <Modal
                 animationType={"fade"}
@@ -511,15 +511,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     alignItems: 'center'
   },
-  weightContainer: {
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  ageContainer: {
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  activityContainer: {
+  centerContainer: {
     alignItems: 'center',
     justifyContent: 'center'
   },
