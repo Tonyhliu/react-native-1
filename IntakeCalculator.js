@@ -112,7 +112,7 @@ export default class IntakeCalculator extends Component {
       //       resizeMode="contain"/>
       results = <View style={styles.resultContainer}>
                   <Text style={{fontSize: 20, color: 'red'}}>
-                  Drink {this.state.amount} ounces of water per day!
+                  Drink {Math.round(this.state.amount)} ounces of water per day!
                   </Text>
                 </View>;
     }
@@ -525,7 +525,7 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   sliderBar: {
-    width: 200
+    width: 220
   },
   text: {
     fontSize: 20,
