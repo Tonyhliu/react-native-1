@@ -80,7 +80,6 @@ export default class IntakeCalculator extends Component {
     } else if (!this.state.activityLevel) {
       Alert.alert('Activity Level', 'Please select daily activity level!');
     } else {
-      // Alert.alert('DRINK', `${this.state.weight * (2/3)} ounces per day`);
       let amt = this.state.weight * (2/3);
       this.setState({amount: amt});
       this.refs.scrollView.scrollTo({y: 1000});
@@ -98,8 +97,6 @@ export default class IntakeCalculator extends Component {
   }
 
 
-  // get rid of weight slider (laggy & unresponsive), replace with textinput.
-
   render() {
     let years = ' yrs';
     let results = <View></View>;
@@ -109,7 +106,7 @@ export default class IntakeCalculator extends Component {
     if (this.state.amount) {
       results = <View style={styles.resultContainer}>
                   <Text style={{fontSize: 20, color: 'red'}}>
-                  `drink ${this.state.amount} ounces of water per day!`
+                  Drink {this.state.amount} ounces of water per day!
                   </Text>
                 </View>;
     }
