@@ -175,7 +175,7 @@ export default class IntakeCalculator extends Component {
               visible={this.state.disclaimerModalVisible}
               onRequestClose={() => {alert("Modal has been closed.");}}>
             <View style={styles.modalView}>
-             <View style={{backgroundColor: 'white', height: 275}}>
+             <View style={{backgroundColor: '#f1fbfd', height: 275}}>
                 <Text style={styles.modalHeader}>DISCLAIMER</Text>
                 <Text style={styles.modalBody}>
                 Results provides an estimate of quantity of water intake needed per day based on weight and activity level and is not intended to give precise amounts.
@@ -185,6 +185,7 @@ export default class IntakeCalculator extends Component {
                 </Text>
 
                 <Button title='CLOSE'
+                        buttonStyle={styles.modalCloseBtn}
                         onPress={() => {
                           this.setDisclaimerModal(!this.state.disclaimerModalVisible);
                         }} />

@@ -151,31 +151,31 @@ export default class HomePage extends Component {
                 onProgress={this.onProgress}
                 volume={this.state.volume}
                 muted={this.state.muted}
-                style={{height: 300, width: 330, backgroundColor: 'white'}}
+                style={{height: 300, width: 330, backgroundColor: '#dbf4fb'}}
                 paused={this.state.paused}
                 resizeMode="Exponent.Components.Video.RESIZE_MODE_STRETCH"/>
             </TouchableOpacity>
-          </View>
-          <View style={styles.controls}>
-            <View style={styles.generalControls}>
-              <View style={styles.rateControl}>
-                {this.renderRateControl(0.5)}
-                {this.renderRateControl(1.0)}
-                {this.renderRateControl(2.0)}
-              </View>
-
-              <View style={styles.volumeControl}>
-                {this.renderVolumeControl(0.5)}
-                {this.renderVolumeControl(1)}
-                {this.renderVolumeControl(1.5)}
-              </View>
-            </View>
           </View>
         </View>
       </ScrollView>
     )
   }
 }
+// <View style={styles.controls}>
+//   <View style={styles.generalControls}>
+//     <View style={styles.rateControl}>
+//       {this.renderRateControl(0.5)}
+//       {this.renderRateControl(1.0)}
+//       {this.renderRateControl(2.0)}
+//     </View>
+//
+//     <View style={styles.volumeControl}>
+//       {this.renderVolumeControl(0.5)}
+//       {this.renderVolumeControl(1)}
+//       {this.renderVolumeControl(1.5)}
+//     </View>
+//   </View>
+// </View>
 
 
 const styles = StyleSheet.create({
@@ -187,8 +187,8 @@ const styles = StyleSheet.create({
     fontSize:18
   },
   mainContainer: {
-    // backgroundColor: '#ffffff',
-    backgroundColor: 'rgba(179, 212, 231, 0.6)',
+    backgroundColor: '#dbf4fb',
+    // backgroundColor: 'rgba(179, 212, 231, 0.6)',
     flex: 1,
   },
   firstContainer: {
@@ -241,9 +241,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
   },
   controls: {
-    // backgroundColor: "transparent",
-    backgroundColor: 'black',
-    borderRadius: 5,
+    backgroundColor: "#49535b",
+    // backgroundColor: 'black',
+    flex: 1,
+    // borderRadius: 5,
     position: 'absolute',
     bottom: 44,
     left: 4,
