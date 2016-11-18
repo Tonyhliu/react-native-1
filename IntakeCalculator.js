@@ -74,26 +74,43 @@ export default class IntakeCalculator extends Component {
   }
 
   buttonClicked() {
-    var _scrollView = ScrollView;
+    // 1 kg = 2.2 lb
+    // 1 in = 0.0254 meters
+    let amt = this.state.weight * (2/3);
+    // let heightFt = parseInt(this.state.heightFt);
+    // let heightIn = parseInt(this.state.heightIn);
+    // let bmi = (this.state.weight / 2.2) / ((((heightFt * 12) + heightIn) * 0.0254) * (((heightFt * 12) + heightIn) * 0.0254));
+
     if (!this.state.femaleChecked && !this.state.maleChecked) {
       Alert.alert('Gender', 'Please select a gender!');
     } else if (!this.state.activityLevel) {
       Alert.alert('Activity Level', 'Please select daily activity level!');
     } else {
-      let amt = this.state.weight * (2/3);
+      switch (this.state.activityLevel) {
+        case 'low':
+          amt = amt + ((30 / 30) * 12);
+          break;
+        case 'medium':
+          amt = amt + ((60 / 30) * 12);
+          break;
+        case 'high':
+          amt = amt + ((90 / 30) * 12);
+          break;
+      }
+
+      if (this.state.maleChecked) {
+        // 2.5 L for men per day
+        // 2L for women per day
+        amt += 1;
+        // water => 1 fl oz = 1 oz
+        // 1L = 33.8 fl oz
+        // .5 L = 16.9 fl oz
+        // 1 fl oz = 0.0295735 L
+      }
+
       this.setState({amount: amt});
       this.refs.scrollView.scrollTo({y: 1000});
     }
-    // console.log(this.state.weight);
-    // if (Number.isInteger(parseInt(this.state.text)) && parseInt(this.state.text) > 0) {
-    //   amount = Math.round(parseInt(this.state.text) * (2/3));
-    //   Alert.alert(amount);
-    //   // this.setState({amount});
-    // } else {
-    //   Alert.alert('Invalid weight', alertMsg);
-    // }
-    // // console.log(amount);
-    // // 1 fl ounce = 29.5735 ml
   }
 
 
@@ -333,7 +350,7 @@ export default class IntakeCalculator extends Component {
                   <Text style={{textAlign: 'center', marginBottom: 10}}>Finally you will want to adjust that number
                    based on how often you work out, since you are expelling water
                    when you sweat.</Text>
-                  <Text style={{textAlign: 'center', marginBottom: 10}}>You should add 12 ounces of water to your daily
+                 <Text style={{textAlign: 'center', marginBottom: 10}}>Calculation used : You should add 12 ounces of water to your daily
                   total for every 30 minutes that you work out. So if you work out
                   for 45 minutes daily, you would add 18 ounces of water to your daily intake.</Text>
 
