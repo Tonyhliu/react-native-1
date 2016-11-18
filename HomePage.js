@@ -151,7 +151,7 @@ export default class HomePage extends Component {
                 onProgress={this.onProgress}
                 volume={this.state.volume}
                 muted={this.state.muted}
-                style={{height: 300, width: 330, backgroundColor: '#dbf4fb'}}
+                style={{height: 300, width: 330, backgroundColor: '#eaf7fd'}}
                 paused={this.state.paused}
                 resizeMode="Exponent.Components.Video.RESIZE_MODE_STRETCH"/>
             </TouchableOpacity>
@@ -187,7 +187,7 @@ const styles = StyleSheet.create({
     fontSize:18
   },
   mainContainer: {
-    backgroundColor: '#dbf4fb',
+    backgroundColor: '#eaf7fd',
     // backgroundColor: 'rgba(179, 212, 231, 0.6)',
     flex: 1,
   },

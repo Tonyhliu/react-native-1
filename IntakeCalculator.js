@@ -37,7 +37,9 @@ export default class IntakeCalculator extends Component {
       heightModalVisible: false,
       heightFt: '5',
       heightIn: '5',
-      bmi: ''
+      bmi: '',
+      ageChanged: false,
+      weightChanged: false
     };
 
     this.buttonClicked = this.buttonClicked.bind(this);
@@ -125,6 +127,24 @@ export default class IntakeCalculator extends Component {
   render() {
     let years = ' yrs';
     let results = <View></View>;
+    let ageChangedColor = <Text style={styles.uncoloredText}>
+                  {this.state.age}{years}
+                </Text>;
+    let weightChangedColor = <Text style={styles.uncoloredText}>
+      {this.state.weight} pounds
+    </Text>;
+
+    if (this.state.ageChanged) {
+      ageChangedColor = <Text style={styles.text}>
+        {this.state.age}{years}
+      </Text>;
+    }
+    if (this.state.weightChanged) {
+      weightChangedColor = <Text style={styles.text}>
+        {this.state.weight} pounds
+      </Text>
+    }
+
     if (this.state.age >= 65) {
       years = '+ yrs';
     }
@@ -307,16 +327,16 @@ export default class IntakeCalculator extends Component {
                 onPress={() => {this.setWeightModal(true);}} />
             </View>
 
-            <Text style={styles.text}>
-              {this.state.weight} pounds
-            </Text>
+            <View>
+              {weightChangedColor}
+            </View>
             <Slider {...this.props}
                     minimumValue={90}
                     maximumValue={250}
                     step={1}
                     style={styles.sliderBar}
                     minimumTrackTintColor="#ffc123"
-                    onValueChange={(val) => this.setState({weight: val})} />
+                    onValueChange={(val) => this.setState({weight: val, weightChanged: true})} />
             </View>
 
           <View style={styles.centerContainer}>
@@ -359,16 +379,16 @@ export default class IntakeCalculator extends Component {
                 />
             </View>
 
-            <Text style={styles.text}>
-              {this.state.age}{years}
-            </Text>
+            <View>
+              {ageChangedColor}
+            </View>
             <Slider {...this.props}
                     minimumValue={13}
                     maximumValue={65}
                     step={1}
                     style={styles.sliderBar}
                     minimumTrackTintColor="#ffc123"
-                    onValueChange={(val) => this.setState({age: val})} />
+                    onValueChange={(val) => this.setState({age: val, ageChanged: true})} />
           </View>
 
           <View style={styles.centerContainer}>
@@ -512,6 +532,7 @@ export default class IntakeCalculator extends Component {
 
           <View style={{height: 120, alignItems: 'center'}}>
             <Button title='CALCULATE'
+                    buttonStyle={styles.calculateBtn}
                     onPress={this.buttonClicked}
                     icon={{type: 'font-awesome', name: 'calculator'}}
                     />
@@ -539,6 +560,8 @@ export default class IntakeCalculator extends Component {
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
+    // backgroundColor: '#dbf4fb'
+    // backgroundColor: '#eaf7fd'
   },
   bwd: {
     color: '#4a545d',
@@ -606,12 +629,26 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffc123',
     alignSelf: 'center'
   },
+  calculateBtn: {
+    height: 50,
+    width: 175,
+    backgroundColor: '#ffc123',
+    alignSelf: 'center',
+    borderRadius: 4
+  },
   text: {
     fontSize: 20,
     textAlign: 'center',
     fontWeight: 'bold',
     margin: 10,
     color: '#62a1cc'
+  },
+  uncoloredText: {
+    fontSize: 20,
+    textAlign: 'center',
+    fontWeight: 'bold',
+    margin: 10,
+    color: 'gray'
   },
   messageBox:{
     backgroundColor:'#62a1cc',
