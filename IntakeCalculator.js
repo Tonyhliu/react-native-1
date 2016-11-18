@@ -178,10 +178,10 @@ export default class IntakeCalculator extends Component {
              <View style={{backgroundColor: 'white', height: 275}}>
                 <Text style={styles.modalHeader}>DISCLAIMER</Text>
                 <Text style={styles.modalBody}>
-                Results provides an estimate of quantity of water intake needed per day based on weight & activity level and is not intended to give precise amounts.
+                Results provides an estimate of quantity of water intake needed per day based on weight and activity level and is not intended to give precise amounts.
                 </Text>
                 <Text style={styles.modalBody}>
-                  Also, note that 80% of estimated amount is met by consuming water and beverages, while the other 20% is derived from foods consumed.
+                  Note that 80% of estimated amount is met by consuming water and beverages, while the other 20% is derived from foods consumed.
                 </Text>
 
                 <Button title='CLOSE'
@@ -221,12 +221,12 @@ export default class IntakeCalculator extends Component {
                 visible={this.state.genderModalVisible}
                 onRequestClose={() => {alert("Modal has been closed.");}}>
               <View style={styles.modalView}>
-               <View style={{backgroundColor: 'white', height: 275}}>
+               <View style={{backgroundColor: 'white', height: 220}}>
                   <Text style={styles.modalHeader}>GENDER</Text>
-                  <Text style={styles.modalBody}>Generally, an adult male needs more water per day compared to an adult female due to higher producing sweat glands. Also, pregnant or breastfeeding women tend to require slightly more water than usual.</Text>
-                  <Text style={styles.modalBody}>Some of this water will be through the foods you eat. </Text>
+                  <Text style={styles.modalBody}>Generally, an adult male needs more water per day compared to an adult female due to higher producing sweat glands. Pregnant or breastfeeding women tend to require slightly more water than usual as well.</Text>
 
                     <Button title='CLOSE'
+                            buttonStyle={styles.modalCloseBtn}
                             onPress={() => {
                               this.setGenderModal(!this.state.genderModalVisible);
                             }} />
@@ -287,6 +287,7 @@ export default class IntakeCalculator extends Component {
                     Formula: weight / [height]^2
                   </Text>
                     <Button title='CLOSE'
+                            buttonStyle={styles.modalCloseBtn}
                             onPress={() => {
                               this.setWeightModal(!this.state.weightModalVisible);
                             }} />
@@ -337,6 +338,7 @@ export default class IntakeCalculator extends Component {
                   </Text>
 
                     <Button title='CLOSE'
+                            buttonStyle={styles.modalCloseBtn}
                             onPress={() => {
                               this.setAgeModal(!this.state.ageModalVisible);
                             }} />
@@ -386,6 +388,7 @@ export default class IntakeCalculator extends Component {
                   for 45 minutes daily, you would add 18 ounces of water to your daily intake.</Text>
 
                     <Button title='CLOSE'
+                            buttonStyle={styles.modalCloseBtn}
                             onPress={() => {
                               this.setActivityModal(!this.state.activityModalVisible);
                             }} />
@@ -458,6 +461,7 @@ export default class IntakeCalculator extends Component {
                     Formula: weight / [height]^2
                   </Text>
                     <Button title='CLOSE'
+                            buttonStyle={styles.modalCloseBtn}
                             onPress={() => {
                               this.setHeightModal(!this.state.heightModalVisible);
                             }} />
@@ -594,6 +598,12 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     marginLeft: 15,
     marginRight: 15
+  },
+  modalCloseBtn: {
+    height: 40,
+    width: 100,
+    backgroundColor: '#ffc123',
+    alignSelf: 'center'
   },
   text: {
     fontSize: 20,
