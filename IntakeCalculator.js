@@ -23,7 +23,6 @@ export default class IntakeCalculator extends Component {
     super(props);
 
     this.state = {
-      text: '',
       amount: '',
       activityLevel: '',
       weight: 90,
@@ -37,7 +36,8 @@ export default class IntakeCalculator extends Component {
       activityModalVisible: false,
       heightModalVisible: false,
       heightFt: '5',
-      heightIn: '5'
+      heightIn: '5',
+      bmi: ''
     };
 
     this.buttonClicked = this.buttonClicked.bind(this);
@@ -77,9 +77,9 @@ export default class IntakeCalculator extends Component {
     // 1 kg = 2.2 lb
     // 1 in = 0.0254 meters
     let amt = this.state.weight * (2/3);
-    // let heightFt = parseInt(this.state.heightFt);
-    // let heightIn = parseInt(this.state.heightIn);
-    // let bmi = (this.state.weight / 2.2) / ((((heightFt * 12) + heightIn) * 0.0254) * (((heightFt * 12) + heightIn) * 0.0254));
+    let heightFt = parseInt(this.state.heightFt);
+    let heightIn = parseInt(this.state.heightIn);
+    let bmi = (this.state.weight / 2.2) / ((((heightFt * 12) + heightIn) * 0.0254) * (((heightFt * 12) + heightIn) * 0.0254));
 
     if (!this.state.femaleChecked && !this.state.maleChecked) {
       Alert.alert('Gender', 'Please select a gender!');
@@ -108,8 +108,8 @@ export default class IntakeCalculator extends Component {
         // 1 fl oz = 0.0295735 L
       }
 
-      this.setState({amount: amt});
-      this.refs.scrollView.scrollTo({y: 1000});
+      this.setState({amount: amt, bmi: bmi});
+      this.refs.scrollView.scrollTo({y: 1100});
     }
   }
 
@@ -129,7 +129,28 @@ export default class IntakeCalculator extends Component {
       //       resizeMode="contain"/>
       results = <View style={styles.resultContainer}>
                   <Text style={{fontSize: 20, color: 'red'}}>
-                  Drink {Math.round(this.state.amount)} ounces of water per day!
+                    Drink {Math.round(this.state.amount)} ounces of water per day...
+                  </Text>
+                  <Text style={{fontSize: 20, color: 'red'}}>
+                    OR approximately {Math.round(Math.round(this.state.amount) / 8)} glasses of water
+                  </Text>
+                  <Text style={{fontSize: 20, color: 'green'}}>
+                    BMI : {Math.round(this.state.bmi)}
+                  </Text>
+                  <Text style={{fontSize: 20, color: 'green'}}>
+                    BMI Categories:
+                  </Text>
+                  <Text style={{fontSize: 20, color: 'green'}}>
+                    Underweight = less than 18.5
+                  </Text>
+                  <Text style={{fontSize: 20, color: 'green'}}>
+                    Normal weight = 18.5–24.9
+                  </Text>
+                  <Text style={{fontSize: 20, color: 'green'}}>
+                    Overweight = 25–29.9
+                  </Text>
+                  <Text style={{fontSize: 20, color: 'green'}}>
+                    Obesity = BMI of 30 or greater
                   </Text>
                 </View>;
     }
@@ -533,7 +554,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   resultContainer: {
-    height: 200,
+    height: 300,
+    // flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center'
   },
