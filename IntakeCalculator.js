@@ -177,10 +177,10 @@ export default class IntakeCalculator extends Component {
             <View style={styles.modalView}>
              <View style={{backgroundColor: 'white', height: 275}}>
                 <Text style={styles.modalHeader}>DISCLAIMER</Text>
-                <Text style={{textAlign: 'center', marginBottom: 10}}>
+                <Text style={styles.modalBody}>
                 Results provides an estimate of quantity of water intake needed per day based on weight & activity level and is not intended to give precise amounts.
                 </Text>
-                <Text style={{textAlign: 'center', marginBottom: 10}}>
+                <Text style={styles.modalBody}>
                   Also, note that 80% of estimated amount is met by consuming water and beverages, while the other 20% is derived from foods consumed.
                 </Text>
 
@@ -223,8 +223,8 @@ export default class IntakeCalculator extends Component {
               <View style={styles.modalView}>
                <View style={{backgroundColor: 'white', height: 275}}>
                   <Text style={styles.modalHeader}>GENDER</Text>
-                  <Text style={{textAlign: 'center', marginBottom: 10}}>Generally, an adult male needs more water per day compared to an adult female due to higher producing sweat glands. In turn, generally an adult male needs 3 liters per day while an adult female needs about 2.2 liters per day. Some of this water will be through the foods you eat. </Text>
-                  <Text style={{textAlign: 'center', marginBottom: 10}}>Also, pregnant or breastfeeding women tend to require slightly more water than usual.</Text>
+                  <Text style={styles.modalBody}>Generally, an adult male needs more water per day compared to an adult female due to higher producing sweat glands. Also, pregnant or breastfeeding women tend to require slightly more water than usual.</Text>
+                  <Text style={styles.modalBody}>Some of this water will be through the foods you eat. </Text>
 
                     <Button title='CLOSE'
                             onPress={() => {
@@ -278,12 +278,12 @@ export default class IntakeCalculator extends Component {
                <View style={styles.modalView}>
                 <View style={{backgroundColor: 'white', height: 250}}>
                   <Text style={styles.modalHeader}>WEIGHT</Text>
-                  <Text style={{textAlign: 'center', marginBottom: 10}}>
+                  <Text style={styles.modalBody}>
                     Weight combined with Height provides us with your Body Mass Index or BMI.
                     BMI is used in our calculation to factor in the surface area of your skin.
                     The more surface area you have the greater amount of sweat you produce.
                   </Text>
-                  <Text style={{textAlign: 'center', marginBottom: 10}}>
+                  <Text style={styles.modalBody}>
                     Formula: weight / [height]^2
                   </Text>
                     <Button title='CLOSE'
@@ -328,11 +328,11 @@ export default class IntakeCalculator extends Component {
                <View style={styles.modalView}>
                 <View style={{backgroundColor: 'white', height: 250}}>
                   <Text style={styles.modalHeader}>AGE</Text>
-                  <Text style={{textAlign: 'center', marginBottom: 10}}>
+                  <Text style={styles.modalBody}>
                     Age affects how the human body uses water! As people age, thirst becomes a less effective indicator of the body's fluid needs.
                     Also, as people age, their kidney is not able to conserve water as well.
                   </Text>
-                  <Text style={{textAlign: 'center', marginBottom: 10}}>
+                  <Text style={styles.modalBody}>
                     Moral of the story, drink water even when you don't "feel" thirsty!
                   </Text>
 
@@ -378,10 +378,10 @@ export default class IntakeCalculator extends Component {
               <View style={styles.modalView}>
                <View style={{backgroundColor: 'white', height: 275}}>
                   <Text style={styles.modalHeader}>DAILY ACTIVITY LEVEL</Text>
-                  <Text style={{textAlign: 'center', marginBottom: 10}}>Finally you will want to adjust that number
+                  <Text style={styles.modalBody}>Finally you will want to adjust that number
                    based on how often you work out, since you are expelling water
                    when you sweat.</Text>
-                 <Text style={{textAlign: 'center', marginBottom: 10}}>Calculation used : You should add 12 ounces of water to your daily
+                 <Text style={styles.modalBody}>Calculation used : You should add 12 ounces of water to your daily
                   total for every 30 minutes that you work out. So if you work out
                   for 45 minutes daily, you would add 18 ounces of water to your daily intake.</Text>
 
@@ -449,12 +449,12 @@ export default class IntakeCalculator extends Component {
                <View style={styles.modalView}>
                 <View style={{backgroundColor: 'white', height: 250}}>
                   <Text style={styles.modalHeader}>HEIGHT</Text>
-                  <Text style={{textAlign: 'center', marginBottom: 10}}>
+                  <Text style={styles.modalBody}>
                     Weight combined with Height provides us with your Body Mass Index or BMI.
                     BMI is used in our calculation to factor in the surface area of your skin.
                     The more surface area you have the greater amount of sweat you produce.
                   </Text>
-                  <Text style={{textAlign: 'center', marginBottom: 10}}>
+                  <Text style={styles.modalBody}>
                     Formula: weight / [height]^2
                   </Text>
                     <Button title='CLOSE'
@@ -588,6 +588,12 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: 10,
     marginTop: 10
+  },
+  modalBody: {
+    textAlign: 'center',
+    marginBottom: 10,
+    marginLeft: 15,
+    marginRight: 15
   },
   text: {
     fontSize: 20,
