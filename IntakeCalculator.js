@@ -76,7 +76,7 @@ export default class IntakeCalculator extends Component {
   buttonClicked() {
     // 1 kg = 2.2 lb
     // 1 in = 0.0254 meters
-    let amt = this.state.weight * (2/3);
+    let amt = this.state.weight * (1/2);
     let heightFt = parseInt(this.state.heightFt);
     let heightIn = parseInt(this.state.heightIn);
     let bmi = (this.state.weight / 2.2) / ((((heightFt * 12) + heightIn) * 0.0254) * (((heightFt * 12) + heightIn) * 0.0254));
@@ -108,6 +108,14 @@ export default class IntakeCalculator extends Component {
         // 1 fl oz = 0.0295735 L
       }
 
+      if (this.state.age <= 30) {
+        amt += 2;
+      } else if (this.state.age <= 54) {
+        amt += 1;
+      } else if (this.state.age <= 65) {
+        amt += 0;
+      }
+
       this.setState({amount: amt, bmi: bmi});
       this.refs.scrollView.scrollTo({y: 1100});
     }
@@ -132,7 +140,7 @@ export default class IntakeCalculator extends Component {
                     Drink {Math.round(this.state.amount)} ounces of water per day...
                   </Text>
                   <Text style={{fontSize: 20, color: 'red'}}>
-                    OR approximately {Math.round(Math.round(this.state.amount) / 8)} glasses of water
+                    OR approximately {Math.round(Math.round(this.state.amount) / 8)} 8-oz glasses of water
                   </Text>
                   <Text style={{fontSize: 20, color: 'green'}}>
                     BMI : {Math.round(this.state.bmi)}
