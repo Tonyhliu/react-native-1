@@ -174,7 +174,7 @@ export default class IntakeCalculator extends Component {
               transparent={true}
               visible={this.state.disclaimerModalVisible}
               onRequestClose={() => {alert("Modal has been closed.");}}>
-            <View style={{justifyContent: 'center', alignItems: 'center', flex: 1, backgroundColor: 'rgba(34, 34, 34, 0.50)'}}>
+            <View style={styles.modalView}>
              <View style={{backgroundColor: 'white', height: 275}}>
                 <Text style={{fontWeight: 'bold', textAlign: 'center', marginBottom: 10, marginTop: 10}}>DISCLAIMER</Text>
                 <Text style={{textAlign: 'center', marginBottom: 10}}>
@@ -220,7 +220,7 @@ export default class IntakeCalculator extends Component {
                 transparent={true}
                 visible={this.state.genderModalVisible}
                 onRequestClose={() => {alert("Modal has been closed.");}}>
-              <View style={{justifyContent: 'center', alignItems: 'center', flex: 1, backgroundColor: 'rgba(34, 34, 34, 0.50)'}}>
+              <View style={styles.modalView}>
                <View style={{backgroundColor: 'white', height: 275}}>
                   <Text style={{fontWeight: 'bold', textAlign: 'center', marginBottom: 10, marginTop: 10}}>GENDER</Text>
                   <Text style={{textAlign: 'center', marginBottom: 10}}>Generally, an adult male needs more water per day compared to an adult female due to higher producing sweat glands. In turn, generally an adult male needs 3 liters per day while an adult female needs about 2.2 liters per day. Some of this water will be through the foods you eat. </Text>
@@ -275,7 +275,7 @@ export default class IntakeCalculator extends Component {
                 visible={this.state.weightModalVisible}
                 onRequestClose={() => {alert("Modal has been closed.");}}
                 >
-               <View style={{justifyContent: 'center', alignItems: 'center', flex: 1, backgroundColor: 'rgba(34, 34, 34, 0.50)'}}>
+               <View style={styles.modalView}>
                 <View style={{backgroundColor: 'white', height: 250}}>
                   <Text style={{fontWeight: 'bold', textAlign: 'center', marginBottom: 10, marginTop: 10}}>WEIGHT</Text>
                   <Text style={{textAlign: 'center', marginBottom: 10}}>
@@ -323,7 +323,7 @@ export default class IntakeCalculator extends Component {
                 visible={this.state.ageModalVisible}
                 onRequestClose={() => {alert("Modal has been closed.");}}
                 >
-               <View style={{justifyContent: 'center', alignItems: 'center', flex: 1, backgroundColor: 'rgba(34, 34, 34, 0.50)'}}>
+               <View style={styles.modalView}>
                 <View style={{backgroundColor: 'white', height: 250}}>
                   <Text style={{fontWeight: 'bold', textAlign: 'center', marginBottom: 10, marginTop: 10}}>AGE</Text>
                   <Text style={{textAlign: 'center', marginBottom: 10}}>
@@ -373,7 +373,7 @@ export default class IntakeCalculator extends Component {
                 transparent={true}
                 visible={this.state.activityModalVisible}
                 onRequestClose={() => {alert("Modal has been closed.");}}>
-              <View style={{justifyContent: 'center', alignItems: 'center', flex: 1, backgroundColor: 'rgba(34, 34, 34, 0.50)'}}>
+              <View style={styles.modalView}>
                <View style={{backgroundColor: 'white', height: 275}}>
                   <Text style={{fontWeight: 'bold', textAlign: 'center', marginBottom: 10, marginTop: 10}}>DAILY ACTIVITY LEVEL</Text>
                   <Text style={{textAlign: 'center', marginBottom: 10}}>Finally you will want to adjust that number
@@ -444,7 +444,7 @@ export default class IntakeCalculator extends Component {
                 visible={this.state.heightModalVisible}
                 onRequestClose={() => {alert("Modal has been closed.");}}
                 >
-               <View style={{justifyContent: 'center', alignItems: 'center', flex: 1, backgroundColor: 'rgba(34, 34, 34, 0.50)'}}>
+               <View style={styles.modalView}>
                 <View style={{backgroundColor: 'white', height: 250}}>
                   <Text style={{fontWeight: 'bold', textAlign: 'center', marginBottom: 10, marginTop: 10}}>HEIGHT</Text>
                   <Text style={{textAlign: 'center', marginBottom: 10}}>
@@ -563,7 +563,6 @@ const styles = StyleSheet.create({
   },
   resultContainer: {
     height: 300,
-    // flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center'
   },
@@ -573,6 +572,12 @@ const styles = StyleSheet.create({
   },
   sliderBar: {
     width: 220
+  },
+  modalView: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex: 1,
+    backgroundColor: 'rgba(34, 34, 34, 0.50)'
   },
   text: {
     fontSize: 20,
