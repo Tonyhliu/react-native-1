@@ -19,17 +19,32 @@ import {
 import Exponent from 'exponent';
 import TabNavigator from 'react-native-tab-navigator';
 import { Button } from 'react-native-elements';
-// import Icon from 'react-native-vector-icons/MaterialIcons';
-
 import HomePage from './HomePage';
 import IntakeCalculator from './IntakeCalculator';
 import PlaceHolder from './PlaceHolder';
 import About from './About';
 import Login from './Login';
+import * as firebase from 'firebase';
+// import Icon from 'react-native-vector-icons/MaterialIcons';
+
+var config = {
+  apiKey: "AIzaSyCu7-RQHAXaQEd2eUADLtccRN_nzmb3evs",
+  authDomain: "waterbuddyapp-640d4.firebaseapp.com",
+  databaseURL: "https://waterbuddyapp-640d4.firebaseio.com",
+  storageBucket: "gs://waterbuddyapp-640d4.appspot.com",
+};
+firebase.initializeApp(config);
 
 class WaterBuddy extends Component {
   constructor(props) {
     super(props);
+
+    // const fireBaseConnection = new Firebase('https://waterbuddyapp-640d4.firebaseio.com/');
+    // fireBaseConnection.set({
+    //   FirstName: 'Hello World',
+    //   LastName: 'Sunny'
+    // });
+
     this.state = {
       selectedTab: 'login',
       username: ''
