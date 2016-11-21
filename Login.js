@@ -4,10 +4,21 @@ import { View,
         TouchableHighlight,
         StyleSheet,
         Image,
+        Alert,
         Modal
        } from 'react-native';
 import { Button, SocialIcon, FormLabel, FormInput } from 'react-native-elements';
 import Exponent, { Asset, Components } from 'exponent';
+import * as firebase from 'firebase';
+
+var config = {
+  apiKey: "AIzaSyCu7-RQHAXaQEd2eUADLtccRN_nzmb3evs",
+  authDomain: "waterbuddyapp-640d4.firebaseapp.com",
+  databaseURL: "https://waterbuddyapp-640d4.firebaseio.com",
+  storageBucket: "gs://waterbuddyapp-640d4.appspot.com",
+};
+firebase.initializeApp(config);
+
 
 export default class Login extends Component {
   constructor(props) {
@@ -18,8 +29,11 @@ export default class Login extends Component {
       isReady: false,
       modalVisible: false,
       email: '',
-      password: ''
+      password: '',
+      loaded: ''
     }
+
+    this.signUp = this.signUp.bind(this);
   }
 
   componentWillMount() {
@@ -53,6 +67,41 @@ export default class Login extends Component {
 
   setModal(boolean) {
     this.setState({ modalVisible: boolean });
+  }
+
+  signUp() {
+    firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then(function(user) {
+      Alert.alert(user);
+    }).catch(function(error) {
+          // Handle Errors here.
+          console.log("1st error: " + error);
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          if (error) {
+            switch (errorCode) {
+              case 'auth/weak-password':
+                Alert.alert('Invalid Password', 'The password is too weak.');
+                break;
+              case 'auth/invalid-email':
+                Alert.alert('Invalid Email', 'Email address is invalid.');
+                break;
+              case 'auth/email-already-in-use':
+                Alert.alert('Invalid Email', 'An account already exists with given email address.');
+                break;
+              default:
+                Alert.alert('Error', 'Error creating user');
+            }
+            console.log(error);
+          } else {
+            // else statement not being hit
+            Alert.alert('Success!')
+          }
+        });
+
+        this.setState({
+          email: '',
+          password: ''
+        })
   }
 
   render() {
@@ -146,7 +195,8 @@ export default class Login extends Component {
                       <View style={{flexDirection: 'row'}}>
                         <Button
                           buttonStyle={{height: 40, width: 120}}
-                          title="Signup"/>
+                          title="Signup"
+                          onPress={this.signUp}/>
 
                         <Button
                           buttonStyle={{height: 40, width: 120}}

@@ -230,7 +230,7 @@ export default class IntakeCalculator extends Component {
               <Text style={styles.disclaimerTxt}>DISCLAIMER</Text>
               <Icon
                 name='info-outline'
-                size={12}
+                size={14}
                 color='white'
                 iconStyle={{marginLeft: 5}}
                 onPress={() => {this.setDisclaimerModal(true);}}
@@ -248,7 +248,7 @@ export default class IntakeCalculator extends Component {
                 visible={this.state.genderModalVisible}
                 onRequestClose={() => {alert("Modal has been closed.");}}>
               <View style={styles.modalView}>
-               <View style={{backgroundColor: 'white', height: 175}}>
+               <View style={{backgroundColor: 'white', height: 200}}>
                  <View>
                    <TouchableHighlight
                      underlayColor="white"

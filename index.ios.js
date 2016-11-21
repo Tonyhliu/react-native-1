@@ -24,17 +24,17 @@ import IntakeCalculator from './IntakeCalculator';
 import PlaceHolder from './PlaceHolder';
 import About from './About';
 import Login from './Login';
-import * as firebase from 'firebase';
 // import Icon from 'react-native-vector-icons/MaterialIcons';
-
-var config = {
-  apiKey: "AIzaSyCu7-RQHAXaQEd2eUADLtccRN_nzmb3evs",
-  authDomain: "waterbuddyapp-640d4.firebaseapp.com",
-  databaseURL: "https://waterbuddyapp-640d4.firebaseio.com",
-  storageBucket: "gs://waterbuddyapp-640d4.appspot.com",
-};
-firebase.initializeApp(config);
-
+// import * as firebase from 'firebase';
+//
+// var config = {
+//   apiKey: "AIzaSyCu7-RQHAXaQEd2eUADLtccRN_nzmb3evs",
+//   authDomain: "waterbuddyapp-640d4.firebaseapp.com",
+//   databaseURL: "https://waterbuddyapp-640d4.firebaseio.com",
+//   storageBucket: "gs://waterbuddyapp-640d4.appspot.com",
+// };
+// firebase.initializeApp(config);
+//
 // var provider = new firebase.auth.GoogleAuthProvider();
 // provider.setCustomParameters({
 //   'login_hint': 'user@example.com'
