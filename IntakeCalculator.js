@@ -195,7 +195,18 @@ export default class IntakeCalculator extends Component {
               visible={this.state.disclaimerModalVisible}
               onRequestClose={() => {alert("Modal has been closed.");}}>
             <View style={styles.modalView}>
-             <View style={{backgroundColor: '#f1fbfd', height: 275}}>
+             <View style={{backgroundColor: '#f1fbfd', height: 250}}>
+               <View>
+                 <TouchableHighlight
+                   underlayColor="white"
+                   onPress={() => {
+                     this.setDisclaimerModal(!this.state.disclaimerModalVisible);
+                   }}>
+                   <Image style={styles.closeIcon}
+                         source={require('./img/close.png')} />
+                 </TouchableHighlight>
+               </View>
+
                 <Text style={styles.modalHeader}>DISCLAIMER</Text>
                 <Text style={styles.modalBody}>
                 Results provides an estimate of quantity of water intake needed per day based on weight and activity level and is not intended to give precise amounts.
@@ -204,11 +215,6 @@ export default class IntakeCalculator extends Component {
                   Note that 80% of estimated amount is met by consuming water and beverages, while the other 20% is derived from foods consumed.
                 </Text>
 
-                <Button title='CLOSE'
-                        buttonStyle={styles.modalCloseBtn}
-                        onPress={() => {
-                          this.setDisclaimerModal(!this.state.disclaimerModalVisible);
-                        }} />
               </View>
              </View>
             </Modal>
@@ -242,15 +248,20 @@ export default class IntakeCalculator extends Component {
                 visible={this.state.genderModalVisible}
                 onRequestClose={() => {alert("Modal has been closed.");}}>
               <View style={styles.modalView}>
-               <View style={{backgroundColor: 'white', height: 220}}>
+               <View style={{backgroundColor: 'white', height: 175}}>
+                 <View>
+                   <TouchableHighlight
+                     underlayColor="white"
+                     onPress={() => {
+                       this.setGenderModal(!this.state.genderModalVisible);
+                     }}>
+                     <Image style={styles.closeIcon}
+                       source={require('./img/close.png')} />
+                   </TouchableHighlight>
+                 </View>
                   <Text style={styles.modalHeader}>GENDER</Text>
                   <Text style={styles.modalBody}>Generally, an adult male needs more water per day compared to an adult female due to higher producing sweat glands. Pregnant or breastfeeding women tend to require slightly more water than usual as well.</Text>
 
-                    <Button title='CLOSE'
-                            buttonStyle={styles.modalCloseBtn}
-                            onPress={() => {
-                              this.setGenderModal(!this.state.genderModalVisible);
-                            }} />
                 </View>
                </View>
               </Modal>
@@ -297,7 +308,18 @@ export default class IntakeCalculator extends Component {
                 onRequestClose={() => {alert("Modal has been closed.");}}
                 >
                <View style={styles.modalView}>
-                <View style={{backgroundColor: 'white', height: 250}}>
+                <View style={{backgroundColor: 'white', height: 225}}>
+                  <View>
+                    <TouchableHighlight
+                      underlayColor="white"
+                      onPress={() => {
+                        this.setWeightModal(!this.state.weightModalVisible);
+                      }}>
+                      <Image style={styles.closeIcon}
+                            source={require('./img/close.png')} />
+                    </TouchableHighlight>
+                  </View>
+
                   <Text style={styles.modalHeader}>WEIGHT</Text>
                   <Text style={styles.modalBody}>
                     Weight combined with Height provides us with your Body Mass Index or BMI.
@@ -307,11 +329,7 @@ export default class IntakeCalculator extends Component {
                   <Text style={styles.modalBody}>
                     Formula: weight / [height]^2
                   </Text>
-                    <Button title='CLOSE'
-                            buttonStyle={styles.modalCloseBtn}
-                            onPress={() => {
-                              this.setWeightModal(!this.state.weightModalVisible);
-                            }} />
+
                 </View>
                </View>
               </Modal>
@@ -348,7 +366,18 @@ export default class IntakeCalculator extends Component {
                 onRequestClose={() => {alert("Modal has been closed.");}}
                 >
                <View style={styles.modalView}>
-                <View style={{backgroundColor: 'white', height: 250}}>
+                <View style={{backgroundColor: 'white', height: 225}}>
+                  <View>
+                    <TouchableHighlight
+                      underlayColor="white"
+                      onPress={() => {
+                        this.setAgeModal(!this.state.ageModalVisible);
+                      }}>
+                      <Image style={styles.closeIcon}
+                            source={require('./img/close.png')} />
+                    </TouchableHighlight>
+                  </View>
+
                   <Text style={styles.modalHeader}>AGE</Text>
                   <Text style={styles.modalBody}>
                     Age affects how the human body uses water! As people age, thirst becomes a less effective indicator of the body's fluid needs.
@@ -357,12 +386,6 @@ export default class IntakeCalculator extends Component {
                   <Text style={styles.modalBody}>
                     Moral of the story, drink water even when you don't "feel" thirsty!
                   </Text>
-
-                    <Button title='CLOSE'
-                            buttonStyle={styles.modalCloseBtn}
-                            onPress={() => {
-                              this.setAgeModal(!this.state.ageModalVisible);
-                            }} />
                 </View>
                </View>
               </Modal>
@@ -399,7 +422,18 @@ export default class IntakeCalculator extends Component {
                 visible={this.state.activityModalVisible}
                 onRequestClose={() => {alert("Modal has been closed.");}}>
               <View style={styles.modalView}>
-               <View style={{backgroundColor: 'white', height: 275}}>
+               <View style={{backgroundColor: 'white', height: 250}}>
+                 <View>
+                   <TouchableHighlight
+                     underlayColor="white"
+                     onPress={() => {
+                       this.setActivityModal(!this.state.activityModalVisible);
+                     }}>
+                     <Image style={styles.closeIcon}
+                           source={require('./img/close.png')} />
+                   </TouchableHighlight>
+                 </View>
+
                   <Text style={styles.modalHeader}>DAILY ACTIVITY LEVEL</Text>
                   <Text style={styles.modalBody}>Finally you will want to adjust that number
                    based on how often you work out, since you are expelling water
@@ -407,12 +441,6 @@ export default class IntakeCalculator extends Component {
                  <Text style={styles.modalBody}>Calculation used : You should add 12 ounces of water to your daily
                   total for every 30 minutes that you work out. So if you work out
                   for 45 minutes daily, you would add 18 ounces of water to your daily intake.</Text>
-
-                    <Button title='CLOSE'
-                            buttonStyle={styles.modalCloseBtn}
-                            onPress={() => {
-                              this.setActivityModal(!this.state.activityModalVisible);
-                            }} />
                 </View>
                </View>
               </Modal>
@@ -471,7 +499,17 @@ export default class IntakeCalculator extends Component {
                 onRequestClose={() => {alert("Modal has been closed.");}}
                 >
                <View style={styles.modalView}>
-                <View style={{backgroundColor: 'white', height: 250}}>
+                <View style={{backgroundColor: 'white', height: 225}}>
+                  <View>
+                    <TouchableHighlight
+                      underlayColor="white"
+                      onPress={() => {
+                        this.setHeightModal(!this.state.heightModalVisible);
+                      }}>
+                      <Image style={styles.closeIcon}
+                            source={require('./img/close.png')} />
+                    </TouchableHighlight>
+                  </View>
                   <Text style={styles.modalHeader}>HEIGHT</Text>
                   <Text style={styles.modalBody}>
                     Weight combined with Height provides us with your Body Mass Index or BMI.
@@ -481,11 +519,6 @@ export default class IntakeCalculator extends Component {
                   <Text style={styles.modalBody}>
                     Formula: weight / [height]^2
                   </Text>
-                    <Button title='CLOSE'
-                            buttonStyle={styles.modalCloseBtn}
-                            onPress={() => {
-                              this.setHeightModal(!this.state.heightModalVisible);
-                            }} />
                 </View>
                </View>
               </Modal>
@@ -635,6 +668,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffc123',
     alignSelf: 'center',
     borderRadius: 4
+  },
+  closeIcon: {
+    width: 15,
+    height: 15,
+    marginTop: 15,
+    marginRight: 15,
+    alignSelf: 'flex-end'
   },
   text: {
     fontSize: 20,
