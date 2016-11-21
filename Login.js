@@ -3,9 +3,10 @@ import { View,
         Text,
         TouchableHighlight,
         StyleSheet,
-        Image
+        Image,
+        Modal
        } from 'react-native';
-import { Button, SocialIcon } from 'react-native-elements';
+import { Button, SocialIcon, FormLabel, FormInput } from 'react-native-elements';
 import Exponent, { Asset, Components } from 'exponent';
 
 export default class Login extends Component {
@@ -14,7 +15,10 @@ export default class Login extends Component {
 
     this.state = {
       name: '',
-      isReady: false
+      isReady: false,
+      modalVisible: false,
+      email: '',
+      password: ''
     }
   }
 
@@ -47,29 +51,49 @@ export default class Login extends Component {
     }
   }
 
+  setModal(boolean) {
+    this.setState({ modalVisible: boolean });
+  }
+
   render() {
     if (!this.state.isReady) {
       return <Components.AppLoading />;
     }
 
+    // <SocialIcon
+    //   title='Sign In With Facebook'
+    //   button
+    //   type='facebook'
+    //   raised
+    //   style={{width: 250}}
+    //   onPress={this._logIn.bind(this)}
+    //   />
+
+    // onpress={this.signup.bind(this)}
+    // onpress={this.goToLogin.bind(this)}
+
     return (
       <Image source={require('./img/backgroundImg.jpg')}
               style={styles.backgroundContainer}>
+
         <View style={{height: 175, paddingLeft: 20}}>
           <Image source={require('./img/WaterBuddyLogo.png')}
             resizeMode="contain"
             style={{flex: 1, width: 175}} />
         </View>
 
+
         <View style={styles.btns}>
-          <SocialIcon
-            title='Sign In With Facebook'
-            button
-            type='facebook'
+          <Button
+            buttonStyle={styles.guestBtn}
             raised
-            style={{width: 250}}
-            onPress={this._logIn.bind(this)}
+            icon={{name: 'face'}}
+            onPress={() => {this.setState({modalVisible: true})}}
+            title='Login With Email'
+            fontWeight='bold'
+            fontSize={15}
             />
+
           <Button
             buttonStyle={styles.guestBtn}
             raised
@@ -79,11 +103,69 @@ export default class Login extends Component {
             fontWeight='bold'
             fontSize={15}
             />
+
+          <View style={styles.centerContainer}>
+            <View>
+              <Modal
+                animationType={"fade"}
+                transparent={true}
+                visible={this.state.modalVisible}
+                onRequestClose={() => {alert("Modal has been closed.");}}>
+                <View style={styles.modalView}>
+                  <View style={{backgroundColor: 'white', height: 300, width: 300}}>
+                      <View style={{marginBottom: 30, marginTop: 30}}>
+                        <View>
+                          <TouchableHighlight
+                            underlayColor="white"
+                            onPress={() => {
+                              this.setModal(!this.state.modalVisible);
+                            }}>
+                            <Image style={{width: 15, height: 15, marginRight: 15, alignSelf: 'flex-end'}}
+                                  source={require('./img/close.png')} />
+                          </TouchableHighlight>
+                        </View>
+
+                        <FormLabel>Email</FormLabel>
+                        <FormInput
+                          style={{fontSize: 12}}
+                          onChangeText={(text) => this.setState({email: text})}
+                          value={this.state.email}
+                          placeholder={"Email Address"}
+                        />
+
+                        <FormLabel>Password</FormLabel>
+                        <FormInput
+                          style={{fontSize: 12}}
+                          onChangeText={(text) => this.setState({password: text})}
+                          value={this.state.password}
+                          secureTextEntry={true}
+                          placeholder={"Password"}
+                        />
+                      </View>
+
+                      <View style={{flexDirection: 'row'}}>
+                        <Button
+                          buttonStyle={{height: 40, width: 120}}
+                          title="Signup"/>
+
+                        <Button
+                          buttonStyle={{height: 40, width: 120}}
+                          title="Login"/>
+                      </View>
+
+
+                  </View>
+                </View>
+              </Modal>
+            </View>
+          </View>
         </View>
+
       </Image>
     )
   }
 }
+
 
 const styles = StyleSheet.create({
   backgroundContainer: {
@@ -112,5 +194,16 @@ const styles = StyleSheet.create({
     paddingTop: 14,
     paddingBottom: 14,
     backgroundColor: 'green',
-  }
+  },
+  modalView: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex: 1,
+    backgroundColor: 'rgba(34, 34, 34, 0.50)'
+  },
+  centerContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
 });
