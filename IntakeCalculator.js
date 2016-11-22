@@ -156,12 +156,15 @@ export default class IntakeCalculator extends Component {
       //       style={{height: 125, width: 175}}
       //       resizeMode="contain"/>
       results = <View style={styles.resultContainer}>
-                  <Text style={{fontSize: 20, color: 'red'}}>
-                    Drink {Math.round(this.state.amount)} ounces of water per day...
-                  </Text>
-                  <Text style={{fontSize: 20, color: 'red'}}>
-                    OR approximately {Math.round(Math.round(this.state.amount) / 8)} 8-oz glasses of water
-                  </Text>
+                  <View style={{marginLeft: 10, marginRight: 10, marginBottom: 20}}>
+                    <Text style={{fontSize: 20, color: 'red', textAlign: 'center'}}>
+                      Drink {Math.round(this.state.amount)} ounces of water per day...
+                    </Text>
+                    <Text style={{fontSize: 20, color: 'red', textAlign: 'center'}}>
+                      OR approximately {Math.round(Math.round(this.state.amount) / 8)} 8-oz glasses of water
+                    </Text>
+                  </View>
+
                   <Text style={{fontSize: 20, color: 'green'}}>
                     BMI : {Math.round(this.state.bmi)}
                   </Text>
@@ -578,17 +581,6 @@ export default class IntakeCalculator extends Component {
     );
   }
 }
-
-// <Text style={styles.text}>You selected: {selectionString}</Text>
-// <View style={styles.quarterHeight}>
-//   <Text style={styles.green}>
-//     {this.state.amount === null ? '' : this.state.amount + " " + "ounces of water a day"}
-//     {"\n"}
-//     {this.state.amount === null ? '' : "OR"}
-//     {"\n"}
-//     {this.state.amount === null ? '' : Math.round(this.state.amount * 28.35) + " " + "ml of water a day"}
-//   </Text>
-// </View>
 
 const styles = StyleSheet.create({
   mainContainer: {

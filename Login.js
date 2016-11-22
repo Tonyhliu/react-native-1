@@ -163,7 +163,7 @@ export default class Login extends Component {
 
 
   _changeModal() {
-    this.setState({ modalVisible: false, created: true })
+    this.setState({ modalVisible: !this.state.modalVisible, created: !this.state.created })
   }
 
   render() {
@@ -196,7 +196,7 @@ export default class Login extends Component {
 
         <View style={styles.btns}>
           <Button
-            buttonStyle={styles.guestBtn}
+            buttonStyle={styles.emailBtn}
             raised
             icon={{name: 'account-circle'}}
             onPress={() => {this.setState({modalVisible: true})}}
@@ -223,7 +223,7 @@ export default class Login extends Component {
                 visible={this.state.modalVisible}
                 onRequestClose={() => {alert("Modal has been closed.");}}>
                 <View style={styles.modalView}>
-                  <View style={{backgroundColor: 'white', height: 300, width: 300}}>
+                  <View style={{backgroundColor: 'white', height: 320, width: 300}}>
                       <View style={{marginBottom: 30, marginTop: 30}}>
                         <View>
                           <TouchableHighlight
@@ -254,16 +254,21 @@ export default class Login extends Component {
                         />
                       </View>
 
-                      <View style={{flexDirection: 'row'}}>
+                      <View style={{alignSelf: 'center'}}>
                         <Button
                           buttonStyle={{height: 40, width: 120}}
                           title="Signup"
                           onPress={this.signUp}/>
+                      </View>
 
-                        <Button
-                          buttonStyle={{height: 40, width: 120}}
-                          title="Login"
-                          onPress={this._changeModal}/>
+                      <View style={{marginTop: 25}}>
+                        <TouchableHighlight
+                          underlayColor="white"
+                          onPress={this._changeModal}>
+                          <Text style={{marginLeft: 15, alignSelf: 'flex-start', color: 'rgb(141, 189, 215)'}}>
+                            Already have an account?
+                          </Text>
+                        </TouchableHighlight>
                       </View>
 
                     </View>
@@ -281,7 +286,7 @@ export default class Login extends Component {
                 visible={this.state.created}
                 onRequestClose={() => {alert("Modal has been closed.");}}>
                 <View style={styles.modalView}>
-                  <View style={{backgroundColor: 'white', height: 300, width: 300}}>
+                  <View style={{backgroundColor: 'white', height: 320, width: 300}}>
                       <View style={{marginBottom: 30, marginTop: 30}}>
                         <View>
                           <TouchableHighlight
@@ -317,7 +322,16 @@ export default class Login extends Component {
                           buttonStyle={{height: 40, width: 120}}
                           title="Login"
                           onPress={this.logIn}/>
+                      </View>
 
+                      <View style={{marginTop: 25}}>
+                        <TouchableHighlight
+                          underlayColor="white"
+                          onPress={this._changeModal}>
+                          <Text style={{marginLeft: 15, alignSelf: 'flex-start', color: 'rgb(141, 189, 215)'}}>
+                            New user? Click here
+                          </Text>
+                        </TouchableHighlight>
                       </View>
                   </View>
                 </View>
@@ -330,6 +344,8 @@ export default class Login extends Component {
   }
 }
 
+// logo : R141, G189, B215
+// background : R248, G98, B54
 
 const styles = StyleSheet.create({
   backgroundContainer: {
@@ -357,7 +373,21 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingTop: 14,
     paddingBottom: 14,
-    backgroundColor: 'green',
+    // backgroundColor: 'green',
+    backgroundColor: '#8ff38c',
+  },
+  emailBtn: {
+    borderRadius: 30,
+    width: 250,
+    height: 52,
+    margin: 7,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingTop: 14,
+    paddingBottom: 14,
+    // backgroundColor: '#fdd05f',
+    backgroundColor: 'rgb(248, 98, 54)',
   },
   modalView: {
     justifyContent: 'center',
