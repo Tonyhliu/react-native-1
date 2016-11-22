@@ -34,6 +34,8 @@ export default class Login extends Component {
     }
 
     this.signUp = this.signUp.bind(this);
+    this.logIn = this.logIn.bind(this);
+    this._changeModal = this._changeModal.bind(this);
   }
 
   componentWillMount() {
@@ -114,6 +116,56 @@ export default class Login extends Component {
         })
   }
 
+  logIn() {
+    let that = this;
+    firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then(function(user) {
+      // console.log(user);
+      // Alert.alert('Success', 'Logging ')
+      that.setState({ created: false, modalVisible: false });
+      that.props.login(user.email)
+      // console.log(that);
+      // console.log(user.dc);
+    }).catch(function(error) {
+          // Handle Errors here.
+          // console.log("1st error: " + error);
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          if (error) {
+            switch (errorCode) {
+              case 'auth/user-disabled':
+                Alert.alert('Invalid Email', 'The email has been disabled.');
+                break;
+              case 'auth/invalid-email':
+                Alert.alert('Invalid Email', 'Email address is invalid.');
+                break;
+              case 'auth/user-not-found':
+                Alert.alert('Invalid Email', 'No account found with given email address.');
+                break;
+              case 'auth/wrong-password':
+                Alert.alert('Wrong Password', 'Invalid password.');
+                break;
+              default:
+                Alert.alert('Error', 'Error signing in.');
+            }
+            console.log(error);
+          } else {
+            // else statement not being hit
+            // Alert.alert('Success!')
+            console.log("SUCCESS");
+          }
+        });
+
+        this.setState({
+          email: '',
+          password: ''
+        })
+  }
+
+
+  _changeModal() {
+    this.setState({ modalVisible: false, created: true })
+  }
+
   render() {
     if (!this.state.isReady) {
       return <Components.AppLoading />;
@@ -146,9 +198,9 @@ export default class Login extends Component {
           <Button
             buttonStyle={styles.guestBtn}
             raised
-            icon={{name: 'face'}}
+            icon={{name: 'account-circle'}}
             onPress={() => {this.setState({modalVisible: true})}}
-            title='Login With Email'
+            title='Email Login / Sign up'
             fontWeight='bold'
             fontSize={15}
             />
@@ -210,7 +262,8 @@ export default class Login extends Component {
 
                         <Button
                           buttonStyle={{height: 40, width: 120}}
-                          title="Login"/>
+                          title="Login"
+                          onPress={this._changeModal}/>
                       </View>
 
                     </View>
@@ -262,7 +315,8 @@ export default class Login extends Component {
                       <View style={{alignItems: 'center'}}>
                         <Button
                           buttonStyle={{height: 40, width: 120}}
-                          title="Login"/>
+                          title="Login"
+                          onPress={this.logIn}/>
 
                       </View>
                   </View>
