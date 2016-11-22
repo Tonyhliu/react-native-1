@@ -30,7 +30,7 @@ export default class Login extends Component {
       modalVisible: false,
       email: '',
       password: '',
-      loaded: ''
+      created: false
     }
 
     this.signUp = this.signUp.bind(this);
@@ -69,9 +69,18 @@ export default class Login extends Component {
     this.setState({ modalVisible: boolean });
   }
 
+  setLoginModal(boolean) {
+    this.setState({ created: boolean });
+  }
+
   signUp() {
+    let that = this;
     firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then(function(user) {
-      Alert.alert(user);
+      // console.log(user);
+      Alert.alert('Success', 'Account created! Please login on the following page')
+      that.setState({ created: true, modalVisible: false });
+      console.log(that);
+      // console.log(user.dc);
     }).catch(function(error) {
           // Handle Errors here.
           console.log("1st error: " + error);
@@ -94,7 +103,8 @@ export default class Login extends Component {
             console.log(error);
           } else {
             // else statement not being hit
-            Alert.alert('Success!')
+            // Alert.alert('Success!')
+            console.log("SUCCESS");
           }
         });
 
@@ -203,13 +213,63 @@ export default class Login extends Component {
                           title="Login"/>
                       </View>
 
+                    </View>
+                  </View>
+                </Modal>
+              </View>
+            </View>
+          </View>
 
+          <View style={styles.centerContainer}>
+            <View>
+              <Modal
+                animationType={"fade"}
+                transparent={true}
+                visible={this.state.created}
+                onRequestClose={() => {alert("Modal has been closed.");}}>
+                <View style={styles.modalView}>
+                  <View style={{backgroundColor: 'white', height: 300, width: 300}}>
+                      <View style={{marginBottom: 30, marginTop: 30}}>
+                        <View>
+                          <TouchableHighlight
+                            underlayColor="white"
+                            onPress={() => {
+                              this.setLoginModal(!this.state.created);
+                            }}>
+                            <Image style={{width: 15, height: 15, marginRight: 15, alignSelf: 'flex-end'}}
+                                  source={require('./img/close.png')} />
+                          </TouchableHighlight>
+                        </View>
+
+                        <FormLabel>Email</FormLabel>
+                        <FormInput
+                          style={{fontSize: 12}}
+                          onChangeText={(text) => this.setState({email: text})}
+                          value={this.state.email}
+                          placeholder={"Email Address"}
+                        />
+
+                        <FormLabel>Password</FormLabel>
+                        <FormInput
+                          style={{fontSize: 12}}
+                          onChangeText={(text) => this.setState({password: text})}
+                          value={this.state.password}
+                          secureTextEntry={true}
+                          placeholder={"Password"}
+                        />
+                      </View>
+
+                      <View style={{alignItems: 'center'}}>
+                        <Button
+                          buttonStyle={{height: 40, width: 120}}
+                          title="Login"/>
+
+                      </View>
                   </View>
                 </View>
               </Modal>
             </View>
           </View>
-        </View>
 
       </Image>
     )
