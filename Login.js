@@ -346,6 +346,11 @@ export default class Login extends Component {
 
 // logo : R141, G189, B215
 // background : R248, G98, B54
+// firebase.auth().signOut().then(function() {
+// // signout successful.
+// }, function(error) {
+// // an error happened.
+// });
 
 const styles = StyleSheet.create({
   backgroundContainer: {
