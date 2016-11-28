@@ -24,53 +24,10 @@ import IntakeCalculator from './IntakeCalculator';
 import PlaceHolder from './PlaceHolder';
 import About from './About';
 import Login from './Login';
-// import Icon from 'react-native-vector-icons/MaterialIcons';
-// import * as firebase from 'firebase';
-//
-// var config = {
-//   apiKey: "AIzaSyCu7-RQHAXaQEd2eUADLtccRN_nzmb3evs",
-//   authDomain: "waterbuddyapp-640d4.firebaseapp.com",
-//   databaseURL: "https://waterbuddyapp-640d4.firebaseio.com",
-//   storageBucket: "gs://waterbuddyapp-640d4.appspot.com",
-// };
-// firebase.initializeApp(config);
-//
-// var provider = new firebase.auth.GoogleAuthProvider();
-// provider.setCustomParameters({
-//   'login_hint': 'user@example.com'
-// });
-// firebase.auth().signInWithRedirect(provider);
-// firebase.auth().getRedirectResult().then(function(result) {
-//   if (result.credential) {
-//     // This gives you a Google Access Token. You can use it to access the Google API.
-//     var token = result.credential.accessToken;
-//     console.log("token is: " + token);
-//     // ...
-//   }
-//   // The signed-in user info.
-//   console.log("user is: " + user);
-//   var user = result.user;
-// }).catch(function(error) {
-//   // Handle Errors here.
-//   var errorCode = error.code;
-//   var errorMessage = error.message;
-//   // The email of the user's account used.
-//   var email = error.email;
-//   // The firebase.auth.AuthCredential type that was used.
-//   var credential = error.credential;
-//   // ...
-// });
-
 
 class WaterBuddy extends Component {
   constructor(props) {
     super(props);
-
-    // const fireBaseConnection = new Firebase('https://waterbuddyapp-640d4.firebaseio.com/');
-    // fireBaseConnection.set({
-    //   FirstName: 'Hello World',
-    //   LastName: 'Sunny'
-    // });
 
     this.state = {
       selectedTab: 'login',

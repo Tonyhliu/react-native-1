@@ -8,7 +8,10 @@ import { View,
         Modal
        } from 'react-native';
 import { Button, SocialIcon, FormLabel, FormInput } from 'react-native-elements';
-import Exponent, { Asset, Components } from 'exponent';
+import Exponent, { Asset,
+                  Components,
+                  Permissions,
+                  Notifications } from 'exponent';
 import * as firebase from 'firebase';
 
 var config = {
@@ -19,6 +22,7 @@ var config = {
 };
 firebase.initializeApp(config);
 
+var database = firebase.database();
 
 export default class Login extends Component {
   constructor(props) {
@@ -40,6 +44,7 @@ export default class Login extends Component {
 
   componentWillMount() {
     this._cacheResourcesAsync();
+    // this.registerForPushNotificationsAsync();
   }
 
   async _cacheResourcesAsync() {
@@ -48,9 +53,41 @@ export default class Login extends Component {
       await Asset.fromModule(image).downloadAsync();
     }
 
-
     this.setState({isReady: true});
   }
+
+  async registerForPushNotificationsAsync() {
+  // Android remote notification permissions are granted during the app
+  // install, so this will only ask on iOS
+  let { status } = await Permissions.askAsync(Permissions.REMOTE_NOTIFICATIONS);
+
+  // Stop here if the user did not grant permissions
+  if (status !== 'granted') {
+    return;
+  }
+
+  // Get the token that uniquely identifies this device
+  let token = await Notifications.getExponentPushTokenAsync();
+  console.log("made it");
+
+  // POST the token to our backend so we can use it to send pushes from there
+  return fetch(config.databaseURL, {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      token: {
+        value: token,
+       },
+       user: {
+        username: 'Brent',
+       },
+    }),
+  });
+}
+
 
   async _logIn() {
   const { type, token } = await Exponent.Facebook.logInWithReadPermissionsAsync(
