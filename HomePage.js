@@ -186,7 +186,7 @@ export default class HomePage extends Component {
       <ScrollView style={styles.mainContainer}>
         <View style={styles.firstContainer}>
           <View style={{marginTop: 35, marginBottom: 35}}>
-            <Text style={styles.messageBoxWelcomeText}>{this.state.username ? 'WELCOME, ' + this.state.username.toUpperCase() + '.' : 'WELCOME'}</Text>
+            <Text style={styles.messageBoxWelcomeText}>{this.state.username ? 'WELCOME,' + this.state.username.toUpperCase() + '.' : 'WELCOME'}</Text>
           </View>
           <View style={styles.messageBox}>
             <View>

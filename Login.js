@@ -85,54 +85,51 @@ export default class Login extends Component {
 
   signUp() {
     let that = this;
-    firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then(function(user) {
-      // console.log(user);
-      // console.log(that);
-      let username = that.state.username
-      database.ref('users/' + user.uid).set({
-        username: username
-      })
+    if (this.state.username.length < 4) {
+      Alert.alert('Username too short!', '4 letters minimum')
+    } else if (this.state.username.length > 10) {
+      Alert.alert('Username too long!', '10 letters maximum')
+    } else {
+      firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then(function(user) {
+        // console.log(user);
+        let username = that.state.username
 
-      Alert.alert('Success', 'Account created! Please login on the following page')
-      that.setState({ created: true,
-                    modalVisible: false,
-                    email: '',
-                    username: '',
-                    password: '' });
-      // console.log(that);
-      // console.log(user.dc);
-    }).catch(function(error) {
-          // Handle Errors here.
-          // console.log("1st error: " + error);
-          var errorCode = error.code;
-          var errorMessage = error.message;
-          if (error) {
-            switch (errorCode) {
-              case 'auth/weak-password':
-                Alert.alert('Invalid Password', 'The password is too weak.');
-                break;
-              case 'auth/invalid-email':
-                Alert.alert('Invalid Email', 'Email address is invalid.');
-                break;
-              case 'auth/email-already-in-use':
-                Alert.alert('Invalid Email', 'An account already exists with given email address.');
-                break;
-              default:
-                Alert.alert('Error', 'Error creating user');
+        database.ref('users/' + user.uid).set({
+          username: username
+        })
+
+        Alert.alert('Success', 'Account created! Please login on the following page')
+        that.setState({ created: true,
+                      modalVisible: false,
+                      email: '',
+                      username: '',
+                      password: '' });
+        // console.log(that);
+      }).catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            if (error) {
+              switch (errorCode) {
+                case 'auth/weak-password':
+                  Alert.alert('Invalid Password', 'The password is too weak.');
+                  break;
+                case 'auth/invalid-email':
+                  Alert.alert('Invalid Email', 'Email address is invalid.');
+                  break;
+                case 'auth/email-already-in-use':
+                  Alert.alert('Invalid Email', 'An account already exists with given email address.');
+                  break;
+                default:
+                  Alert.alert('Error', 'Error creating user');
+              }
+              console.log(error);
+            } else {
+              // else statement not being hit
+              console.log("SUCCESS");
             }
-            console.log(error);
-          } else {
-            // else statement not being hit
-            // Alert.alert('Success!')
-            console.log("SUCCESS");
-          }
-        });
-
-        // this.setState({
-        //   email: '',
-        //   username: '',
-        //   password: ''
-        // });
+          });
+    }
   }
 
   logIn() {
