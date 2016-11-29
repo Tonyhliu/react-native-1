@@ -5,6 +5,7 @@ import { View,
         StyleSheet,
         Image,
         Alert,
+        ScrollView,
         Modal
        } from 'react-native';
 import { Button, SocialIcon, FormLabel, FormInput } from 'react-native-elements';
@@ -14,12 +15,14 @@ import Exponent, { Asset,
                   Notifications } from 'exponent';
 import * as firebase from 'firebase';
 
-// var config = {
-//   apiKey: "AIzaSyCu7-RQHAXaQEd2eUADLtccRN_nzmb3evs",
-//   authDomain: "waterbuddyapp-640d4.firebaseapp.com",
-//   databaseURL: "https://waterbuddyapp-640d4.firebaseio.com",
-//   storageBucket: "gs://waterbuddyapp-640d4.appspot.com",
-// };
+var config = {
+  apiKey: "AIzaSyCu7-RQHAXaQEd2eUADLtccRN_nzmb3evs",
+  authDomain: "waterbuddyapp-640d4.firebaseapp.com",
+  databaseURL: "https://waterbuddyapp-640d4.firebaseio.com",
+  storageBucket: "gs://waterbuddyapp-640d4.appspot.com",
+};
+firebase.initializeApp(config);
+var database = firebase.database();
 
 export default class Login extends Component {
   constructor(props) {
@@ -31,8 +34,9 @@ export default class Login extends Component {
       modalVisible: false,
       email: '',
       password: '',
+      username: '',
       created: false
-    }
+    };
 
     this.signUp = this.signUp.bind(this);
     this.logIn = this.logIn.bind(this);
@@ -41,6 +45,10 @@ export default class Login extends Component {
 
   componentWillMount() {
     this._cacheResourcesAsync();
+  }
+
+  componentWillUnmount() {
+    this.setState({ isReady: false });
   }
 
   async _cacheResourcesAsync() {
@@ -79,13 +87,23 @@ export default class Login extends Component {
     let that = this;
     firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then(function(user) {
       // console.log(user);
+      // console.log(that);
+      let username = that.state.username
+      database.ref('users/' + user.uid).set({
+        username: username
+      })
+
       Alert.alert('Success', 'Account created! Please login on the following page')
-      that.setState({ created: true, modalVisible: false });
+      that.setState({ created: true,
+                    modalVisible: false,
+                    email: '',
+                    username: '',
+                    password: '' });
       // console.log(that);
       // console.log(user.dc);
     }).catch(function(error) {
           // Handle Errors here.
-          console.log("1st error: " + error);
+          // console.log("1st error: " + error);
           var errorCode = error.code;
           var errorMessage = error.message;
           if (error) {
@@ -102,7 +120,7 @@ export default class Login extends Component {
               default:
                 Alert.alert('Error', 'Error creating user');
             }
-            // console.log(error);
+            console.log(error);
           } else {
             // else statement not being hit
             // Alert.alert('Success!')
@@ -110,10 +128,11 @@ export default class Login extends Component {
           }
         });
 
-        this.setState({
-          email: '',
-          password: ''
-        })
+        // this.setState({
+        //   email: '',
+        //   username: '',
+        //   password: ''
+        // });
   }
 
   logIn() {
@@ -121,9 +140,13 @@ export default class Login extends Component {
     firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then(function(user) {
       // console.log(user);
       // Alert.alert('Success', 'Logging ')
-      that.setState({ created: false, modalVisible: false });
+
+      that.setState({ created: false,
+                      modalVisible: false,
+                      email: '',
+                      password: '' });
       // console.log(user.uid);
-      that.props.login(user.email)
+      that.props.login(user.email);
       // console.log(that);
       // console.log(user.dc);
     }).catch(function(error) {
@@ -156,10 +179,11 @@ export default class Login extends Component {
           }
         });
 
-        this.setState({
-          email: '',
-          password: ''
-        })
+        // this.setState({
+        //   email: '',
+        //   username: '',
+        //   password: ''
+        // });
   }
 
 
@@ -200,8 +224,8 @@ export default class Login extends Component {
             buttonStyle={styles.emailBtn}
             raised
             icon={{name: 'account-circle'}}
-            onPress={() => {this.setState({modalVisible: true})}}
-            title='Email Login / Sign up'
+            onPress={() => {this.setState({modalVisible: true});}}
+            title='Login / Sign up'
             fontWeight='bold'
             fontSize={15}
             />
@@ -224,7 +248,7 @@ export default class Login extends Component {
                 visible={this.state.modalVisible}
                 onRequestClose={() => {alert("Modal has been closed.");}}>
                 <View style={styles.modalView}>
-                  <View style={{backgroundColor: 'white', height: 320, width: 300}}>
+                  <View style={{backgroundColor: 'white', height: 425, width: 300}}>
                       <View style={{marginBottom: 30, marginTop: 30}}>
                         <View>
                           <TouchableHighlight
@@ -245,6 +269,14 @@ export default class Login extends Component {
                           placeholder={"Email Address"}
                         />
 
+                        <FormLabel>Username</FormLabel>
+                        <FormInput
+                          style={{fontSize: 12}}
+                          onChangeText={(text) => this.setState({username: text})}
+                          value={this.state.username}
+                          placeholder={"Username"}
+                        />
+
                         <FormLabel>Password</FormLabel>
                         <FormInput
                           style={{fontSize: 12}}
@@ -253,7 +285,7 @@ export default class Login extends Component {
                           secureTextEntry={true}
                           placeholder={"Password"}
                         />
-                      </View>
+                  </View>
 
                       <View style={{alignSelf: 'center'}}>
                         <Button
@@ -277,6 +309,7 @@ export default class Login extends Component {
                 </Modal>
               </View>
             </View>
+
           </View>
 
           <View style={styles.centerContainer}>

@@ -19,8 +19,8 @@ var config = {
   databaseURL: "https://waterbuddyapp-640d4.firebaseio.com",
   storageBucket: "gs://waterbuddyapp-640d4.appspot.com",
 };
-firebase.initializeApp(config);
-var database = firebase.database();
+// firebase.initializeApp(config);
+// var database = firebase.database();
 
 
 export default class HomePage extends Component {
@@ -42,7 +42,8 @@ export default class HomePage extends Component {
       muted: false,
       duration: 0.0,
       currentTime: 0.0,
-      paused: true
+      paused: true,
+      username: ''
     }
   }
 
@@ -68,38 +69,52 @@ export default class HomePage extends Component {
   console.log("made it");
   console.log(status);
   // Stop here if the user did not grant permissions
-  if (status !== 'granted') {
-    return;
-  }
-  console.log("did i make it?");
+  // if (status !== 'granted') {
+  //   return;
+  // }
+  // console.log("did i make it?");
 
   // Get the token that uniquely identifies this device
   let token = await Notifications.getExponentPushTokenAsync();
   console.log("made it to token");
   console.log("token is :" + token);
 
-  // database.ref('users/' + this.props.userId).set({
-  //   username: this.props.username,
-  //   userId: this.props.userId,
-  //   email: this.props.username,
-  //   token: token
-  // })
-  // POST the token to our backend so we can use it to send pushes from there
-  return fetch(config.databaseURL, {
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-    },
-    method: 'POST',
-    name: JSON.stringify({
-      token: {
-        value: token,
-       },
-       user: {
-        username: 'Tony',
-       },
-    }),
+  let id = firebase.auth().currentUser.uid,
+      email = this.props.username,
+      username;
+
+  await firebase.database().ref('/users/' + id).once('value').then(function(snapshot) {
+    username = snapshot.val().username;
+    // console.log(username);
   });
+
+  this.setState({ username: username })
+  console.log(username);
+
+  firebase.database().ref('users/' + id).set({
+    userId: id,
+    username: username,
+    email: email,
+    token: token
+  })
+
+
+  // POST the token to our backend so we can use it to send pushes from there
+  // return fetch(config.databaseURL, {
+  //   headers: {
+  //     'Accept': 'application/json',
+  //     'Content-Type': 'application/json',
+  //   },
+  //   method: 'POST',
+  //   name: JSON.stringify({
+  //     token: {
+  //       value: token,
+  //      },
+  //      user: {
+  //       username: 'Tony',
+  //      },
+  //   }),
+  // });
 }
 
 
@@ -171,7 +186,7 @@ export default class HomePage extends Component {
       <ScrollView style={styles.mainContainer}>
         <View style={styles.firstContainer}>
           <View style={{marginTop: 35, marginBottom: 35}}>
-            <Text style={styles.messageBoxWelcomeText}>{'WELCOME, ' + this.props.username + '.'}</Text>
+            <Text style={styles.messageBoxWelcomeText}>{this.state.username ? 'WELCOME, ' + this.state.username.toUpperCase() + '.' : 'WELCOME'}</Text>
           </View>
           <View style={styles.messageBox}>
             <View>
