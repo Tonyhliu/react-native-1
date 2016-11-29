@@ -9,10 +9,19 @@ import { View,
         Linking
        } from 'react-native';
 import MyAppText from './MyAppText';
-// import { Button } from 'react-native-elements';
-// import Icon from 'react-native-vector-icons/FontAwesome';
-import Exponent, { Asset, Components } from 'exponent';
+import Exponent, { Asset, Components, Permissions, Notifications } from 'exponent';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import * as firebase from 'firebase';
+
+var config = {
+  apiKey: "AIzaSyCu7-RQHAXaQEd2eUADLtccRN_nzmb3evs",
+  authDomain: "waterbuddyapp-640d4.firebaseapp.com",
+  databaseURL: "https://waterbuddyapp-640d4.firebaseio.com",
+  storageBucket: "gs://waterbuddyapp-640d4.appspot.com",
+};
+firebase.initializeApp(config);
+var database = firebase.database();
+
 
 export default class HomePage extends Component {
   // static propTypes = {
@@ -39,6 +48,7 @@ export default class HomePage extends Component {
 
   componentWillMount() {
     this._cacheResourcesAsync();
+    this.registerForPushNotificationsAsync();
   }
 
   async _cacheResourcesAsync() {
@@ -49,6 +59,49 @@ export default class HomePage extends Component {
 
     this.setState({isReady: true});
   }
+
+  async registerForPushNotificationsAsync() {
+  // Android remote notification permissions are granted during the app
+  // install, so this will only ask on iOS
+  console.log(config.databaseURL);
+  let { status } = await Permissions.askAsync(Permissions.REMOTE_NOTIFICATIONS);
+  console.log("made it");
+  console.log(status);
+  // Stop here if the user did not grant permissions
+  if (status !== 'granted') {
+    return;
+  }
+  console.log("did i make it?");
+
+  // Get the token that uniquely identifies this device
+  let token = await Notifications.getExponentPushTokenAsync();
+  console.log("made it to token");
+  console.log("token is :" + token);
+
+  // database.ref('users/' + this.props.userId).set({
+  //   username: this.props.username,
+  //   userId: this.props.userId,
+  //   email: this.props.username,
+  //   token: token
+  // })
+  // POST the token to our backend so we can use it to send pushes from there
+  return fetch(config.databaseURL, {
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    },
+    method: 'POST',
+    name: JSON.stringify({
+      token: {
+        value: token,
+       },
+       user: {
+        username: 'Tony',
+       },
+    }),
+  });
+}
+
 
   onLoad(data) {
     this.setState({duration: data.duration});

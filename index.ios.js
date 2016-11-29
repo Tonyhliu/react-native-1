@@ -31,7 +31,8 @@ class WaterBuddy extends Component {
 
     this.state = {
       selectedTab: 'login',
-      username: ''
+      username: '',
+      userId: ''
     };
 
     this.loginUser = this.loginUser.bind(this);
@@ -54,9 +55,10 @@ class WaterBuddy extends Component {
   //   }
   // }
 
-  loginUser(name) {
+  loginUser(name, userId) {
     this.setState({selectedTab: 'home',
-                  username: name});
+                  username: name,
+                  userId: userId });
   }
 
   render() {
@@ -73,7 +75,8 @@ class WaterBuddy extends Component {
             renderIcon={() => <Image source={require('./img/homeIcon.png')} />}
             renderSelectedIcon={() => <Image source={require('./img/homeIcon.png')} />}
             onPress={() => this.setState({ selectedTab: 'home' })}>
-            <HomePage username={this.state.username}/>
+            <HomePage username={this.state.username}
+                      userId={this.state.userId} />
           </TabNavigator.Item>
           <TabNavigator.Item
             selected={this.state.selectedTab === 'calculator'}

@@ -14,15 +14,12 @@ import Exponent, { Asset,
                   Notifications } from 'exponent';
 import * as firebase from 'firebase';
 
-var config = {
-  apiKey: "AIzaSyCu7-RQHAXaQEd2eUADLtccRN_nzmb3evs",
-  authDomain: "waterbuddyapp-640d4.firebaseapp.com",
-  databaseURL: "https://waterbuddyapp-640d4.firebaseio.com",
-  storageBucket: "gs://waterbuddyapp-640d4.appspot.com",
-};
-firebase.initializeApp(config);
-
-var database = firebase.database();
+// var config = {
+//   apiKey: "AIzaSyCu7-RQHAXaQEd2eUADLtccRN_nzmb3evs",
+//   authDomain: "waterbuddyapp-640d4.firebaseapp.com",
+//   databaseURL: "https://waterbuddyapp-640d4.firebaseio.com",
+//   storageBucket: "gs://waterbuddyapp-640d4.appspot.com",
+// };
 
 export default class Login extends Component {
   constructor(props) {
@@ -44,7 +41,6 @@ export default class Login extends Component {
 
   componentWillMount() {
     this._cacheResourcesAsync();
-    // this.registerForPushNotificationsAsync();
   }
 
   async _cacheResourcesAsync() {
@@ -55,39 +51,6 @@ export default class Login extends Component {
 
     this.setState({isReady: true});
   }
-
-  async registerForPushNotificationsAsync() {
-  // Android remote notification permissions are granted during the app
-  // install, so this will only ask on iOS
-  let { status } = await Permissions.askAsync(Permissions.REMOTE_NOTIFICATIONS);
-
-  // Stop here if the user did not grant permissions
-  if (status !== 'granted') {
-    return;
-  }
-
-  // Get the token that uniquely identifies this device
-  let token = await Notifications.getExponentPushTokenAsync();
-  console.log("made it");
-
-  // POST the token to our backend so we can use it to send pushes from there
-  return fetch(config.databaseURL, {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      token: {
-        value: token,
-       },
-       user: {
-        username: 'Brent',
-       },
-    }),
-  });
-}
-
 
   async _logIn() {
   const { type, token } = await Exponent.Facebook.logInWithReadPermissionsAsync(
@@ -118,7 +81,7 @@ export default class Login extends Component {
       // console.log(user);
       Alert.alert('Success', 'Account created! Please login on the following page')
       that.setState({ created: true, modalVisible: false });
-      console.log(that);
+      // console.log(that);
       // console.log(user.dc);
     }).catch(function(error) {
           // Handle Errors here.
@@ -139,7 +102,7 @@ export default class Login extends Component {
               default:
                 Alert.alert('Error', 'Error creating user');
             }
-            console.log(error);
+            // console.log(error);
           } else {
             // else statement not being hit
             // Alert.alert('Success!')
@@ -159,6 +122,7 @@ export default class Login extends Component {
       // console.log(user);
       // Alert.alert('Success', 'Logging ')
       that.setState({ created: false, modalVisible: false });
+      // console.log(user.uid);
       that.props.login(user.email)
       // console.log(that);
       // console.log(user.dc);
@@ -184,7 +148,7 @@ export default class Login extends Component {
               default:
                 Alert.alert('Error', 'Error signing in.');
             }
-            console.log(error);
+            // console.log(error);
           } else {
             // else statement not being hit
             // Alert.alert('Success!')
